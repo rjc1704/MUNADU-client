@@ -7,13 +7,19 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./Redux/Store/store";
+import GlobalStyle from "./StyledComponents/global-styles";
+import { theme, nestTheme } from "./StyledComponents/theme";
+import { ThemeProvider } from "styled-components";
 
 require("dotenv").config();
 ReactDOM.render(
   <BrowserRouter>
     <Provider store={store}>
       <PersistGate persistor={persistor}>
-        <App />
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <App />
+        </ThemeProvider>
       </PersistGate>
     </Provider>
   </BrowserRouter>,

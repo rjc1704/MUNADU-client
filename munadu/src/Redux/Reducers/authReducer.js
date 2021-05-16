@@ -1,5 +1,5 @@
 import dummy from "../authDummy.json";
-import { SET_AUTH, SET_NO_AUTH } from "../Actions/actions";
+import { SET_AUTH, SET_NO_AUTH } from "../Actions/auth";
 
 const authReducer = (state = dummy, action) => {
   switch (action.type) {

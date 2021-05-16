@@ -15,13 +15,21 @@ import DetailPage from "./Page_Components/DetailPage";
 import OtherUserPage from "./Page_Components/OtherUserPage";
 import { useHistory } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
-
+import styled from "styled-components";
+//
+// color: ${(props) => props.theme.color.white};
 function App() {
   const authState = useSelector((state) => state.authReducer);
   return (
     <Router>
       <Switch>
-        <Route exact path="/landingpage" render={() => <LandingPage />} />
+        <Route
+          exact
+          path="/landingpage"
+          render={() => {
+            return <LandingPage />;
+          }}
+        />
         <Route path="/signinpage" render={() => <SignInPage />} />
         <Route
           path="/mypage"
