@@ -17,6 +17,7 @@ const Button = styled.button<{ color?: string }>`
   font-weight: 500;
   outline: none;
   border: none;
+  min-width: 5.5rem;
 `;
 
 export default Button;
