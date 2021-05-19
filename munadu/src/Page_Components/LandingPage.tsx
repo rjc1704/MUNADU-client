@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../StyledComponents/header";
 import Button from "../StyledComponents/button";
 import styled from "styled-components";
+import CreateReview from "../Function_Components/DetailPage/CreateReview";
 
 export default function LandingPage() {
   const PageContainer = styled.div`
@@ -21,6 +22,7 @@ export default function LandingPage() {
         </Header.HeaderBox>
       </Header.HeaderWrapper>
       <div>랜딩페이지 입니다.</div>
+      <CreateReview></CreateReview>
     </PageContainer>
   );
 }

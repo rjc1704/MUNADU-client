@@ -18,7 +18,7 @@ const theme: DefaultTheme = {
     surveyBox: "46%",
     surveyGauge: "4px",
     surveyOptions: "38%",
-    modalBox: "94%",
+    modalBox: "94vh",
   },
   fontFamily: {
     mainFont: "Roboto, sans-serif",

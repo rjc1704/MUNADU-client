@@ -8,8 +8,6 @@ const GlobalStyle = createGlobalStyle`
   html,
   body {
     overflow: hidden;
-
-    
   }
 
   * {

@@ -7,7 +7,7 @@ import Modal from "../Common/Modal";
 import axios from "axios";
 import { RootState } from "../../Redux/Store/store";
 import martialImage from "../../Images/taekwondo.svg";
-
+axios.defaults.withCredentials = true;
 const PhotoAndText = styled.div`
   display: flex;
   justify-content: flex-start;
