@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Button from "../../StyledComponents/button";
 import PropTypes from "prop-types";
 
@@ -57,19 +57,29 @@ const DialogHeader = styled.div`
 const ButtonGruop = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 2em;
+  margin-top: 1em;
 `;
 type sizeType = {
   modalWidthPercent: number;
   modalHeightPercent: number;
 };
+const Scale = keyframes`
+  from {
+    transform: scale(0,0);
+  }
+  to {
+    transform: scale(1,1);
+  }
+`;
 const DialogWrapper = styled.div<sizeType>`
   display: flex;
   flex-direction: column;
   width: ${(props) => props.modalWidthPercent || 38}%;
   height: auto;
   min-height: ${(props) => props.modalHeightPercent || 60}%;
+  animation: ${Scale} 0.3s ease-out;
 `;
+
 export default function Modal({
   close,
   headerText,
@@ -85,13 +95,7 @@ export default function Modal({
       callback();
     }
   };
-  // const DialogWrapper = styled.div`
-  //   display: flex;
-  //   flex-direction: column;
-  //   width: ${modalWidthPercent}%;
-  //   height: auto;
-  //   min-height: ${modalHeightPercent}%;
-  // `;
+
   interface WrapperProps {
     width: number;
   }

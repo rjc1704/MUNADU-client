@@ -90,6 +90,14 @@ const Form = styled.form`
   width: 100%;
   height: 100%;
 `;
+const ErrorMsg = styled.div`
+  display: flex;
+  justify-content: center;
+  color: red;
+  font-weight: 600;
+  font-family: ${(props) => props.theme.fontFamily.subFont};
+  margin-top: 10px;
+`;
 // ! 테스트를 위해 임시로 기본값 1로 설정해뒀으니 추후 삭제해야함!
 function CreateReview({ Martials_id = 1, Users_id = 1 }) {
   const [isModal, setIsModal] = useState(false);
@@ -101,6 +109,7 @@ function CreateReview({ Martials_id = 1, Users_id = 1 }) {
   const [difficulty, setDifficulty] = useState(0);
   const [intensity, setIntensity] = useState(0);
   const [injury, setInjury] = useState(0);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handlePracticality = (newPracticality: number) => {
     setPracticality(newPracticality);
@@ -121,7 +130,7 @@ function CreateReview({ Martials_id = 1, Users_id = 1 }) {
     setDifficulty(newDifficulty);
   };
   const closeModal = () => {
-    setIsModal(false);
+    setInitialState();
   };
   const openModal = () => {
     setIsModal(true);
@@ -136,6 +145,7 @@ function CreateReview({ Martials_id = 1, Users_id = 1 }) {
     setIntensity(0);
     setInjury(0);
     setIsModal(false);
+    setErrorMsg("");
   };
   const accessToken = useSelector(
     (state: RootState) => state.authReducer.accessToken
@@ -163,34 +173,46 @@ function CreateReview({ Martials_id = 1, Users_id = 1 }) {
   const addReview = async () => {
     // 유효성 검사
     // 서버 통신
-    try {
-      const review: reviewProps = await axios.post(
-        `${process.env.REACT_APP_API_URL}/review/create`,
-        {
-          period: period,
-          comment: comment,
-          score: score,
-          practicality: practicality,
-          muscle: muscle,
-          difficulty: difficulty,
-          intensity: intensity,
-          injury: injury,
-          Martials_id: Martials_id,
-          Users_id: Users_id,
-        },
-        {
-          headers: {
-            // Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
+    if (
+      !period ||
+      !comment ||
+      !score ||
+      !practicality ||
+      !muscle ||
+      !difficulty ||
+      !intensity ||
+      !injury
+    ) {
+      setErrorMsg("모든 항목이 입력되어야 합니다.");
+    } else {
+      try {
+        const review: reviewProps = await axios.post(
+          `${process.env.REACT_APP_API_URL}/review/create`,
+          {
+            period: period,
+            comment: comment,
+            score: score,
+            practicality: practicality,
+            muscle: muscle,
+            difficulty: difficulty,
+            intensity: intensity,
+            injury: injury,
+            Martials_id: Martials_id,
+            Users_id: Users_id,
           },
-          withCredentials: true,
-        }
-      );
-      console.log(`review`, review);
-    } catch (err) {
-      alert(err);
+          {
+            headers: {
+              // Authorization: `Bearer ${accessToken}`,
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          }
+        );
+        setInitialState();
+      } catch (err) {
+        alert(err);
+      }
     }
-    setInitialState();
   };
   useEffect(() => {
     console.log(`isModal`, isModal);
@@ -298,6 +320,7 @@ function CreateReview({ Martials_id = 1, Users_id = 1 }) {
                 />
               </StarWrapper>
             </TextAndInput>
+            <ErrorMsg>{errorMsg}</ErrorMsg>
           </Form>
         </Modal>
       ) : null}
