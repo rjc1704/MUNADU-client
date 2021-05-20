@@ -1,8 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-const Button = styled.button<{ color?: string }>`
-  margin: 10px;
+const Button = styled.button<{
+  color?: string;
+  width?: string;
+  margin?: string;
+  height?: string;
+}>`
+  margin: ${(props) => (props.margin ? props.margin : "10px")};
   cursor: pointer;
   background-color: ${(props) =>
     props.color === "white"
@@ -18,6 +23,8 @@ const Button = styled.button<{ color?: string }>`
   outline: none;
   border: none;
   min-width: 5.5rem;
+  width: ${(props) => (props.width ? props.width : "")};
+  height: ${(props) => (props.height ? props.height : "")};
 `;
 
 export default Button;
