@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import React from "react";
-
 const HeaderWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -25,6 +23,7 @@ const HeaderLogo = styled.div`
   font-family: ${(props) => props.theme.fontFamily.mainFont};
   font-size: 24px;
   font-weight: 900;
+  cursor: pointer;
 `;
 const Header = {
   HeaderWrapper,

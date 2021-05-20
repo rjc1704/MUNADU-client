@@ -13,15 +13,19 @@ import SurveyPage from "./Page_Components/SurveyPage";
 import MainPage from "./Page_Components/MainPage";
 import DetailPage from "./Page_Components/DetailPage";
 import OtherUserPage from "./Page_Components/OtherUserPage";
+import SignUpPage from "./Page_Components/SignUpPage";
 import { useHistory } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
+import HeaderBar from "./Function_Components/Common/HeaderBar";
 //
 // color: ${(props) => props.theme.color.white};
 function App() {
   const authState = useSelector((state) => state.authReducer);
+
   return (
     <Router>
+      <HeaderBar></HeaderBar>
       <Switch>
         <Route
           exact
@@ -31,6 +35,7 @@ function App() {
           }}
         />
         <Route path="/signinpage" render={() => <SignInPage />} />
+        <Route path="/signuppage" render={() => <SignUpPage />} />
         <Route
           path="/mypage"
           render={() => {
