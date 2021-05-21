@@ -1,29 +1,29 @@
 import dummy from "../authDummy.json";
-import { SET_AUTH, SET_NO_AUTH } from "../Actions/auth";
-interface payloadType {
-  accessToken?: string;
+import { createSlice, PayloadAction, current } from "@reduxjs/toolkit";
+
+interface Istate {
+  isLogin: boolean;
+  accessToken: string;
 }
-interface actionType {
-  type: string;
-  payload: payloadType;
+interface IpayLoad {
+  accessToken: string;
 }
-const authReducer = (state = dummy, action: actionType) => {
-  switch (action.type) {
-    case SET_AUTH:
-      return Object.assign({}, state, {
-        isLogin: true,
-        accessToken: action.payload.accessToken,
-      });
 
-    case SET_NO_AUTH:
-      return Object.assign({}, state, {
-        isLogin: false,
-        accessToken: "",
-      });
+const authReducer = createSlice({
+  name: "authReducer",
+  initialState: dummy as Istate,
+  reducers: {
+    setAuth(state, action: PayloadAction<IpayLoad>) {
+      state.isLogin = true;
+      state.accessToken = action.payload.accessToken;
+    },
+    setNoAuth(state) {
+      state.isLogin = false;
+      state.accessToken = "";
+    },
+  },
+});
 
-    default:
-      return state;
-  }
-};
+export const { setAuth, setNoAuth } = authReducer.actions;
 
-export default authReducer;
+export default authReducer.reducer;

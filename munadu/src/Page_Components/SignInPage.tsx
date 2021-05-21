@@ -5,7 +5,6 @@ import Button from "../StyledComponents/button";
 import Inspect from "../Function_Components/SignInPage/Inspect";
 import { useHistory } from "react-router";
 import axios from "axios";
-import { setAuth } from "../Redux/Actions/auth";
 import { useDispatch } from "react-redux";
 import {
   SingBackground,
@@ -13,6 +12,7 @@ import {
   Title,
   Alert,
 } from "../StyledComponents/sign";
+import { setAuth } from "../Redux/Reducers/authReducer";
 
 export default function SignInPage() {
   const [email, setEmail] = useState("");
@@ -32,23 +32,24 @@ export default function SignInPage() {
       setAlert("이메일과 비밀번호를 정상적으로 입력해주세요");
     } else {
       if (Inspect(email, "email") && Inspect(password, "password")) {
-        const loginData = await axios.post(
-          `${process.env.REACT_APP_API_URL}/user/singin`,
-          { email: email, password: password },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-            withCredentials: true,
-          }
-        );
-        if (loginData.data.data.accessToken) {
-          dispatch(setAuth(loginData.data.data.accessToken));
-          setAlert("");
-          history.push("/");
-        } else {
-          setAlert("이메일과 비밀번호를 정상적으로 입력해주세요");
-        }
+        dispatch(setAuth({ accessToken: "" }));
+        // const loginData = await axios.post(
+        //   `http://localhost:5000/user/singin`,
+        //   { email: email, password: password },
+        //   {
+        //     headers: {
+        //       "Content-Type": "application/json",
+        //     },
+        //     withCredentials: true,
+        //   }
+        // );
+        // if (loginData.data.data.accessToken) {
+        //   setAuth(loginData.data.data.accessToken);
+        //   setAlert("");
+        //   history.push("/");
+        // } else {
+        //   setAlert("이메일과 비밀번호를 정상적으로 입력해주세요");
+        // }
       } else {
         setAlert("이메일과 비밀번호를 정상적으로 입력해주세요");
       }
