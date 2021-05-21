@@ -14,7 +14,7 @@ export default function HeaderBar() {
   const isUser: boolean = useSelector((state: RootState) => {
     return state.authReducer.isLogin;
   });
-
+  console.log(`isUser`, isUser);
   const [isCheck, setIsCheck] = useState(true);
   const history = useHistory();
   return (

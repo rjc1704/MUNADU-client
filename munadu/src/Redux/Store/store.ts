@@ -1,5 +1,4 @@
 import rootReducer from "../Reducers/rootReducer";
-import { createStore, applyMiddleware } from "redux";
 import { persistStore } from "redux-persist";
 import logger from "redux-logger";
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";

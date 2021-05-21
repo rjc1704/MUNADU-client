@@ -1,11 +1,9 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import InputForm from "../Function_Components/SignInPage/InputForm";
-import styled from "styled-components";
 import Button from "../StyledComponents/button";
 import Inspect from "../Function_Components/SignInPage/Inspect";
 import { useHistory } from "react-router";
-import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   SingBackground,
   SignBoard,
@@ -13,8 +11,19 @@ import {
   Alert,
 } from "../StyledComponents/sign";
 import { setAuth } from "../Redux/Reducers/authReducer";
+import { RootState } from "../Redux/Store/store";
+
+interface Ilogin {
+  isLogin: boolean;
+  accessToken: string;
+  err: string;
+}
 
 export default function SignInPage() {
+  const isLogin: Ilogin = useSelector((state: RootState) => {
+    return state.authReducer;
+  });
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [alert, setAlert] = useState("");
@@ -27,29 +36,21 @@ export default function SignInPage() {
   const setPasswordData = (e: any) => {
     setPassword(e.target.value);
   };
+  useEffect(() => {
+    if (isLogin.isLogin) {
+      setAlert("");
+      history.push("/");
+    } else {
+      setAlert(isLogin.err);
+    }
+  }, [isLogin]);
+
   const logIn = async () => {
     if (email === "" || password === "") {
       setAlert("이메일과 비밀번호를 정상적으로 입력해주세요");
     } else {
       if (Inspect(email, "email") && Inspect(password, "password")) {
-        dispatch(setAuth({ accessToken: "" }));
-        // const loginData = await axios.post(
-        //   `http://localhost:5000/user/singin`,
-        //   { email: email, password: password },
-        //   {
-        //     headers: {
-        //       "Content-Type": "application/json",
-        //     },
-        //     withCredentials: true,
-        //   }
-        // );
-        // if (loginData.data.data.accessToken) {
-        //   setAuth(loginData.data.data.accessToken);
-        //   setAlert("");
-        //   history.push("/");
-        // } else {
-        //   setAlert("이메일과 비밀번호를 정상적으로 입력해주세요");
-        // }
+        dispatch(setAuth({ email: email, password: password }));
       } else {
         setAlert("이메일과 비밀번호를 정상적으로 입력해주세요");
       }
