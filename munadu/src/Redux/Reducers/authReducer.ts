@@ -1,29 +1,72 @@
 import dummy from "../authDummy.json";
-import { SET_AUTH, SET_NO_AUTH } from "../Actions/auth";
-interface payloadType {
-  accessToken?: string;
-}
-interface actionType {
-  type: string;
-  payload: payloadType;
-}
-const authReducer = (state = dummy, action: actionType) => {
-  switch (action.type) {
-    case SET_AUTH:
-      return Object.assign({}, state, {
-        isLogin: true,
-        accessToken: action.payload.accessToken,
-      });
+import {
+  createSlice,
+  PayloadAction,
+  createAsyncThunk,
+  current,
+} from "@reduxjs/toolkit";
+import axios from "axios";
 
-    case SET_NO_AUTH:
-      return Object.assign({}, state, {
-        isLogin: false,
-        accessToken: "",
-      });
+interface Istate {
+  isLogin: boolean;
+  accessToken: string;
+  err: string;
+}
+interface IpayLoad {
+  payload: {
+    data: {
+      accessToken: string;
+    };
+    message: string;
+  };
+}
+interface Ilogin {
+  email: string;
+  password: string;
+}
 
-    default:
-      return state;
+export const setAuth = createAsyncThunk(
+  "authReducer/setAuth",
+  async ({ email, password }: Ilogin) => {
+    return await axios.post(
+      `http://localhost:5000/user/signin`,
+      { email: email, password: password },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      }
+    );
   }
-};
+);
 
-export default authReducer;
+const authReducer = createSlice({
+  name: "authReducer",
+  initialState: dummy as Istate,
+  reducers: {
+    setNoAuth(state) {
+      state.isLogin = false;
+      state.accessToken = "";
+    },
+  },
+  extraReducers: {
+    [setAuth.pending.type]: (state) => {
+      state.isLogin = false;
+      state.err = "";
+    },
+    [setAuth.fulfilled.type]: (state, action: IpayLoad) => {
+      state.isLogin = true;
+      state.accessToken = action.payload.data.accessToken;
+    },
+    [setAuth.rejected.type]: (state) => {
+      state.isLogin = false;
+      state.accessToken = "";
+      state.err = "이메일과 비밀번호를 다시 입력해주세요";
+    },
+  },
+});
+
+export const { setNoAuth } = authReducer.actions;
+
+export default authReducer.reducer;
