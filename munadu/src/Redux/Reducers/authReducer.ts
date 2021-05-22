@@ -10,12 +10,14 @@ import axios from "axios";
 interface Istate {
   isLogin: boolean;
   accessToken: string;
+  id: number;
   err: string;
 }
 interface IpayLoad {
   payload: {
     data: {
       accessToken: string;
+      id: number;
     };
     message: string;
   };
@@ -57,12 +59,14 @@ const authReducer = createSlice({
     },
     [setAuth.fulfilled.type]: (state, action: IpayLoad) => {
       state.isLogin = true;
+      state.id = action.payload.data.id;
       state.accessToken = action.payload.data.accessToken;
     },
     [setAuth.rejected.type]: (state) => {
       state.isLogin = false;
       state.accessToken = "";
-      state.err = "이메일과 비밀번호를 다시 입력해주세요";
+      state.err =
+        "잘못된 이메일과 비밀번호를 입력하셨습니다. 다시 입력해주세요";
     },
   },
 });

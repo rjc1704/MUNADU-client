@@ -17,7 +17,7 @@ export default function InputForm({ name, type, ref, callback }: Iinput) {
         margin="0px 0px 10px 0px"
         type={type}
         ref={ref}
-        onChange={(e) => callback(e)}
+        onChange={callback}
       ></Input>
     </SetBoard>
   );

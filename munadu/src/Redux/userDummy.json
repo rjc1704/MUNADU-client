@@ -1,3 +1,7 @@
 {
-  "abc": "abc"
+  "id": 0,
+  "email": "",
+  "name": "",
+  "address": "",
+  "img": ""
 }
