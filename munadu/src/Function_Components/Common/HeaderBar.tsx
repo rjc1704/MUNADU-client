@@ -3,20 +3,30 @@ import Header from "../../StyledComponents/header";
 import Button from "../../StyledComponents/button";
 import { useSelector } from "react-redux";
 import { RootState } from "../../Redux/Store/store";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
+import { useDispatch } from "react-redux";
+import { setNoAuth } from "../../Redux/Reducers/authReducer";
+
 const HeaderBoard = styled.div`
   position: relative;
   z-index: 10;
 `;
+interface Icheck {
+  login: boolean;
+  signup: boolean;
+}
 
 export default function HeaderBar() {
   const isUser: boolean = useSelector((state: RootState) => {
     return state.authReducer.isLogin;
   });
-  console.log(`isUser`, isUser);
-  const [isCheck, setIsCheck] = useState(true);
+  const [isCheck, setIsCheck] = useState<Icheck>({
+    login: true,
+    signup: false,
+  });
   const history = useHistory();
+  const dispatch = useDispatch();
   return (
     <HeaderBoard>
       <Header.HeaderWrapper>
@@ -27,18 +37,18 @@ export default function HeaderBar() {
           {!isUser ? (
             <div>
               <Button
-                color={isCheck ? "" : "white"}
+                color={isCheck.login ? "white" : ""}
                 onClick={() => {
-                  setIsCheck(false);
+                  setIsCheck({ signup: false, login: true });
                   history.push("/signinpage");
                 }}
               >
                 로그인
               </Button>
               <Button
-                color={isCheck ? "white" : ""}
+                color={isCheck.signup ? "white" : ""}
                 onClick={() => {
-                  setIsCheck(true);
+                  setIsCheck({ signup: true, login: false });
                   history.push("/signuppage");
                 }}
               >
@@ -48,17 +58,18 @@ export default function HeaderBar() {
           ) : (
             <div>
               <Button
-                color={isCheck ? "" : "white"}
+                color=""
                 onClick={() => {
-                  setIsCheck(false);
+                  dispatch(setNoAuth());
+                  history.push("/");
                 }}
               >
                 로그 아웃
               </Button>
               <Button
-                color={isCheck ? "white" : ""}
+                color="white"
                 onClick={() => {
-                  setIsCheck(true);
+                  history.push("/mypage");
                 }}
               >
                 내 정보

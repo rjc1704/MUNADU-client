@@ -69,7 +69,7 @@ function App() {
         <Route
           path="/"
           render={() => {
-            if (authState.isLogin) return <Redirect to="/mypage" />;
+            if (authState.isLogin) return <Redirect to="/mainpage" />;
             else return <Redirect to="/landingpage" />;
           }}
         />
