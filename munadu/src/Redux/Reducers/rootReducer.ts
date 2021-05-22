@@ -6,6 +6,7 @@ import commentReducer from "./commentReducer";
 import replyReducer from "./replyReducer";
 import channelReducer from "./channelReducer";
 import authReducer from "./authReducer";
+import surveyReducer from "./surveyReducer";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage/session";
 
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   replyReducer,
   channelReducer,
   authReducer,
+  surveyReducer,
 });
 // export default rootReducer;
 export default persistReducer(persistConfig, rootReducer);

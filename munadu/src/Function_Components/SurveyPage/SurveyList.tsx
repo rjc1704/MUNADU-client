@@ -6,155 +6,87 @@ import martialJson from "../Common/martialData.json";
 import suggestedJson from "../Common/suggestedData.json";
 import martialImage from "../../Images/taekwondo.svg";
 import { useHistory } from "react-router";
-
-const Div = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  min-height: 100%;
-  padding: 5% 5% 0 5%;
-  max-height: 92vh;
-`;
-const OptionAndBtn = styled.div`
-  width: 100%;
-  max-height: 65vh;
-  overflow: auto;
-`;
-const ResultBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  width: 100%;
-  max-height: 10%;
-  overflow: auto;
-  background: #fffbfb;
-  border: 1px solid #c4c4c4;
-  border-radius: 5px;
-`;
-const Question = styled.p`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.5rem;
-  font-family: ${(props) => props.theme.fontFamily.subFont};
-  font-weight: 500;
-  line-height: 150%;
-  min-height: 20%;
-`;
-const NewBtn = styled(Button)`
-  min-width: 20%;
-  margin-right: 0;
-  margin-bottom: 3%;
-  background: ${(props) =>
-    props.disabled ? "#C4C4C4" : props.theme.color.black};
-`;
-const BtnWrapper = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: flex-end;
-  padding: 0px;
-`;
-
-const OptionBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  width: 100%;
-  min-height: 50%;
-  height: auto;
-  border: 1px solid #c4c4c4;
-  border-radius: 5px;
-  background: #fffbfb;
-  margin-top: 1em;
-  font-size: 1rem;
-`;
-
-const Hr = styled.hr`
-  margin: 0;
-`;
-const DivAnswer = styled.div`
-  margin: 0;
-`;
-const ProgressBarBox = styled.div`
-  width: 100%;
-  height: 5px;
-  background: #c4c4c4;
-  padding: 0;
-  margin-bottom: 10px;
-`;
-
-type ProgressBarType = {
-  idx: number;
-};
-const ProgressBar = styled.div<ProgressBarType>`
-  width: calc(
-    ${(props) => props.idx} / calc(${SurveyJson.surveys.length} - 1) * 100%
-  );
-  height: 100%;
-  background: ${(props) => props.theme.color.black};
-`;
-const AnswerText = styled.div`
-  display: flex;
-  align-items: center;
-  font-size: 1rem;
-  font-family: ${(props) => props.theme.fontFamily.subFont};
-  font-weight: 500;
-  margin: 1em 0;
-`;
-const Input = styled.input`
-  margin: 0 15px 0 15px;
-  font-size: 2rem;
-  transform: scale(1.5);
-`;
-const MartialBox = styled.div`
-  display: flex;
-  border-bottom: 1px solid #c4c4c4;
-  padding: 10px;
-  cursor: pointer;
-`;
-// ? border-bottom 은 props로 필터링된 배열의 length가 1개이거나 2개 이상일 때는 마지막 index는 props를 넣어서 border-bottom 설정하지말자.
-const Photo = styled.img`
-  width: 8%;
-  height: auto;
-  margin-right: 10px;
-`;
-const MartialTextWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-`;
-export interface SurveyProps {
-  resetHeight: number;
-}
-const MartialName = styled.div`
-  font-size: 1.25rem;
-  font-family: ${(props) => props.theme.fontFamily.subFont};
-  font-weight: 700;
-`;
-const MartialDescription = styled.div`
-  font-size: 1rem;
-  font-weight: 300;
-  font-family: ${(props) => props.theme.fontFamily.subFont};
-`;
+import {
+  Div,
+  OptionAndBtn,
+  ResultBox,
+  Question,
+  NewBtn,
+  BtnWrapper,
+  BtnWrapper2,
+  OptionBox,
+  Hr,
+  ProgressBarBox,
+  ProgressBarType,
+  ProgressBar,
+  AnswerText,
+  Input,
+  MartialBox,
+  Photo,
+  MartialTextWrapper,
+  MartialName,
+  MartialDescription,
+} from "../../StyledComponents/survey";
+import { saveAnswer, refreshAnswer } from "../../Redux/Reducers/surveyReducer";
+import { RootState } from "../../Redux/Store/store";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function SurveyList() {
   const [index, setIndex] = useState(0);
-  const [isShow, setIsShow] = useState(false);
+  // const [isShow, setIsShow] = useState(false);
   const [answer0, setAnswer0] = useState("");
   const [answer1, setAnswer1] = useState("");
   const [answer2, setAnswer2] = useState("");
   const [answer3, setAnswer3] = useState("");
   const [answer4, setAnswer4] = useState("");
   const [answer5, setAnswer5] = useState("");
-  const [isInactive, setIsInactive] = useState(true);
   const [surveyResult, setSurveyResult] = useState<any>([]);
+  const [isInactive, setIsInactive] = useState(true);
   const history = useHistory();
+  const dispatch = useDispatch();
   const answer1Ref = useRef<HTMLInputElement>(null);
   const answer2Ref = useRef<HTMLInputElement>(null);
   const answer3Ref = useRef<HTMLInputElement>(null);
-
+  // interface Imartial {
+  //   name: string;
+  //   weapon: number;
+  //   uniform: number;
+  //   origin: number;
+  //   sports: number;
+  //   manner: number;
+  //   attack: number;
+  //   nation: string;
+  //   caption: string;
+  //   video: string;
+  //   kcal: number;
+  //   img: string;
+  //   wiki: string;
+  // }
+  // interface Istate {
+  //   weapon0?: string;
+  //   uniform1?: string;
+  //   origin2?: string;
+  //   sports3?: string;
+  //   manner4?: string;
+  //   attack5?: string;
+  //   result?: Imartial[];
+  //   isShow?: boolean;
+  // }
+  const {
+    weapon0,
+    uniform1,
+    origin2,
+    sports3,
+    manner4,
+    attack5,
+    result,
+    isShow,
+  } = useSelector((state: RootState) => state.surveyReducer);
+  const surveyState = useSelector((state: RootState) => state.surveyReducer);
+  const handleReset = () => {
+    dispatch(refreshAnswer());
+    console.log(`result`, result);
+  };
   const moveToDetailPage = () => {
     history.push("/detailpage");
   };
@@ -260,8 +192,23 @@ export default function SurveyList() {
           break;
       }
       console.log(`filterResult`, filterResult);
+
       setSurveyResult(filterResult);
+      dispatch(
+        saveAnswer({
+          weapon0: answer0,
+          uniform1: answer1,
+          origin2: answer2,
+          sports3: answer3,
+          manner4: answer4,
+          attack5: answer5,
+          result: filterResult,
+        })
+      );
     }
+    // else if (surveyResult) {
+    //   dispatch(saveAnswer({ ...surveyState, result: surveyResult }));
+    // }
 
     if (index <= 4) {
       setIndex(index + 1);
@@ -271,7 +218,8 @@ export default function SurveyList() {
       setIsInactive(true);
     } else {
       // 설문 결과창 출력!
-      setIsShow(true);
+      // setIsShow(true);
+      dispatch(saveAnswer({ ...surveyState, isShow: true }));
     }
   };
   const moveToMain = () => {
@@ -282,11 +230,23 @@ export default function SurveyList() {
       setIsInactive(false);
       console.log(`${index}번 문제에서 ${e.target.value}를 선택했습니다.`);
       if (index === 0) setAnswer0(e.target.value);
+      // if (index === 0)
+      //   dispatch(saveAnswer({ ...surveyState, weapon0: e.target.value }));
       if (index === 1) setAnswer1(e.target.value);
+      // if (index === 1)
+      //   dispatch(saveAnswer({ ...surveyState, uniform1: e.target.value }));
       if (index === 2) setAnswer2(e.target.value);
+      // if (index === 2)
+      //   dispatch(saveAnswer({ ...surveyState, origin2: e.target.value }));
       if (index === 3) setAnswer3(e.target.value);
+      // if (index === 3)
+      //   dispatch(saveAnswer({ ...surveyState, sports3: e.target.value }));
       if (index === 4) setAnswer4(e.target.value);
+      // if (index === 4)
+      //   dispatch(saveAnswer({ ...surveyState, manner4: e.target.value }));
       if (index === 5) setAnswer5(e.target.value);
+      // if (index === 5)
+      //   dispatch(saveAnswer({ ...surveyState, attack5: e.target.value }));
     } else {
       console.log("오류입니다.");
     }
@@ -294,9 +254,9 @@ export default function SurveyList() {
   useEffect(() => {
     console.log(`isInactive`, isInactive);
   }, [isInactive]);
-  useEffect(() => {
-    console.log(`surveyResult`, surveyResult);
-  }, [surveyResult]);
+  // useEffect(() => {
+  //   console.log(`surveyResult`, surveyResult);
+  // }, [surveyResult]);
 
   return (
     <Div>
@@ -308,8 +268,8 @@ export default function SurveyList() {
         <Question>{SurveyJson.surveys[index].question}</Question>
       ) : (
         <Question>
-          {surveyResult.length > 0
-            ? `당신에게 어울리는 ${surveyResult.length}개의 무술을 찾았습니다.`
+          {result !== undefined && result.length > 0
+            ? `당신에게 어울리는 ${result.length}개의 무술을 찾았습니다.`
             : `아쉽지만 당신에 딱맞는 무술은 찾지 못했습니다. 이런 무술들은 어떠세요?`}
         </Question>
       )}
@@ -349,9 +309,9 @@ export default function SurveyList() {
               {SurveyJson.surveys[index].answers[2]}
             </AnswerText>
           </OptionBox>
-        ) : surveyResult.length > 0 ? (
+        ) : result !== undefined && result.length > 0 ? (
           <ResultBox>
-            {surveyResult.map((martial: any, idx: number) => {
+            {result.map((martial: any, idx: number) => {
               return (
                 <MartialBox key={idx} onClick={moveToDetailPage}>
                   <Photo src={martialImage} />
@@ -385,9 +345,10 @@ export default function SurveyList() {
             </NewBtn>
           </BtnWrapper>
         ) : (
-          <BtnWrapper>
+          <BtnWrapper2>
+            <NewBtn onClick={handleReset}>설문 다시하기</NewBtn>
             <NewBtn onClick={moveToMain}>모든 무술 둘러보기</NewBtn>
-          </BtnWrapper>
+          </BtnWrapper2>
         )}
       </OptionAndBtn>
     </Div>
