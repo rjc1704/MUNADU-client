@@ -16,6 +16,7 @@ import { RootState } from "../Redux/Store/store";
 interface Ilogin {
   isLogin: boolean;
   accessToken: string;
+  id: number;
   err: string;
 }
 
@@ -23,11 +24,10 @@ export default function SignInPage() {
   const isLogin: Ilogin = useSelector((state: RootState) => {
     return state.authReducer;
   });
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [alert, setAlert] = useState("");
-  const emailRef = useRef(null);
+  const emailRef = useRef<HTMLInputElement>(null);
   const history = useHistory();
   const dispatch = useDispatch();
   const setEmailData = (e: any) => {
@@ -44,8 +44,12 @@ export default function SignInPage() {
       setAlert(isLogin.err);
     }
   }, [isLogin]);
-
-  const logIn = async () => {
+  useEffect(() => {
+    if (emailRef.current !== null) {
+      emailRef.current.focus();
+    }
+  }, []);
+  const logIn = () => {
     if (email === "" || password === "") {
       setAlert("이메일과 비밀번호를 정상적으로 입력해주세요");
     } else {
@@ -58,7 +62,12 @@ export default function SignInPage() {
   };
   return (
     <SingBackground>
-      <SignBoard>
+      <SignBoard
+        onSubmit={(e) => {
+          e.preventDefault();
+          logIn();
+        }}
+      >
         <Title>로그인</Title>
         <InputForm
           name="이메일"
@@ -77,7 +86,7 @@ export default function SignInPage() {
           width="100%"
           margin="10px 0px"
           height="38px"
-          onClick={logIn}
+          type="submit"
         >
           로그인
         </Button>

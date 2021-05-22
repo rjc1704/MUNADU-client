@@ -7,14 +7,14 @@ interface ModalProps {
   close: () => void;
   headerText: string;
   okBtnText: string;
-  cancelBtnText: string;
+  cancelBtnText?: string;
   callback?: () => void;
   children: React.DetailedHTMLProps<
     React.FormHTMLAttributes<HTMLFormElement>,
     HTMLFormElement
   >;
-  modalWidthPercent: number;
-  modalHeightPercent: number;
+  modalWidthPercent?: number;
+  modalHeightPercent?: number;
 }
 
 const DarkBackground = styled.div`
@@ -74,9 +74,9 @@ const Scale = keyframes`
 const DialogWrapper = styled.div<sizeType>`
   display: flex;
   flex-direction: column;
-  width: ${(props) => props.modalWidthPercent || 38}%;
+  width: ${(props) => props.modalWidthPercent}%;
   height: auto;
-  min-height: ${(props) => props.modalHeightPercent || 60}%;
+  min-height: ${(props) => props.modalHeightPercent}%;
   animation: ${Scale} 0.3s ease-out;
 `;
 
@@ -102,16 +102,18 @@ export default function Modal({
   return (
     <DarkBackground>
       <DialogWrapper
-        modalWidthPercent={modalWidthPercent}
-        modalHeightPercent={modalHeightPercent}
+        modalWidthPercent={modalWidthPercent ? modalWidthPercent : 38}
+        modalHeightPercent={modalHeightPercent ? modalHeightPercent : 60}
       >
         <DialogHeader>{headerText}</DialogHeader>
         <DialogBlock>
           {children}
           <ButtonGruop>
-            <Button color={"white"} onClick={close}>
-              {cancelBtnText}
-            </Button>
+            {cancelBtnText ? (
+              <Button color={"white"} onClick={close}>
+                {cancelBtnText}
+              </Button>
+            ) : null}
             <Button onClick={handleOkBtn}>{okBtnText}</Button>
           </ButtonGruop>
         </DialogBlock>
