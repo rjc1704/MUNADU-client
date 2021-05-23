@@ -7,6 +7,7 @@ import Modal from "../Common/Modal";
 import axios from "axios";
 import { RootState } from "../../Redux/Store/store";
 import martialImage from "../../Images/taekwondo.svg";
+import { NewBtn } from "../../StyledComponents/survey";
 axios.defaults.withCredentials = true;
 const PhotoAndText = styled.div`
   display: flex;
@@ -22,7 +23,8 @@ const Photo = styled.img`
 const TextAndInput = styled.div`
   display: flex;
   justify-content: flex-start;
-  margin-top: 3.5%;
+  align-items: center;
+  margin-top: 1%;
 `;
 
 const MartialTitle = styled.div`
@@ -80,7 +82,10 @@ const InputAdvice = styled.textarea`
   }
 `;
 const StarWrapper = styled.div`
+  display: flex;
+  align-items: center;
   font-size: 150%;
+  padding-top: 0;
 `;
 const Div = styled.div`
   width: 100%;
@@ -97,6 +102,9 @@ const ErrorMsg = styled.div`
   font-weight: 600;
   font-family: ${(props) => props.theme.fontFamily.subFont};
   margin-top: 10px;
+`;
+const NewBtn2 = styled(Button)`
+  font-size: 1rem;
 `;
 // ! 테스트를 위해 임시로 기본값 1로 설정해뒀으니 추후 삭제해야함!
 function CreateReview({ Martials_id = 1, Users_id = 1 }) {
@@ -220,7 +228,7 @@ function CreateReview({ Martials_id = 1, Users_id = 1 }) {
 
   return (
     <Div>
-      <Button onClick={openModal}>조언 작성하기</Button>
+      <NewBtn2 onClick={openModal}>조언 작성하기</NewBtn2>
       {isModal ? (
         <Modal
           close={closeModal}
@@ -229,7 +237,7 @@ function CreateReview({ Martials_id = 1, Users_id = 1 }) {
           cancelBtnText={"뒤로"}
           callback={addReview}
           modalWidthPercent={38}
-          modalHeightPercent={60}
+          modalHeightPercent={50}
         >
           <Form>
             <PhotoAndText>
