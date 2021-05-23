@@ -7,7 +7,7 @@ import {
 } from "@reduxjs/toolkit";
 import axios from "axios";
 
-interface Istate {
+export interface Istate {
   isLogin: boolean;
   accessToken: string;
   id: number;
@@ -16,10 +16,9 @@ interface Istate {
 interface IpayLoad {
   payload: {
     data: {
-      accessToken: string;
-      id: number;
+      data: { accessToken: string; id: number };
+      message: string;
     };
-    message: string;
   };
 }
 interface Ilogin {
@@ -59,8 +58,8 @@ const authReducer = createSlice({
     },
     [setAuth.fulfilled.type]: (state, action: IpayLoad) => {
       state.isLogin = true;
-      state.id = action.payload.data.id;
-      state.accessToken = action.payload.data.accessToken;
+      state.id = action.payload.data.data.id;
+      state.accessToken = action.payload.data.data.accessToken;
     },
     [setAuth.rejected.type]: (state) => {
       state.isLogin = false;
