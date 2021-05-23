@@ -57,7 +57,7 @@ const DialogHeader = styled.div`
 const ButtonGruop = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 1em;
+  margin-top: 0em;
 `;
 type sizeType = {
   modalWidthPercent: number;
@@ -78,6 +78,8 @@ const DialogWrapper = styled.div<sizeType>`
   height: auto;
   min-height: ${(props) => props.modalHeightPercent}%;
   animation: ${Scale} 0.3s ease-out;
+  position: relative;
+  z-index: 3;
 `;
 
 export default function Modal({

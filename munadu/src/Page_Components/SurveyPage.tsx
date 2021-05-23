@@ -8,7 +8,7 @@ import { createLogger } from "redux-logger";
 import HeaderBar from "../Function_Components/Common/HeaderBar";
 import HalfBackground from "../StyledComponents/HalfBackground";
 
-const PageContainer = styled.div`
+export const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,6 +16,7 @@ const PageContainer = styled.div`
   width: 100%;
   height: 100vh;
   padding-bottom: 7%;
+  overflow: auto;
 `;
 
 const SurveyBox = styled.div`
