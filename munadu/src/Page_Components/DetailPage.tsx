@@ -1,4 +1,5 @@
 import React from "react";
+
 import styled from "styled-components";
 import Button from "../StyledComponents/button";
 import { Photo } from "../StyledComponents/survey";
@@ -171,6 +172,7 @@ const Name2 = styled(Name)`
 const Name3 = styled(Name2)`
   margin-top: 3%;
 `;
+
 
 export default function DetailPage() {
   return (
