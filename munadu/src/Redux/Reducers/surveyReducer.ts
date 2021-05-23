@@ -26,6 +26,7 @@ interface Istate {
   attack5?: string;
   result?: Imartial[];
   isShow?: boolean;
+  index?: number;
 }
 
 interface Ipayload {
@@ -38,6 +39,7 @@ interface Ipayload {
     attack5?: string;
     result?: Imartial[];
     isShow?: boolean;
+    index?: number;
   };
 }
 
@@ -53,7 +55,8 @@ const surveyReducer = createSlice({
       state.manner4 = action.payload.manner4;
       state.attack5 = action.payload.attack5;
       state.result = action.payload.result;
-      state.isShow = true;
+      state.isShow = action.payload.isShow;
+      state.index = action.payload.index;
     },
     refreshAnswer(state) {
       state.weapon0 = "";
@@ -64,6 +67,7 @@ const surveyReducer = createSlice({
       state.attack5 = "";
       state.result = [];
       state.isShow = false;
+      state.index = 0;
     },
   },
 });

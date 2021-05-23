@@ -32,59 +32,29 @@ import { RootState } from "../../Redux/Store/store";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function SurveyList() {
-  const [index, setIndex] = useState(0);
-  // const [isShow, setIsShow] = useState(false);
-  const [answer0, setAnswer0] = useState("");
-  const [answer1, setAnswer1] = useState("");
-  const [answer2, setAnswer2] = useState("");
-  const [answer3, setAnswer3] = useState("");
-  const [answer4, setAnswer4] = useState("");
-  const [answer5, setAnswer5] = useState("");
-  const [surveyResult, setSurveyResult] = useState<any>([]);
   const [isInactive, setIsInactive] = useState(true);
+  const [surveyResult, setSurveyResult] = useState([]);
   const history = useHistory();
   const dispatch = useDispatch();
   const answer1Ref = useRef<HTMLInputElement>(null);
   const answer2Ref = useRef<HTMLInputElement>(null);
   const answer3Ref = useRef<HTMLInputElement>(null);
-  // interface Imartial {
-  //   name: string;
-  //   weapon: number;
-  //   uniform: number;
-  //   origin: number;
-  //   sports: number;
-  //   manner: number;
-  //   attack: number;
-  //   nation: string;
-  //   caption: string;
-  //   video: string;
-  //   kcal: number;
-  //   img: string;
-  //   wiki: string;
-  // }
-  // interface Istate {
-  //   weapon0?: string;
-  //   uniform1?: string;
-  //   origin2?: string;
-  //   sports3?: string;
-  //   manner4?: string;
-  //   attack5?: string;
-  //   result?: Imartial[];
-  //   isShow?: boolean;
-  // }
+
   const {
-    weapon0,
-    uniform1,
-    origin2,
-    sports3,
-    manner4,
-    attack5,
+    weapon0 = "",
+    uniform1 = "",
+    origin2 = "",
+    sports3 = "",
+    manner4 = "",
+    attack5 = "",
     result,
-    isShow,
+    isShow = false,
+    index = 0,
   } = useSelector((state: RootState) => state.surveyReducer);
   const surveyState = useSelector((state: RootState) => state.surveyReducer);
   const handleReset = () => {
     dispatch(refreshAnswer());
+    setIsInactive(true);
     console.log(`result`, result);
   };
   const moveToDetailPage = () => {
@@ -99,9 +69,16 @@ export default function SurveyList() {
       return;
     }
 
-    if (answer0 && answer1 && answer2 && answer3 && answer4 && answer5) {
+    if (
+      weapon0 !== "" ||
+      uniform1 !== "" ||
+      origin2 !== "" ||
+      sports3 !== "" ||
+      manner4 !== "" ||
+      attack5 !== ""
+    ) {
       let filterResult: any = [];
-      switch (answer0) {
+      switch (weapon0) {
         case "0":
           filterResult = martialJson.martialData.filter(
             (martial) => martial.weapon === 0
@@ -118,7 +95,7 @@ export default function SurveyList() {
           break;
       }
 
-      switch (answer1) {
+      switch (uniform1) {
         case "0":
           filterResult = filterResult.filter(
             (martial: any) => martial.uniform === 0
@@ -135,7 +112,7 @@ export default function SurveyList() {
           );
           break;
       }
-      switch (answer2) {
+      switch (origin2) {
         case "0":
           filterResult = filterResult.filter(
             (martial: any) => martial.origin === 0
@@ -149,7 +126,7 @@ export default function SurveyList() {
         case "2":
           break;
       }
-      switch (answer3) {
+      switch (sports3) {
         case "0":
           filterResult = filterResult.filter(
             (martial: any) => martial.sports === 0
@@ -163,7 +140,7 @@ export default function SurveyList() {
         case "2":
           break;
       }
-      switch (answer4) {
+      switch (manner4) {
         case "0":
           filterResult = filterResult.filter(
             (martial: any) => martial.manner === 0
@@ -177,7 +154,7 @@ export default function SurveyList() {
         case "2":
           break;
       }
-      switch (answer5) {
+      switch (attack5) {
         case "0":
           filterResult = filterResult.filter(
             (martial: any) => martial.attack === 0
@@ -192,34 +169,31 @@ export default function SurveyList() {
           break;
       }
       console.log(`filterResult`, filterResult);
-
       setSurveyResult(filterResult);
-      dispatch(
-        saveAnswer({
-          weapon0: answer0,
-          uniform1: answer1,
-          origin2: answer2,
-          sports3: answer3,
-          manner4: answer4,
-          attack5: answer5,
-          result: filterResult,
-        })
-      );
+      console.log(`surveyResult`, surveyResult);
+
+      dispatch(saveAnswer({ ...surveyState, result: surveyResult }));
+      console.log("왜 result가 안먹히는걸까?");
     }
     // else if (surveyResult) {
+    //   console.log("들어왔다!!!!!!");
     //   dispatch(saveAnswer({ ...surveyState, result: surveyResult }));
     // }
 
     if (index <= 4) {
-      setIndex(index + 1);
+      // setIndex(index + 1);
+      dispatch(saveAnswer({ ...surveyState, index: index + 1 }));
       if (answer1Ref.current?.checked) answer1Ref.current.checked = false;
       if (answer2Ref.current?.checked) answer2Ref.current.checked = false;
       if (answer3Ref.current?.checked) answer3Ref.current.checked = false;
       setIsInactive(true);
     } else {
       // 설문 결과창 출력!
-      // setIsShow(true);
-      dispatch(saveAnswer({ ...surveyState, isShow: true }));
+
+      console.log(`isShow`, isShow);
+      dispatch(
+        saveAnswer({ ...surveyState, isShow: true, result: surveyResult })
+      );
     }
   };
   const moveToMain = () => {
@@ -229,31 +203,31 @@ export default function SurveyList() {
     if (e.target.checked) {
       setIsInactive(false);
       console.log(`${index}번 문제에서 ${e.target.value}를 선택했습니다.`);
-      if (index === 0) setAnswer0(e.target.value);
-      // if (index === 0)
-      //   dispatch(saveAnswer({ ...surveyState, weapon0: e.target.value }));
-      if (index === 1) setAnswer1(e.target.value);
-      // if (index === 1)
-      //   dispatch(saveAnswer({ ...surveyState, uniform1: e.target.value }));
-      if (index === 2) setAnswer2(e.target.value);
-      // if (index === 2)
-      //   dispatch(saveAnswer({ ...surveyState, origin2: e.target.value }));
-      if (index === 3) setAnswer3(e.target.value);
-      // if (index === 3)
-      //   dispatch(saveAnswer({ ...surveyState, sports3: e.target.value }));
-      if (index === 4) setAnswer4(e.target.value);
-      // if (index === 4)
-      //   dispatch(saveAnswer({ ...surveyState, manner4: e.target.value }));
-      if (index === 5) setAnswer5(e.target.value);
-      // if (index === 5)
-      //   dispatch(saveAnswer({ ...surveyState, attack5: e.target.value }));
+      // if (index === 0) setAnswer0(e.target.value);
+      if (index === 0)
+        dispatch(saveAnswer({ ...surveyState, weapon0: e.target.value }));
+      // if (index === 1) setAnswer1(e.target.value);
+      if (index === 1)
+        dispatch(saveAnswer({ ...surveyState, uniform1: e.target.value }));
+      // if (index === 2) setAnswer2(e.target.value);
+      if (index === 2)
+        dispatch(saveAnswer({ ...surveyState, origin2: e.target.value }));
+      // if (index === 3) setAnswer3(e.target.value);
+      if (index === 3)
+        dispatch(saveAnswer({ ...surveyState, sports3: e.target.value }));
+      // if (index === 4) setAnswer4(e.target.value);
+      if (index === 4)
+        dispatch(saveAnswer({ ...surveyState, manner4: e.target.value }));
+      // if (index === 5) setAnswer5(e.target.value);
+      if (index === 5)
+        dispatch(saveAnswer({ ...surveyState, attack5: e.target.value }));
     } else {
       console.log("오류입니다.");
     }
   };
-  useEffect(() => {
-    console.log(`isInactive`, isInactive);
-  }, [isInactive]);
+  // useEffect(() => {
+  //   console.log(`isInactive`, isInactive);
+  // }, [isInactive]);
   // useEffect(() => {
   //   console.log(`surveyResult`, surveyResult);
   // }, [surveyResult]);
@@ -264,7 +238,7 @@ export default function SurveyList() {
         <ProgressBar idx={index} />
       </ProgressBarBox>
       {(index / (SurveyJson.surveys.length - 1)) * 100 + " %"}
-      {!isShow ? (
+      {isShow === false ? (
         <Question>{SurveyJson.surveys[index].question}</Question>
       ) : (
         <Question>
@@ -274,7 +248,7 @@ export default function SurveyList() {
         </Question>
       )}
       <OptionAndBtn>
-        {!isShow ? (
+        {isShow === false ? (
           <OptionBox>
             <AnswerText>
               <Input
@@ -314,7 +288,7 @@ export default function SurveyList() {
             {result.map((martial: any, idx: number) => {
               return (
                 <MartialBox key={idx} onClick={moveToDetailPage}>
-                  <Photo src={martialImage} />
+                  <Photo src={martial.img} />
                   <MartialTextWrapper>
                     <MartialName>{martial.name}</MartialName>
                     <MartialDescription>{martial.caption}</MartialDescription>
@@ -328,7 +302,7 @@ export default function SurveyList() {
             {suggestedJson.martialData.map((martial: any, idx: number) => {
               return (
                 <MartialBox key={idx} onClick={moveToDetailPage}>
-                  <Photo src={martialImage} />
+                  <Photo src={martial.img} />
                   <MartialTextWrapper>
                     <MartialName>{martial.name}</MartialName>
                     <MartialDescription>{martial.caption}</MartialDescription>
