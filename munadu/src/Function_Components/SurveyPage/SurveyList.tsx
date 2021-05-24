@@ -47,7 +47,7 @@ export default function SurveyList() {
     sports3 = "",
     manner4 = "",
     attack5 = "",
-    result,
+    result = [],
     isShow = false,
     index = 0,
   } = useSelector((state: RootState) => state.surveyReducer);
@@ -57,8 +57,11 @@ export default function SurveyList() {
     setIsInactive(true);
     console.log(`result`, result);
   };
-  const moveToDetailPage = () => {
-    history.push("/detailpage");
+  const moveToDetailPage = (id: number) => {
+    history.push({
+      pathname: "/detailpage",
+      state: { martialId: id },
+    });
   };
   const handleNext = () => {
     if (
@@ -287,7 +290,10 @@ export default function SurveyList() {
           <ResultBox>
             {result.map((martial: any, idx: number) => {
               return (
-                <MartialBox key={idx} onClick={moveToDetailPage}>
+                <MartialBox
+                  key={idx}
+                  onClick={() => moveToDetailPage(martial.id)}
+                >
                   <Photo src={martial.img} />
                   <MartialTextWrapper>
                     <MartialName>{martial.name}</MartialName>
@@ -301,7 +307,10 @@ export default function SurveyList() {
           <ResultBox>
             {suggestedJson.martialData.map((martial: any, idx: number) => {
               return (
-                <MartialBox key={idx} onClick={moveToDetailPage}>
+                <MartialBox
+                  key={idx}
+                  onClick={() => moveToDetailPage(martial.id)}
+                >
                   <Photo src={martial.img} />
                   <MartialTextWrapper>
                     <MartialName>{martial.name}</MartialName>

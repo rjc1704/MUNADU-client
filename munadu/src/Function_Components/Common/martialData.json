@@ -1,6 +1,7 @@
 {
   "martialData": [
     {
+      "id": 1,
       "name": "WTF 태권도",
       "weapon": 0,
       "uniform": 0,
@@ -16,6 +17,7 @@
       "wiki": "https://namu.wiki/w/%EC%84%B8%EA%B3%84%ED%83%9C%EA%B6%8C%EB%8F%84%EC%97%B0%EB%A7%B9"
     },
     {
+      "id": 2,
       "name": "ITF 태권도",
       "weapon": 0,
       "uniform": 0,
@@ -31,6 +33,7 @@
       "wiki": "https://namu.wiki/w/%EA%B5%AD%EC%A0%9C%ED%83%9C%EA%B6%8C%EB%8F%84%EC%97%B0%EB%A7%B9?from=ITF%20%ED%83%9C%EA%B6%8C%EB%8F%84"
     },
     {
+      "id": 3,
       "name": "대한검도",
       "weapon": 1,
       "uniform": 0,
@@ -46,6 +49,7 @@
       "wiki": "https://namu.wiki/w/%EB%8C%80%ED%95%9C%EA%B2%80%EB%8F%84%ED%9A%8C"
     },
     {
+      "id": 4,
       "name": "해동검도",
       "weapon": 1,
       "uniform": 0,
@@ -61,6 +65,7 @@
       "wiki": "https://namu.wiki/w/%ED%95%B4%EB%8F%99%EA%B2%80%EB%8F%84"
     },
     {
+      "id": 5,
       "name": "유도",
       "weapon": 0,
       "uniform": 0,
@@ -76,6 +81,7 @@
       "wiki": "https://namu.wiki/w/%EC%9C%A0%EB%8F%84"
     },
     {
+      "id": 6,
       "name": "주짓수",
       "weapon": 0,
       "uniform": 0,
@@ -91,6 +97,7 @@
       "wiki": "https://namu.wiki/w/%EC%A3%BC%EC%A7%93%EC%88%98"
     },
     {
+      "id": 7,
       "name": "합기도",
       "weapon": 2,
       "uniform": 0,
@@ -106,6 +113,7 @@
       "wiki": "https://namu.wiki/w/%ED%95%A9%EA%B8%B0%EB%8F%84"
     },
     {
+      "id": 8,
       "name": "복싱",
       "weapon": 0,
       "uniform": 1,
@@ -121,6 +129,7 @@
       "wiki": "https://namu.wiki/w/%EA%B6%8C%ED%88%AC"
     },
     {
+      "id": 9,
       "name": "킥복싱",
       "weapon": 0,
       "uniform": 1,
@@ -136,6 +145,7 @@
       "wiki": "https://namu.wiki/w/%ED%82%A5%EB%B3%B5%EC%8B%B1"
     },
     {
+      "id": 10,
       "name": "크라브마가(민간인교육용)",
       "weapon": 0,
       "uniform": 1,
@@ -151,6 +161,7 @@
       "wiki": "https://namu.wiki/w/%ED%81%AC%EB%9D%BC%EB%B8%8C%20%EB%A7%88%EA%B0%80"
     },
     {
+      "id": 11,
       "name": "무에타이",
       "weapon": 0,
       "uniform": 2,
@@ -166,6 +177,7 @@
       "wiki": "https://namu.wiki/w/%EB%AC%B4%EC%97%90%ED%83%80%EC%9D%B4"
     },
     {
+      "id": 12,
       "name": "칼리아르니스(에스크로마)",
       "weapon": 2,
       "uniform": 1,
@@ -181,6 +193,7 @@
       "wiki": "https://namu.wiki/w/%EC%B9%BC%EB%A6%AC%20%EC%95%84%EB%A5%B4%EB%8B%88%EC%8A%A4"
     },
     {
+      "id": 13,
       "name": "케이시파이팅메소드(KFM)",
       "weapon": 0,
       "uniform": 1,
@@ -196,6 +209,7 @@
       "wiki": "https://namu.wiki/w/%EC%BC%80%EC%9D%B4%EC%8B%9C%20%ED%8C%8C%EC%9D%B4%ED%8C%85%20%EB%A9%94%EC%86%8C%EB%93%9C"
     },
     {
+      "id": 14,
       "name": "극진 가라데",
       "weapon": 0,
       "uniform": 0,
@@ -211,6 +225,7 @@
       "wiki": "https://namu.wiki/w/%EA%B7%B9%EC%A7%84%EA%B3%B5%EC%88%98%EB%8F%84"
     },
     {
+      "id": 15,
       "name": "대도숙 공도(쿠도)",
       "weapon": 0,
       "uniform": 0,
@@ -226,6 +241,7 @@
       "wiki": "https://namu.wiki/w/%EB%8C%80%EB%8F%84%EC%88%99%20%EA%B3%B5%EB%8F%84"
     },
     {
+      "id": 16,
       "name": "우슈",
       "weapon": 2,
       "uniform": 2,
@@ -241,6 +257,7 @@
       "wiki": "https://namu.wiki/w/%EC%9A%B0%EC%8A%88"
     },
     {
+      "id": 17,
       "name": "택견",
       "weapon": 0,
       "uniform": 0,
@@ -256,6 +273,7 @@
       "wiki": "https://namu.wiki/w/%ED%83%9D%EA%B2%AC"
     },
     {
+      "id": 18,
       "name": "영춘권",
       "weapon": 0,
       "uniform": 1,
@@ -271,6 +289,7 @@
       "wiki": "https://namu.wiki/w/%EC%98%81%EC%B6%98%EA%B6%8C"
     },
     {
+      "id": 19,
       "name": "절권도",
       "weapon": 0,
       "uniform": 1,
@@ -286,6 +305,7 @@
       "wiki": "https://namu.wiki/w/%EC%A0%88%EA%B6%8C%EB%8F%84"
     },
     {
+      "id": 20,
       "name": "한무도",
       "weapon": 2,
       "uniform": 0,
@@ -301,6 +321,7 @@
       "wiki": "https://ko.wikipedia.org/wiki/%ED%95%9C%EB%AC%B4%EB%8F%84"
     },
     {
+      "id": 21,
       "name": "카포에라",
       "weapon": 0,
       "uniform": 1,
@@ -316,6 +337,7 @@
       "wiki": "https://namu.wiki/w/%EC%B9%B4%ED%8F%AC%EC%97%90%EB%9D%BC"
     },
     {
+      "id": 22,
       "name": "삼보",
       "weapon": 0,
       "uniform": 0,
@@ -331,6 +353,7 @@
       "wiki": "https://namu.wiki/w/%EC%82%BC%EB%B3%B4(%EB%AC%B4%EC%88%A0)"
     },
     {
+      "id": 23,
       "name": "레슬링",
       "weapon": 0,
       "uniform": 2,
@@ -346,6 +369,7 @@
       "wiki": "https://namu.wiki/w/%EB%A0%88%EC%8A%AC%EB%A7%81"
     },
     {
+      "id": 24,
       "name": "태극권",
       "weapon": 0,
       "uniform": 2,
@@ -361,6 +385,7 @@
       "wiki": "https://namu.wiki/w/%ED%83%9C%EA%B7%B9%EA%B6%8C"
     },
     {
+      "id": 25,
       "name": "특공무술",
       "weapon": 2,
       "uniform": 0,
@@ -376,6 +401,7 @@
       "wiki": "https://namu.wiki/w/%ED%8A%B9%EA%B3%B5%EB%AC%B4%EC%88%A0"
     },
     {
+      "id": 26,
       "name": "씨름",
       "weapon": 0,
       "uniform": 2,
@@ -391,6 +417,7 @@
       "wiki": "https://namu.wiki/w/%EC%94%A8%EB%A6%84"
     },
     {
+      "id": 27,
       "name": "아이키도",
       "weapon": 0,
       "uniform": 0,
@@ -406,6 +433,7 @@
       "wiki": "https://namu.wiki/w/%EC%95%84%EC%9D%B4%ED%82%A4%EB%8F%84"
     },
     {
+      "id": 28,
       "name": "펜싱",
       "weapon": 1,
       "uniform": 2,
@@ -421,6 +449,7 @@
       "wiki": "https://namu.wiki/w/%ED%8E%9C%EC%8B%B1"
     },
     {
+      "id": 29,
       "name": "시스테마",
       "weapon": 0,
       "uniform": 1,
@@ -436,6 +465,7 @@
       "wiki": "https://namu.wiki/w/%EC%8B%9C%EC%8A%A4%ED%85%8C%EB%A7%88"
     },
     {
+      "id": 30,
       "name": "공권유술",
       "weapon": 0,
       "uniform": 0,
