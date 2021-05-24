@@ -12,7 +12,6 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../Redux/Store/store";
 import { getReviewList } from "../../Redux/Reducers/reviewReducer";
-import useAxios from "axios-hooks";
 
 const ReviewWrapper = styled.div`
   display: flex;
