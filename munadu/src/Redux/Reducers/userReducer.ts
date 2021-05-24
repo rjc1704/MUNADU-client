@@ -21,6 +21,30 @@ export const setUser = createAsyncThunk(
     }
   }
 );
+interface Iimg {
+  form: any;
+  token: string;
+}
+
+export const setImg = createAsyncThunk(
+  "userReducer/setImg",
+  async ({ form, token }: Iimg) => {
+    try {
+      return await axios.put(
+        `${process.env.REACT_APP_API_URL}/user/editimg`,
+        form,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          withCredentials: true,
+        }
+      );
+    } catch (e) {
+      console.log(`err`, e);
+    }
+  }
+);
 
 export interface Istate {
   id: number;
@@ -56,6 +80,9 @@ const userReducer = createSlice({
       state.name = action.payload.data.data.name;
       state.address = action.payload.data.data.address;
       state.img = action.payload.data.data.img;
+    },
+    [setImg.fulfilled.type]: (state, action: any) => {
+      state.img = action.payload.data.data.path;
     },
   },
 });

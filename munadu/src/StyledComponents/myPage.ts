@@ -23,10 +23,31 @@ const contentBoard = styled.div`
   display: flex;
 `;
 
+const setBoard = styled.div`
+  width: 64%;
+  margin: 0px auto;
+`;
+
+const imgInput = styled.input`
+  display: none;
+`;
+const imgLabel = styled.label``;
+
+const content = styled.div`
+  width: 100%;
+  border: 2px solid ${(props) => props.theme.color.black};
+  border-radius: 8px;
+  padding: 5px;
+`;
+
 export const MyPageStyle = {
   board,
   textBoard,
   textContent,
   page,
   contentBoard,
+  setBoard,
+  imgInput,
+  imgLabel,
+  content,
 };
