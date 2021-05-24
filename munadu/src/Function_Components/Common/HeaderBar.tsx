@@ -6,7 +6,8 @@ import { RootState } from "../../Redux/Store/store";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { useDispatch } from "react-redux";
-import { setNoAuth } from "../../Redux/Reducers/authReducer";
+import { setNoAuth, Istate } from "../../Redux/Reducers/authReducer";
+import { setUser } from "../../Redux/Reducers/userReducer";
 
 const HeaderBoard = styled.div`
   position: relative;
@@ -18,9 +19,10 @@ interface Icheck {
 }
 
 export default function HeaderBar() {
-  const isUser: boolean = useSelector((state: RootState) => {
-    return state.authReducer.isLogin;
+  const isUser: Istate = useSelector((state: RootState) => {
+    return state.authReducer;
   });
+  console.log(`isUser`, isUser);
   const [isCheck, setIsCheck] = useState<Icheck>({
     login: true,
     signup: false,
@@ -34,7 +36,7 @@ export default function HeaderBar() {
           <Header.HeaderLogo onClick={() => history.push("/")}>
             무나두
           </Header.HeaderLogo>
-          {!isUser ? (
+          {!isUser.isLogin ? (
             <div>
               <Button
                 color={isCheck.login ? "white" : ""}
@@ -69,6 +71,8 @@ export default function HeaderBar() {
               <Button
                 color="white"
                 onClick={() => {
+                  console.log(`isUser.id`, isUser.id);
+                  dispatch(setUser(isUser.id));
                   history.push("/mypage");
                 }}
               >

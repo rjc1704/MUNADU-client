@@ -68,6 +68,7 @@ interface IProps {
   martialId: number;
 }
 
+
 export default function DetailPage() {
   const [tabMenu, setTabMenu] = useState(0);
   const [isUnderline, setIsUnderline] = useState(0);
