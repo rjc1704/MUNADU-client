@@ -38,7 +38,6 @@ const DialogBlock = styled.div`
 `;
 const DialogHeader = styled.div`
   display: flex;
-  position: ;
   top: 0;
   left: 0;
   justify-content: flex-start;

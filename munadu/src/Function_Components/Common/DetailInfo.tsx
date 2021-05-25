@@ -10,13 +10,12 @@ interface Idetail {
 }
 
 export default function DetailInfo({ img, svg, children }: Idetail) {
+  console.log(`img`, img);
   return (
     <Detail.board>
       <Detail.imgBox>
         {img ? (
-          <Detail.img
-            src={process.env.REACT_APP_API_URL + "/uploads/1621424615218.png"}
-          ></Detail.img>
+          <Detail.img src={process.env.REACT_APP_API_URL + img}></Detail.img>
         ) : null}
         {svg ? <Detail.img src={svg} /> : null}
       </Detail.imgBox>
