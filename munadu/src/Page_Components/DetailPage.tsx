@@ -1,7 +1,7 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import Button from "../StyledComponents/button";
-import { Photo } from "../StyledComponents/survey";
+import axios from "axios";
 import martialImg from "../Images/taekwondo.svg";
 import Star from "../Images/star.svg";
 import CreateReview from "../Function_Components/DetailPage/CreateReview";
@@ -14,6 +14,12 @@ import ReadReview from "../Function_Components/DetailPage/ReadReview";
 import ReadComment from "../Function_Components/DetailPage/ReadComment";
 import ReadLocation from "../Function_Components/DetailPage/ReadLocation";
 import { useLocation } from "react-router";
+import { RootState } from "../Redux/Store/store";
+import DetailInfo from "../Function_Components/Common/DetailInfo";
+import { Detail } from "../StyledComponents/detail";
+import martialJson from "../Function_Components/Common/martialData.json";
+import { useDispatch, useSelector } from "react-redux";
+import { getAverage } from "../Redux/Reducers/avgReducer";
 
 const ContentContainer = styled.div`
   display: flex;
@@ -21,6 +27,8 @@ const ContentContainer = styled.div`
   align-items: space-between;
   width: 64%;
   min-height: 100vh;
+  height: auto;
+  overflow: visible;
 `;
 
 const MartialSummary = styled.div`
@@ -40,6 +48,12 @@ const TextWrapper = styled.div`
   font-size: 1.5rem;
   font-weight: bold;
   margin: 2% auto;
+`;
+
+const StarPhoto = styled.img`
+  width: 2em;
+  height: auto;
+  margin-right: 2%;
 `;
 
 interface Itext {
@@ -64,10 +78,77 @@ const TextBox = styled.div`
   min-width: 50%;
 `;
 
+const PhotoAndDesc = styled.div`
+  display: flex;
+  align-items: flex-end;
+`;
+
+const Photo = styled.img`
+  width: 10%;
+  height: auto;
+`;
+
+const DescBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-left: 2.5em;
+  height: 100%;
+`;
+
+const StarAndRating = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.7em;
+`;
+const Rating = styled.div`
+  color: #ffffff;
+  font-family: ${(props) => props.theme.fontFamily.subFont};
+  font-weight: 500;
+  font-size: 1.25rem;
+  margin-left: 0.5em;
+`;
+
+const TextsBox = styled.div`
+  display: flex;
+  align-items: flex-end;
+`;
+
+const Texts = styled.div`
+  font-size: 1.5rem;
+  font-family: ${(props) => props.theme.fontFamily.subFont};
+  font-weight: 900;
+  color: #fbfbfb;
+  margin-right: 0.5em;
+`;
+const SmallTexts = styled.div`
+  font-family: ${(props) => props.theme.fontFamily.subFont};
+  font-weight: 500;
+  font-size: 1rem;
+  color: #606060;
+`;
+
+const TagBox = styled.div`
+  display: flex;
+  margin-top: 1em;
+`;
+const Tag = styled.div`
+  display: flex;
+  background-color: #eeeeee;
+  border-radius: 10px;
+  padding: 5px;
+  margin-right: 0.5em;
+`;
+
+const Board = styled.div`
+  background: ${(props) => props.theme.color.black};
+  display: flex;
+  width: 100%;
+`;
+
 interface IProps {
   martialId: number;
 }
-
 
 export default function DetailPage() {
   const [tabMenu, setTabMenu] = useState(0);
@@ -81,12 +162,116 @@ export default function DetailPage() {
   const showLocationMenu = () => {
     setTabMenu(2);
   };
+  const dispatch = useDispatch();
   const location = useLocation<IProps>();
   // ? history에서 받아온 props인 martialId 받아오는 방법
   const martialId = location.state.martialId;
-  console.log(`martialId`, martialId);
+  console.log(`martialId in DetailPage`, martialId);
+  const userId = useSelector((state: RootState) => state.authReducer.id);
+  console.log(`userId in DetailPage`, userId);
+  const theMartial = martialJson.martialData.filter(
+    (martial) => martial.id === martialId
+  )[0];
+  const scoreAvg = useSelector((state: RootState) => state.avgReducer.scoreAvg);
+  const survey = useSelector((state: RootState) => state.surveyReducer);
+  const isLogin = useSelector((state: RootState) => state.authReducer.isLogin);
+  console.log(`survey in SurveyList`, survey);
+  const tags: string[] = [];
+  switch (theMartial.weapon) {
+    case 0:
+      tags.push("맨손");
+      break;
+    case 1:
+      tags.push("무기");
+      break;
+    case 2:
+      tags.push("맨손&무기");
+      break;
+    case 3:
+      break;
+  }
+  switch (theMartial.uniform) {
+    case 0:
+      tags.push("도복");
+      break;
+    case 1:
+      tags.push("자유복");
+      break;
+    case 2:
+      tags.push("유니폼");
+      break;
+    case 3:
+      break;
+  }
+  switch (theMartial.origin) {
+    case 0:
+      tags.push("동양");
+      break;
+    case 1:
+      tags.push("서양");
+      break;
+    case 2:
+      break;
+  }
+  switch (theMartial.sports) {
+    case 0:
+      tags.push("스포츠화");
+      break;
+    case 1:
+      tags.push("규칙자유");
+      break;
+    case 2:
+      break;
+  }
+  switch (theMartial.manner) {
+    case 0:
+      tags.push("예의강조");
+      break;
+    case 1:
+      tags.push("자유로운매너");
+      break;
+    case 2:
+      break;
+  }
+  switch (theMartial.attack) {
+    case 0:
+      tags.push("타격위주");
+      break;
+    case 1:
+      tags.push("그라운드위주");
+      break;
+    case 2:
+      tags.push("타격&그라운드");
+      break;
+    case 3:
+      break;
+  }
+  console.log(`tags`, tags);
+  useEffect(() => {
+    dispatch(getAverage(martialId));
+  }, []);
   return (
     <PageContainer>
+      <Board>
+        <DetailInfo svg={theMartial.img}>
+          <DescBox>
+            <StarAndRating>
+              <StarPhoto src={star} />
+              <Rating>{Math.round(scoreAvg * 10) / 10}</Rating>
+            </StarAndRating>
+            <TextsBox>
+              <Texts>{theMartial.name}</Texts>
+              <SmallTexts>{theMartial.nation}</SmallTexts>
+            </TextsBox>
+
+            <TagBox>
+              {tags.map((tag) => {
+                return <Tag>{tag}</Tag>;
+              })}
+            </TagBox>
+          </DescBox>
+        </DetailInfo>
+      </Board>
       <ContentContainer>
         <TextWrapper>무술 개요</TextWrapper>
         <MartialSummary></MartialSummary>
@@ -103,7 +288,9 @@ export default function DetailPage() {
             </Text>
           </TextBox>
           <div>
-            <CreateReview />
+            {isLogin ? (
+              <CreateReview Martials_id={martialId} Users_id={userId} />
+            ) : null}
           </div>
         </TextWrapper>
         {tabMenu === 0 ? (
