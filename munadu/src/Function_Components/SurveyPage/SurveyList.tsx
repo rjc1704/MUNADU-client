@@ -39,6 +39,7 @@ export default function SurveyList() {
   const answer1Ref = useRef<HTMLInputElement>(null);
   const answer2Ref = useRef<HTMLInputElement>(null);
   const answer3Ref = useRef<HTMLInputElement>(null);
+  const answer4Ref = useRef<HTMLInputElement>(null);
 
   const {
     weapon0 = "",
@@ -67,7 +68,9 @@ export default function SurveyList() {
     if (
       !answer1Ref.current?.checked &&
       !answer2Ref.current?.checked &&
-      !answer3Ref.current?.checked
+      !answer3Ref.current?.checked &&
+      answer4Ref.current &&
+      !answer4Ref.current?.checked
     ) {
       return;
     }
@@ -94,6 +97,11 @@ export default function SurveyList() {
           );
           break;
         case "2":
+          filterResult = martialJson.martialData.filter(
+            (martial) => martial.weapon === 2
+          );
+          break;
+        case "3":
           filterResult = martialJson.martialData;
           break;
       }
@@ -113,6 +121,8 @@ export default function SurveyList() {
           filterResult = filterResult.filter(
             (martial: any) => martial.uniform === 2
           );
+          break;
+        case "3":
           break;
       }
       switch (origin2) {
@@ -169,6 +179,11 @@ export default function SurveyList() {
           );
           break;
         case "2":
+          filterResult = filterResult.filter(
+            (martial: any) => martial.attack === 2
+          );
+          break;
+        case "3":
           break;
       }
       console.log(`filterResult`, filterResult);
@@ -189,6 +204,8 @@ export default function SurveyList() {
       if (answer1Ref.current?.checked) answer1Ref.current.checked = false;
       if (answer2Ref.current?.checked) answer2Ref.current.checked = false;
       if (answer3Ref.current?.checked) answer3Ref.current.checked = false;
+      if (answer4Ref.current && answer4Ref.current?.checked)
+        answer4Ref.current.checked = false;
       setIsInactive(true);
     } else {
       // 설문 결과창 출력!
@@ -285,6 +302,21 @@ export default function SurveyList() {
               ></Input>
               {SurveyJson.surveys[index].answers[2]}
             </AnswerText>
+            {SurveyJson.surveys[index].answers[3] ? (
+              <div>
+                <Hr></Hr>
+                <AnswerText>
+                  <Input
+                    type="radio"
+                    value="3"
+                    name="chkInfo"
+                    onClick={check}
+                    ref={answer4Ref}
+                  ></Input>
+                  {SurveyJson.surveys[index].answers[3]}
+                </AnswerText>
+              </div>
+            ) : null}
           </OptionBox>
         ) : result !== undefined && result.length > 0 ? (
           <ResultBox>
