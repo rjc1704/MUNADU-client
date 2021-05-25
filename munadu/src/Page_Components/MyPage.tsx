@@ -7,6 +7,7 @@ import { useState } from "react";
 import SetImage from "../Function_Components/MyPage/SetImg";
 import Button from "../StyledComponents/button";
 import SetProfile from "../Function_Components/MyPage/SetProfile";
+import SetPassword from "../Function_Components/MyPage/SetPassword";
 
 export default function MyPage() {
   const userData: Istate = useSelector((state: RootState) => {
@@ -65,6 +66,7 @@ export default function MyPage() {
         <MyPageStyle.setBoard>
           <SetImage callback={setIsChange}></SetImage>
           <SetProfile userData={userData} callback={setIsChange}></SetProfile>
+          <SetPassword callback={setIsChange}></SetPassword>
         </MyPageStyle.setBoard>
       )}
     </MyPageStyle.page>

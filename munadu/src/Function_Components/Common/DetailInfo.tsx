@@ -15,9 +15,7 @@ export default function DetailInfo({ img, svg, children }: Idetail) {
     <Detail.board>
       <Detail.imgBox>
         {img ? (
-          <Detail.img
-            src={process.env.REACT_APP_API_URL + "/uploads/1621424615218.png"}
-          ></Detail.img>
+          <Detail.img src={process.env.REACT_APP_API_URL + img}></Detail.img>
         ) : null}
         {svg ? <div>{svg}</div> : null}
       </Detail.imgBox>
