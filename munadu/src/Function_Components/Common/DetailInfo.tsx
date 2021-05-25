@@ -10,6 +10,7 @@ interface Idetail {
 }
 
 export default function DetailInfo({ img, svg, children }: Idetail) {
+  console.log(`img`, img);
   return (
     <Detail.board>
       <Detail.imgBox>

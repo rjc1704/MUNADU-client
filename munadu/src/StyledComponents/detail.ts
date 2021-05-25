@@ -3,6 +3,7 @@ import styled from "styled-components";
 const img = styled.img`
   width: 100%;
   height: 100%;
+  border: 1px solid black;
 `;
 const board = styled.div`
   display: flex;

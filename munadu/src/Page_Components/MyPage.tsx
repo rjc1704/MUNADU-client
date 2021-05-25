@@ -3,26 +3,16 @@ import { RootState } from "../Redux/Store/store";
 import { Istate } from "../Redux/Reducers/userReducer";
 import { MyPageStyle } from "../StyledComponents/myPage";
 import DetailInfo from "../Function_Components/Common/DetailInfo";
-import { Input } from "../StyledComponents/input";
 import { useState } from "react";
-import SetAddress from "../Function_Components/MyPage/SetAddress";
 import SetImage from "../Function_Components/MyPage/SetImg";
 import Button from "../StyledComponents/button";
+import SetProfile from "../Function_Components/MyPage/SetProfile";
 
 export default function MyPage() {
   const userData: Istate = useSelector((state: RootState) => {
     return state.userReducer;
   });
-
   const [isChange, setIsChange] = useState<boolean>(true);
-  const [name, setName] = useState<string>(userData.name);
-  const [address, setAddress] = useState<string | null | undefined>(
-    userData.address
-  );
-
-  const changeName = (e: any): void => {
-    setName(e.target.value);
-  };
 
   return (
     <MyPageStyle.page>
@@ -73,21 +63,8 @@ export default function MyPage() {
         </>
       ) : (
         <MyPageStyle.setBoard>
-          <MyPageStyle.content>
-            <p>프로필 이미지 변경</p>
-            <SetImage></SetImage>
-          </MyPageStyle.content>
-          <MyPageStyle.content>
-            <p>닉네임</p>
-            <Input value={name} onChange={changeName}></Input>
-            <p>주소</p>
-            <div>
-              {typeof address === "string" && address !== "null"
-                ? address
-                : "주소 찾기 버튼을 눌러 주소를 변경해주세요"}
-            </div>
-            <SetAddress changeAddress={setAddress}></SetAddress>
-          </MyPageStyle.content>
+          <SetImage callback={setIsChange}></SetImage>
+          <SetProfile userData={userData} callback={setIsChange}></SetProfile>
         </MyPageStyle.setBoard>
       )}
     </MyPageStyle.page>

@@ -21,6 +21,7 @@ const textContent = styled.div`
 
 const contentBoard = styled.div`
   display: flex;
+  width: 100%;
 `;
 
 const setBoard = styled.div`
@@ -31,13 +32,27 @@ const setBoard = styled.div`
 const imgInput = styled.input`
   display: none;
 `;
-const imgLabel = styled.label``;
+const imgLabel = styled.label`
+  cursor: pointer;
+`;
 
 const content = styled.div`
   width: 100%;
-  border: 2px solid ${(props) => props.theme.color.black};
-  border-radius: 8px;
-  padding: 5px;
+  border: 2px solid #c4c4c4;
+  padding: 10px;
+  margin-top: 60px;
+`;
+const errMessage = styled.p`
+  color: red;
+`;
+const title = styled.p`
+  font-family: ${(props) => props.theme.fontFamily.mainFont};
+  margin-left: 5px;
+`;
+
+const buttonPosition = styled.div`
+  float: right;
+  margin-bottom: 20px;
 `;
 
 export const MyPageStyle = {
@@ -50,4 +65,7 @@ export const MyPageStyle = {
   imgInput,
   imgLabel,
   content,
+  errMessage,
+  title,
+  buttonPosition,
 };

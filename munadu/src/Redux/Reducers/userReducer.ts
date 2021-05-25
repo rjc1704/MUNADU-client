@@ -25,6 +25,11 @@ interface Iimg {
   form: any;
   token: string;
 }
+interface Iprofile {
+  name?: string;
+  address?: string | null | undefined;
+  token: string;
+}
 
 export const setImg = createAsyncThunk(
   "userReducer/setImg",
@@ -46,6 +51,29 @@ export const setImg = createAsyncThunk(
   }
 );
 
+export const setProfile = createAsyncThunk(
+  "userReducer/setProfile",
+  async ({ name, address, token }: Iprofile) => {
+    try {
+      return await axios.put(
+        `${process.env.REACT_APP_API_URL}/user/edit`,
+        {
+          name,
+          address,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          withCredentials: true,
+        }
+      );
+    } catch (e) {
+      console.log(`err`, e);
+    }
+  }
+);
+
 export interface Istate {
   id: number;
   email: string;
@@ -54,7 +82,7 @@ export interface Istate {
   img?: string;
 }
 
-interface IpayLoad {
+interface Iuser {
   payload: {
     data: {
       data: {
@@ -69,20 +97,47 @@ interface IpayLoad {
   };
 }
 
+interface Ieditimg {
+  payload: {
+    data: {
+      data: {
+        path: string;
+      };
+      message: string;
+    };
+  };
+}
+
+interface IeditProfile {
+  payload: {
+    data: {
+      data: {
+        name: string;
+        address: string;
+      };
+      message: string;
+    };
+  };
+}
+
 const userReducer = createSlice({
   name: "userReducer",
   initialState: dummy as Istate,
   reducers: {},
   extraReducers: {
-    [setUser.fulfilled.type]: (state, action: IpayLoad) => {
+    [setUser.fulfilled.type]: (state, action: Iuser) => {
       state.id = action.payload.data.data.id;
       state.email = action.payload.data.data.email;
       state.name = action.payload.data.data.name;
       state.address = action.payload.data.data.address;
       state.img = action.payload.data.data.img;
     },
-    [setImg.fulfilled.type]: (state, action: any) => {
+    [setImg.fulfilled.type]: (state, action: Ieditimg) => {
       state.img = action.payload.data.data.path;
+    },
+    [setProfile.fulfilled.type]: (state, action: any) => {
+      state.name = action.payload.data.data.name;
+      state.address = action.payload.data.data.address;
     },
   },
 });
