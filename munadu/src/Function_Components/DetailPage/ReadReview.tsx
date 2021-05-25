@@ -48,6 +48,8 @@ export default function ReadReview({ martialId }: IProps) {
   const reviewList = useSelector(
     (state: RootState) => state.reviewReducer.reviewList
   );
+  const isLogin = useSelector((state: RootState) => state.authReducer.isLogin);
+  const userId = useSelector((state: RootState) => state.authReducer.id);
   useEffect(() => {
     dispatch(getReviewList(martialId));
   }, []);
@@ -79,12 +81,14 @@ export default function ReadReview({ martialId }: IProps) {
                 <Name>{review.users.name}</Name>
                 <Date>{review.updatedAt.slice(0, 10)}</Date>
               </NameAndDate>
-              <LayerBtn ref={kebabRef}>
-                <Photo3 src={editBtn} onClick={openEditMenu}></Photo3>
-                {isOpen ? (
-                  <EditBtns reviewId={review.id} martialId={martialId} />
-                ) : null}
-              </LayerBtn>
+              {isLogin && review.Users_id === userId ? (
+                <LayerBtn ref={kebabRef}>
+                  <Photo3 src={editBtn} onClick={openEditMenu}></Photo3>
+                  {isOpen ? (
+                    <EditBtns reviewId={review.id} martialId={martialId} />
+                  ) : null}
+                </LayerBtn>
+              ) : null}
             </NameAndDateAndBtn>
             <RatingsAndDesc>
               <Ratings>
