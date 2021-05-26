@@ -1,14 +1,8 @@
-import React, { useState, useEffect, ChangeEvent, FC, memo } from "react";
+// import Modal from "../Common/Modal";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import StarRatings from "react-star-rating-component";
-import styled from "styled-components";
-import Button from "../../StyledComponents/button";
 import Modal from "../Common/Modal";
-import axios from "axios";
-import { RootState } from "../../Redux/Store/store";
-import martialImage from "../../Images/taekwondo.svg";
-import { NewBtn } from "../../StyledComponents/survey";
-import martialJson from "../Common/martialData.json";
+import StarRatings from "react-star-rating-component";
 import {
   PhotoAndText,
   Photo,
@@ -24,15 +18,16 @@ import {
   ErrorMsg,
   NewBtn2,
 } from "../../StyledComponents/createreview";
-axios.defaults.withCredentials = true;
-
-// ! 테스트를 위해 임시로 기본값 1로 설정해뒀으니 추후 삭제해야함!
+import { RootState } from "../../Redux/Store/store";
+import axios from "axios";
+import martialJson from "../Common/martialData.json";
 interface IProps {
-  Martials_id: number;
-  Users_id: number;
+  reviewId: number;
+  martialId: number;
 }
-function CreateReview({ Martials_id, Users_id }: IProps) {
-  const [isModal, setIsModal] = useState(false);
+function UpdateReview({ reviewId, martialId }: IProps) {
+  console.log("Update Review 들어왔어!");
+  const [isModal, setIsModal] = useState(true);
   const [period, setPeriod] = useState(0);
   const [comment, setComment] = useState("");
   const [score, setScore] = useState(0);
@@ -58,9 +53,34 @@ function CreateReview({ Martials_id, Users_id }: IProps) {
     wiki: string;
   }
   const theMartial: IMartial = martialJson.martialData.filter(
-    (martial) => martial.id === Martials_id
+    (martial) => martial.id === martialId
   )[0];
-
+  const setInitialState = () => {
+    setPeriod(0);
+    setComment("");
+    setScore(0);
+    setPracticality(0);
+    setMuscle(0);
+    setDifficulty(0);
+    setIntensity(0);
+    setInjury(0);
+    setIsModal(false);
+    setErrorMsg("");
+  };
+  const closeModal = () => {
+    setInitialState();
+  };
+  const accessToken = useSelector(
+    (state: RootState) => state.authReducer.accessToken
+  );
+  const handlePeriod = (e: any) => {
+    console.log(`period inputt`, e.target.value);
+    setPeriod(e.target.value);
+  };
+  const handleComment = (e: any) => {
+    console.log(`e.target.value`, e.target.value);
+    setComment(e.target.value);
+  };
   const handlePracticality = (newPracticality: number) => {
     setPracticality(newPracticality);
   };
@@ -79,35 +99,6 @@ function CreateReview({ Martials_id, Users_id }: IProps) {
   const handleDifficulty = (newDifficulty: number) => {
     setDifficulty(newDifficulty);
   };
-  const closeModal = () => {
-    setInitialState();
-  };
-  const openModal = () => {
-    setIsModal(true);
-  };
-  const setInitialState = () => {
-    setPeriod(0);
-    setComment("");
-    setScore(0);
-    setPracticality(0);
-    setMuscle(0);
-    setDifficulty(0);
-    setIntensity(0);
-    setInjury(0);
-    setIsModal(false);
-    setErrorMsg("");
-  };
-  const accessToken = useSelector(
-    (state: RootState) => state.authReducer.accessToken
-  );
-  const handlePeriod = (e: any) => {
-    console.log(`period inputt`, e.target.value);
-    setPeriod(e.target.value);
-  };
-  const handleComment = (e: any) => {
-    console.log(`e.target.value`, e.target.value);
-    setComment(e.target.value);
-  };
   interface reviewProps {
     period: number;
     comment: string;
@@ -120,7 +111,7 @@ function CreateReview({ Martials_id, Users_id }: IProps) {
     Martials_id?: number;
     Users_id?: number;
   }
-  const addReview = async () => {
+  const updateReview = async () => {
     // 유효성 검사
     // 서버 통신
     if (
@@ -136,8 +127,8 @@ function CreateReview({ Martials_id, Users_id }: IProps) {
       setErrorMsg("모든 항목이 입력되어야 합니다.");
     } else {
       try {
-        const review: reviewProps = await axios.post(
-          `${process.env.REACT_APP_API_URL}/review/create`,
+        const review: reviewProps = await axios.put(
+          `${process.env.REACT_APP_API_URL}/review/update`,
           {
             period: period,
             comment: comment,
@@ -147,8 +138,7 @@ function CreateReview({ Martials_id, Users_id }: IProps) {
             difficulty: difficulty,
             intensity: intensity,
             injury: injury,
-            Martials_id: Martials_id,
-            Users_id: Users_id,
+            reviewId: reviewId,
           },
           {
             headers: {
@@ -164,20 +154,16 @@ function CreateReview({ Martials_id, Users_id }: IProps) {
       }
     }
   };
-  useEffect(() => {
-    console.log(`isModal`, isModal);
-  }, [isModal]);
 
   return (
     <Div>
-      <NewBtn2 onClick={openModal}>조언 작성하기</NewBtn2>
       {isModal ? (
         <Modal
           close={closeModal}
           headerText={"조언 작성하기"}
           okBtnText={"확인"}
           cancelBtnText={"뒤로"}
-          callback={addReview}
+          callback={updateReview}
           modalWidthPercent={38}
           modalHeightPercent={50}
         >
@@ -274,8 +260,9 @@ function CreateReview({ Martials_id, Users_id }: IProps) {
           </Form>
         </Modal>
       ) : null}
+      ;
     </Div>
   );
 }
 
-export default memo(CreateReview);
+export default UpdateReview;
