@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
+
 import { getReviewRank } from "../../Redux/Reducers/recommendReducer";
 import { RootState } from "../../Redux/Store/store";
 import {
@@ -25,7 +25,7 @@ import {
 } from "../../StyledComponents/readreview";
 import RadarChart from "../Common/RadarChart";
 import { useHistory } from "react-router";
-import star from "./star.svg";
+import star from "./img/star.svg";
 
 const RecommendReview = () => {
   const reviewRank = useSelector(

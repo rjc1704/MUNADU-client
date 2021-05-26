@@ -5,7 +5,7 @@ import { idText } from "typescript";
 export const StyledBanner = styled.div`
   display: flex;
   width: 100%;
-  height: 9.55rem;
+  height: 100%;
   background-color: #1c1c1c;
   flex-direction: column;
 `;
@@ -61,6 +61,7 @@ const ButtonWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  margin-bottom: 0.8%;
 `;
 
 interface IProps {
