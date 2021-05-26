@@ -1,4 +1,5 @@
 import React, { ReactNode, useState } from "react";
+import styled from "styled-components";
 
 import Banner from "../Function_Components/MainPage/Banner";
 import MartialListForm from "../Function_Components/MainPage/MartialListForm";
@@ -11,10 +12,13 @@ export default function MainPage() {
     setIsSelected(e);
   };
 
+  const main = styled.div`
+    overflow: auto;
+  `;
   return (
-    <div>
+    <main>
       <Banner isSelected={isSelected} checkSelected={checkSelected}></Banner>
       {isSelected ? <RecommendForm /> : <MartialListForm />}
-    </div>
+    </main>
   );
 }
