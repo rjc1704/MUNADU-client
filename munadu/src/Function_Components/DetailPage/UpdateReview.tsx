@@ -21,12 +21,12 @@ import {
 import { RootState } from "../../Redux/Store/store";
 import axios from "axios";
 import martialJson from "../Common/martialData.json";
+import { updateReviews } from "../../Redux/Reducers/reviewReducer";
 interface IProps {
   reviewId: number;
   martialId: number;
 }
 function UpdateReview({ reviewId, martialId }: IProps) {
-  console.log("Update Review 들어왔어!");
   const [isModal, setIsModal] = useState(true);
   const [period, setPeriod] = useState(0);
   const [comment, setComment] = useState("");
@@ -37,6 +37,7 @@ function UpdateReview({ reviewId, martialId }: IProps) {
   const [intensity, setIntensity] = useState(0);
   const [injury, setInjury] = useState(0);
   const [errorMsg, setErrorMsg] = useState("");
+  const dispatch = useDispatch();
   interface IMartial {
     id: number;
     name: string;
@@ -99,7 +100,7 @@ function UpdateReview({ reviewId, martialId }: IProps) {
   const handleDifficulty = (newDifficulty: number) => {
     setDifficulty(newDifficulty);
   };
-  interface reviewProps {
+  interface UpdateProps {
     period: number;
     comment: string;
     score: number;
@@ -108,8 +109,8 @@ function UpdateReview({ reviewId, martialId }: IProps) {
     difficulty: number;
     intensity: number;
     injury: number;
-    Martials_id?: number;
-    Users_id?: number;
+    reviewId: number;
+    accessToken: string;
   }
   const updateReview = async () => {
     // 유효성 검사
@@ -126,32 +127,21 @@ function UpdateReview({ reviewId, martialId }: IProps) {
     ) {
       setErrorMsg("모든 항목이 입력되어야 합니다.");
     } else {
-      try {
-        const review: reviewProps = await axios.put(
-          `${process.env.REACT_APP_API_URL}/review/update`,
-          {
-            period: period,
-            comment: comment,
-            score: score,
-            practicality: practicality,
-            muscle: muscle,
-            difficulty: difficulty,
-            intensity: intensity,
-            injury: injury,
-            reviewId: reviewId,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-              "Content-Type": "application/json",
-            },
-            withCredentials: true,
-          }
-        );
-        setInitialState();
-      } catch (err) {
-        alert(err);
-      }
+      dispatch(
+        updateReviews({
+          period,
+          comment,
+          score,
+          practicality,
+          muscle,
+          difficulty,
+          intensity,
+          injury,
+          reviewId,
+          accessToken,
+        })
+      );
+      setInitialState();
     }
   };
 
