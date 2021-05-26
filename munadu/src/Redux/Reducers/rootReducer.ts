@@ -7,7 +7,8 @@ import replyReducer from "./replyReducer";
 import channelReducer from "./channelReducer";
 import authReducer from "./authReducer";
 import surveyReducer from "./surveyReducer";
-import martialRankReducer from "./martialRankReducer";
+import recommendReducer from "./recommendReducer";
+
 import avgReducer from "./avgReducer";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage/session";
@@ -27,7 +28,7 @@ const rootReducer = combineReducers({
   channelReducer,
   authReducer,
   surveyReducer,
-  martialRankReducer,
+  recommendReducer,
   avgReducer,
 });
 // export default rootReducer;
