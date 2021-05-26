@@ -105,6 +105,7 @@ export const ContentHeaderName = styled.div`
 export const CommentBox = styled.div<{ size: string }>`
   display: flex;
   flex-direction: column;
+
   width: ${(props) => props.size || "50%"};
 `;
 
@@ -131,6 +132,7 @@ export const CommentTitle = styled.div`
   align-items: center;
   letter-spacing: -0.015em;
   color: #1c1c1c;
+  padding-left: 5%;
 `;
 export const CommentDate = styled.div`
   margin-left: 2%;
@@ -151,7 +153,8 @@ export const CommentDetail = styled.div`
   line-height: 21px;
   color: #1c1c1c;
   padding-bottom: 10%;
-  padding-right: 10%;
+  padding-left: 5%;
+  padding-right: 5%;
   overflow: hidden;
   word-wrap: break-word;
   text-overflow: ellipsis;

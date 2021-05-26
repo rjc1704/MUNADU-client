@@ -13,6 +13,7 @@ import {
   MainPageWrapper,
   MainPageBox,
 } from "../../StyledComponents/recommendForm";
+import RecommendComment from "./RecommendComment";
 
 const RecommendForm = () => {
   return (
@@ -20,6 +21,7 @@ const RecommendForm = () => {
       <MainPageBox>
         <RecommendMartial />
         <RecommendReview />
+        <RecommendComment />
       </MainPageBox>
     </MainPageWrapper>
   );

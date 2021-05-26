@@ -32,6 +32,22 @@ export const getReviewRank = createAsyncThunk(
   }
 );
 
+export const getCommentRank = createAsyncThunk(
+  "recommendReducer/getCommentRank",
+  async () => {
+    try {
+      return await axios.get(`${process.env.REACT_APP_API_URL}/comment/rank`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      });
+    } catch (e) {
+      console.log(e.message);
+    }
+  }
+);
+
 export const getChannel = createAsyncThunk(
   "recommendReducer/getChannel",
   async () => {
@@ -92,12 +108,22 @@ interface IReview {
   createdAt: string;
   updatedAt: string;
 }
-
+interface IComment {
+  id: string;
+  comment: string;
+  Users_id: number;
+  Martials_id: number;
+  createdAt: string;
+  updatedAt: string;
+  martials: { name: string };
+  users: { name: string };
+}
 const initialState = {
   data: {
     martial: [] as IMartial[],
     channel: [] as IChannel[],
     review: [] as IReview[],
+    comment: [] as IComment[],
     message: "",
   },
 };
@@ -112,6 +138,9 @@ const recommendReducer = createSlice({
     },
     [getReviewRank.fulfilled.type]: (state, action) => {
       state.data.review = action.payload.data.data;
+    },
+    [getCommentRank.fulfilled.type]: (state, action) => {
+      state.data.comment = action.payload.data.data;
     },
     [getChannel.fulfilled.type]: (state, action) => {
       state.data.channel = action.payload.data.data;
