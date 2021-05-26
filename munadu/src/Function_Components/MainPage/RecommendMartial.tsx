@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMartialRank } from "../../Redux/Reducers/recommendReducer";
 import { RootState } from "../../Redux/Store/store";

@@ -12,13 +12,13 @@ export default function MainPage() {
     setIsSelected(e);
   };
 
-  const main = styled.div`
-    overflow: auto;
+  const Main = styled.div`
+    overflow: scroll;
   `;
   return (
-    <main>
+    <Main>
       <Banner isSelected={isSelected} checkSelected={checkSelected}></Banner>
       {isSelected ? <RecommendForm /> : <MartialListForm />}
-    </main>
+    </Main>
   );
 }
