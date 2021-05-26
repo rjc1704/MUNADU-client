@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCommentRank } from "../../Redux/Reducers/recommendReducer";
 import { RootState } from "../../Redux/Store/store";
@@ -11,20 +11,12 @@ import {
   ContentDetail,
   ContentHeaderName,
   CommentBox,
-  ChartBox,
   CommentHeader,
   CommentDate,
   CommentTitle,
   CommentDetail,
 } from "../../StyledComponents/recommendForm";
-import {
-  StarPhoto,
-  StarWrapper,
-  Ratings,
-} from "../../StyledComponents/readreview";
-import RadarChart from "../Common/RadarChart";
 import { useHistory } from "react-router";
-import star from "./star.svg";
 
 const RecommendComment = () => {
   const commentRank = useSelector(
