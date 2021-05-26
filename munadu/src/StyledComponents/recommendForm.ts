@@ -20,6 +20,7 @@ export const Box = styled.div`
   width: 32%;
   /* border: 1px solid yellow; */
   flex-direction: column;
+  cursor: pointer;
 `;
 export const ContentsWrapper = styled.div`
   /* border: 1px solid blue; */
@@ -73,4 +74,88 @@ export const DetailCaption = styled.div`
   align-items: center;
   letter-spacing: -0.015em;
   color: #000000;
+`;
+
+export const ContentHeader = styled.div`
+  width: 100%;
+  height: 20%;
+  border-bottom: 1px solid #eeeeee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+`;
+export const ContentDetail = styled.div`
+  width: 100%;
+  height: 80%;
+  display: flex;
+  flex-direction: row;
+`;
+export const ContentHeaderName = styled.div`
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.015em;
+  color: #000000;
+`;
+export const CommentBox = styled.div<{ size: string }>`
+  display: flex;
+  flex-direction: column;
+  width: ${(props) => props.size || "50%"};
+`;
+
+export const ChartBox = styled.div`
+  width: 50%;
+  padding: 3%;
+`;
+
+export const CommentHeader = styled.div`
+  width: 100%;
+  height: 30%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const CommentTitle = styled.div`
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.015em;
+  color: #1c1c1c;
+`;
+export const CommentDate = styled.div`
+  margin-left: 2%;
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  color: #606060;
+`;
+export const CommentDetail = styled.div`
+  width: 100%;
+  height: 85px;
+  font-family: Noto Sans KR Medium;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 21px;
+  color: #1c1c1c;
+  padding-bottom: 10%;
+  padding-right: 10%;
+  overflow: hidden;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
 `;

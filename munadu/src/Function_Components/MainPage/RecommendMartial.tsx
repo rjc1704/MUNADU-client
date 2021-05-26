@@ -10,23 +10,32 @@ import {
   DetailTitle,
   DetailCaption,
 } from "../../StyledComponents/recommendForm";
+import { useHistory } from "react-router";
 
 const RecommendMartial = () => {
   const martialRank = useSelector(
     (state: RootState) => state.recommendReducer.data
   );
+  const history = useHistory();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getMartialRank());
   }, []);
-  console.log(martialRank);
+
+  const moveToDetailPage = (id: number) => {
+    history.push({
+      pathname: "/detailpage",
+      state: { martialId: id },
+    });
+  };
+
   return (
     <>
       <ContentsTitle>추천 무술</ContentsTitle>
       <ContentsWrapper>
         {martialRank.martial.map((martial, idx) => {
           return (
-            <Box key={idx}>
+            <Box key={idx} onClick={() => moveToDetailPage(martial.id)}>
               <ContentCard>
                 <img src={martial.img} width="100%" height="100%" />
               </ContentCard>
