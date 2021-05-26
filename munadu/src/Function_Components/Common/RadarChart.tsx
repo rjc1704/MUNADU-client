@@ -53,6 +53,7 @@ const RadarChart = ({ label, data, width, height, displayScales }: IProps) => {
   return (
     <>
       <Radar
+        type="radar"
         data={chartData}
         options={chartOptions}
         width={width}

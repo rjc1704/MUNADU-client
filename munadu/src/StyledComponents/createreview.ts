@@ -76,7 +76,7 @@ export const InputAdvice = styled.textarea`
 export const StarWrapper = styled.div`
   display: flex;
   align-items: center;
-  font-size: 150%;
+  font-size: 110%;
   padding-top: 0;
 `;
 export const Div = styled.div`

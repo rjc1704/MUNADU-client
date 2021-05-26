@@ -7,7 +7,8 @@ const BtnsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 40%;
+  top: 35%;
+  right: 20%;
   align-items: center;
   justify-content: space-evenly;
   width: 12%;
@@ -15,6 +16,7 @@ const BtnsWrapper = styled.div`
   box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   min-height: 4em;
+  z-index: 3;
 `;
 const Text = styled.div`
   display: flex;

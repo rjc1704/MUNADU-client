@@ -13,7 +13,8 @@ export default function MainPage() {
   };
 
   const Main = styled.div`
-    overflow: scroll;
+    height: 100vh;
+    overflow: auto;
   `;
   return (
     <Main>
