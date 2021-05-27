@@ -8,7 +8,7 @@ import channelReducer from "./channelReducer";
 import authReducer from "./authReducer";
 import surveyReducer from "./surveyReducer";
 import recommendReducer from "./recommendReducer";
-
+import tagReducer from "./tagReducer";
 import avgReducer from "./avgReducer";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage/session";
@@ -30,6 +30,7 @@ const rootReducer = combineReducers({
   surveyReducer,
   recommendReducer,
   avgReducer,
+  tagReducer,
 });
 // export default rootReducer;
 export default persistReducer(persistConfig, rootReducer);
