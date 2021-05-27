@@ -5,7 +5,7 @@ import { idText } from "typescript";
 export const StyledBanner = styled.div`
   display: flex;
   width: 100%;
-  height: 14%;
+  height: 9.95em;
   background-color: #1c1c1c;
   flex-direction: column;
 `;
