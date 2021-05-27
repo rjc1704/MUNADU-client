@@ -120,6 +120,7 @@ const MartialListForm = () => {
   // const [isNoSports, setIsNoSports] = useState(false);
   // const [isCourtesy, setIsCourtesy] = useState(false);
   // const [isFreedom, setIsFreedom] = useState(false);
+  const tagReducer = useSelector((state: RootState) => state.tagReducer);
   const {
     isHand,
     isWeapon,
@@ -136,13 +137,13 @@ const MartialListForm = () => {
     isNoSports,
     isCourtesy,
     isFreedom,
-  } = useSelector((state: RootState) => state.tagReducer);
-  const tagReducer = useSelector((state: RootState) => state.tagReducer);
+  } = tagReducer;
+
   const dispatch = useDispatch();
   const handleHand = async () => {
     if (isHand === false) {
       if (isWeapon) {
-        // await setIsWeapon(false);
+        // await setIsWeapon(false); // ? 기존 태그 취소 처리
         await dispatch(selectTag({ ...tagReducer, isWeapon: false }));
       }
       if (isHandAndWeapon) {
@@ -150,10 +151,19 @@ const MartialListForm = () => {
         await dispatch(selectTag({ ...tagReducer, isHandAndWeapon: false }));
       }
       // await setIsHand(true);
-      await dispatch(selectTag({ ...tagReducer, isHand: true }));
+      console.log("자 이제 바꿔보자!");
+      await dispatch(
+        selectTag({
+          ...tagReducer,
+          isWeapon: false,
+          isHandAndWeapon: false,
+          isHand: true,
+        })
+      );
     } else {
+      // ? 새로운 태그 선택 처리
       // setIsHand(false);
-      await dispatch(selectTag({ ...tagReducer, isHand: false }));
+      dispatch(selectTag({ ...tagReducer, isHand: false }));
     }
   };
   const handleWeapon = async () => {
@@ -167,10 +177,17 @@ const MartialListForm = () => {
         await dispatch(selectTag({ ...tagReducer, isHandAndWeapon: false }));
       }
       // await setIsWeapon(true);
-      await dispatch(selectTag({ ...tagReducer, isWeapon: true }));
+      await dispatch(
+        selectTag({
+          ...tagReducer,
+          isHand: false,
+          isHandAndWeapon: false,
+          isWeapon: true,
+        })
+      );
     } else {
       // setIsWeapon(false);
-      await dispatch(selectTag({ ...tagReducer, isWeapon: false }));
+      dispatch(selectTag({ ...tagReducer, isWeapon: false }));
     }
   };
   const handleHandAndWeapon = async () => {
@@ -184,10 +201,17 @@ const MartialListForm = () => {
         await dispatch(selectTag({ ...tagReducer, isWeapon: false }));
       }
       // await setIsHandAndWeapon(true);
-      await dispatch(selectTag({ ...tagReducer, isHandAndWeapon: true }));
+      await dispatch(
+        selectTag({
+          ...tagReducer,
+          isHand: false,
+          isWeapon: false,
+          isHandAndWeapon: true,
+        })
+      );
     } else {
       // setIsHandAndWeapon(false);
-      await dispatch(selectTag({ ...tagReducer, isHandAndWeapon: false }));
+      dispatch(selectTag({ ...tagReducer, isHandAndWeapon: false }));
     }
   };
   const handleDobok = async () => {
@@ -201,7 +225,14 @@ const MartialListForm = () => {
         await dispatch(selectTag({ ...tagReducer, isUniform: false }));
       }
       // await setIsDobok(true);
-      await dispatch(selectTag({ ...tagReducer, isDobok: true }));
+      await dispatch(
+        selectTag({
+          ...tagReducer,
+          isFreebok: false,
+          isUniform: false,
+          isDobok: true,
+        })
+      );
     } else {
       // setIsDobok(false);
       await dispatch(selectTag({ ...tagReducer, isDobok: false }));
@@ -218,7 +249,14 @@ const MartialListForm = () => {
         await dispatch(selectTag({ ...tagReducer, isUniform: false }));
       }
       // await setIsFreebok(true);
-      await dispatch(selectTag({ ...tagReducer, isFreebok: true }));
+      await dispatch(
+        selectTag({
+          ...tagReducer,
+          isDobok: false,
+          isUniform: false,
+          isFreebok: true,
+        })
+      );
     } else {
       // setIsFreebok(false);
       await dispatch(selectTag({ ...tagReducer, isFreebok: false }));
@@ -235,7 +273,14 @@ const MartialListForm = () => {
         await dispatch(selectTag({ ...tagReducer, isFreebok: false }));
       }
       // await setIsUniform(true);
-      await dispatch(selectTag({ ...tagReducer, isUniform: true }));
+      await dispatch(
+        selectTag({
+          ...tagReducer,
+          isDobok: false,
+          isFreebok: false,
+          isUniform: true,
+        })
+      );
     } else {
       // setIsUniform(false);
       await dispatch(selectTag({ ...tagReducer, isUniform: false }));
@@ -252,7 +297,14 @@ const MartialListForm = () => {
         await dispatch(selectTag({ ...tagReducer, isMMA: false }));
       }
       // await setIsAttack(true);
-      await dispatch(selectTag({ ...tagReducer, isAttack: true }));
+      await dispatch(
+        selectTag({
+          ...tagReducer,
+          isGround: false,
+          isMMA: false,
+          isAttack: true,
+        })
+      );
     } else {
       // setIsAttack(false);
       await dispatch(selectTag({ ...tagReducer, isAttack: false }));
@@ -269,7 +321,14 @@ const MartialListForm = () => {
         await dispatch(selectTag({ ...tagReducer, isMMA: false }));
       }
       // await setIsGround(true);
-      await dispatch(selectTag({ ...tagReducer, isGround: true }));
+      await dispatch(
+        selectTag({
+          ...tagReducer,
+          isAttack: false,
+          isMMA: false,
+          isGround: true,
+        })
+      );
     } else {
       // setIsGround(false);
       await dispatch(selectTag({ ...tagReducer, isGround: false }));
@@ -286,7 +345,14 @@ const MartialListForm = () => {
         await dispatch(selectTag({ ...tagReducer, isGround: false }));
       }
       // await setIsMMA(true);
-      await dispatch(selectTag({ ...tagReducer, isMMA: true }));
+      await dispatch(
+        selectTag({
+          ...tagReducer,
+          isAttack: false,
+          isGround: false,
+          isMMA: true,
+        })
+      );
     } else {
       // setIsMMA(false);
       await dispatch(selectTag({ ...tagReducer, isMMA: false }));
@@ -299,7 +365,9 @@ const MartialListForm = () => {
         await dispatch(selectTag({ ...tagReducer, isWestern: false }));
       }
       // await setIsEastern(true);
-      await dispatch(selectTag({ ...tagReducer, isEastern: true }));
+      await dispatch(
+        selectTag({ ...tagReducer, isWestern: false, isEastern: true })
+      );
     } else {
       // setIsEastern(false);
       await dispatch(selectTag({ ...tagReducer, isEastern: false }));
@@ -312,7 +380,9 @@ const MartialListForm = () => {
         await dispatch(selectTag({ ...tagReducer, isEastern: false }));
       }
       // await setIsWestern(true);
-      await dispatch(selectTag({ ...tagReducer, isWestern: true }));
+      await dispatch(
+        selectTag({ ...tagReducer, isEastern: false, isWestern: true })
+      );
     } else {
       // setIsWestern(false);
       await dispatch(selectTag({ ...tagReducer, isWestern: false }));
@@ -325,7 +395,9 @@ const MartialListForm = () => {
         await dispatch(selectTag({ ...tagReducer, isNoSports: false }));
       }
       // await setIsSports(true);
-      await dispatch(selectTag({ ...tagReducer, isSports: true }));
+      await dispatch(
+        selectTag({ ...tagReducer, isNoSports: false, isSports: true })
+      );
     } else {
       // setIsSports(false);
       await dispatch(selectTag({ ...tagReducer, isSports: false }));
@@ -338,7 +410,9 @@ const MartialListForm = () => {
         await dispatch(selectTag({ ...tagReducer, isSports: false }));
       }
       // await setIsNoSports(true);
-      await dispatch(selectTag({ ...tagReducer, isNoSports: true }));
+      await dispatch(
+        selectTag({ ...tagReducer, isSports: false, isNoSports: true })
+      );
     } else {
       // setIsNoSports(false);
       await dispatch(selectTag({ ...tagReducer, isNoSports: false }));
@@ -351,7 +425,9 @@ const MartialListForm = () => {
         await dispatch(selectTag({ ...tagReducer, isFreedom: false }));
       }
       // await setIsCourtesy(true);
-      await dispatch(selectTag({ ...tagReducer, isCourtesy: true }));
+      await dispatch(
+        selectTag({ ...tagReducer, isFreedom: false, isCourtesy: true })
+      );
     } else {
       // setIsCourtesy(false);
       await dispatch(selectTag({ ...tagReducer, isCourtesy: false }));
@@ -364,7 +440,9 @@ const MartialListForm = () => {
         await dispatch(selectTag({ ...tagReducer, isCourtesy: false }));
       }
       // await setIsFreedom(true);
-      await dispatch(selectTag({ ...tagReducer, isFreedom: true }));
+      await dispatch(
+        selectTag({ ...tagReducer, isCourtesy: false, isFreedom: true })
+      );
     } else {
       // setIsFreedom(false);
       await dispatch(selectTag({ ...tagReducer, isFreedom: false }));
