@@ -4,6 +4,7 @@ import Banner from "../Function_Components/MainPage/Banner";
 import MartialListForm from "../Function_Components/MainPage/MartialListForm";
 import RecommendForm from "../Function_Components/MainPage/RecommendForm";
 import { useHistory } from "react-router";
+import HeaderBar from "../Function_Components/Common/HeaderBar";
 
 export default function MainPage() {
   const [isSelected, setIsSelected] = useState(true);
@@ -46,6 +47,7 @@ export default function MainPage() {
   };
   return (
     <Main>
+      <HeaderBar />
       <Banner isSelected={isSelected} checkSelected={checkSelected}></Banner>
       {isSelected ? <RecommendForm /> : <MartialListForm />}
       <SurveyBtn onClick={() => moveToSurveyPage()}>설문조사</SurveyBtn>

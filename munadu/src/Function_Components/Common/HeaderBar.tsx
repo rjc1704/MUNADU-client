@@ -66,7 +66,7 @@ export default function HeaderBar() {
                   history.push("/");
                 }}
               >
-                로그 아웃
+                로그아웃
               </Button>
               <Button
                 color="white"

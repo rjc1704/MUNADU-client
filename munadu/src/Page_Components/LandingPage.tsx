@@ -7,6 +7,7 @@ import { memo, useState } from "react";
 import { useHistory } from "react-router";
 import Canvas from "../Function_Components/LandingPage/Canvas";
 import axios from "axios";
+import HeaderBar from "../Function_Components/Common/HeaderBar";
 
 export interface Icard {
   id: number;
@@ -39,19 +40,22 @@ function LandingPage() {
     test();
   };
 
-  const cards: Icard[] = useSelector((state: RootState) => {
+  const cards: any = useSelector((state: RootState) => {
     console.log(`state`, state);
-    return state.martialReducer.data.map((el: any) => {
-      return {
-        id: el.id,
-        name: el.name,
-        img: el.img,
-      };
-    });
+    return state.martialReducer.result
+      ? state.martialReducer.result.map((el: any) => {
+          return {
+            id: el.id,
+            name: el.name,
+            img: el.img,
+          };
+        })
+      : null;
   });
   console.log(`cards`, cards);
   return (
     <div>
+      <HeaderBar></HeaderBar>
       <Landing.Board>
         <div>
           <Landing.Title>
@@ -77,7 +81,7 @@ function LandingPage() {
         <Landing.Img src={cards[select].img} />
         <Landing.Name>{cards[select].name}</Landing.Name>
         <Landing.CardBoard>
-          {cards.map((el, idx: number) => {
+          {cards.map((el: any, idx: number) => {
             return <ReadCard key={idx} card={el} callback={setCard}></ReadCard>;
           })}
         </Landing.CardBoard>
