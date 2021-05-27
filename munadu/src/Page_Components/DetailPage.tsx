@@ -296,7 +296,7 @@ export default function DetailPage() {
         {tabMenu === 0 ? (
           <ReadReview martialId={martialId} />
         ) : tabMenu === 1 ? (
-          <ReadComment />
+          <ReadComment martialId={martialId} />
         ) : (
           <ReadLocation />
         )}
