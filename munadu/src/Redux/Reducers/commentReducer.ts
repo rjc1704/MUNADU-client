@@ -68,7 +68,7 @@ const commentReducer = createSlice({
       state.data.commentList = action.payload.data.data;
     },
     [createComment.fulfilled.type]: (state, action) => {
-      state.data.commentList.push(action.payload);
+      state.data.commentList.unshift(action.payload);
     },
   },
 });
