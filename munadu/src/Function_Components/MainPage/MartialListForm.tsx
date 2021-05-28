@@ -13,113 +13,19 @@ import { RootState } from "../../Redux/Store/store";
 import { filterMartial } from "../../Redux/Reducers/martialReducer";
 import { useHistory } from "react-router";
 import { selectTag } from "../../Redux/Reducers/tagReducer";
-
-const PageWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: auto;
-  /* margin: 0;
-  padding: 0; */
-  background-color: ${(props) => props.theme.color.grey};
-`;
-
-const ContentWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 64%;
-
-  margin: 0;
-`;
-
-const FilterMenu = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 100%;
-  height: auto;
-  margin: 0.7em 0;
-`;
-const FilterGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 7em;
-
-  justify-content: space-evenly;
-`;
-const DescRow = styled.div`
-  display: flex;
-`;
-const BoldText = styled.div`
-  font-family: ${(props) => props.theme.fontFamily.subFont};
-  font-size: 1rem;
-  font-weight: bold;
-`;
-interface ITest {
-  idx: string;
-  status: boolean;
-}
-const NormalText = styled.div<ITest>`
-  font-family: ${(props) => props.theme.fontFamily.subFont};
-  font-size: 1rem;
-  font-weight: normal;
-  margin-left: 1.2em;
-
-  cursor: pointer;
-  padding: 3px;
-
-  ${(props) => {
-    if (props.status === true) {
-      return css`
-        background-color: ${(props) => props.theme.color.black};
-        border-radius: 10px;
-        color: #eeeeee;
-      `;
-    } else {
-      return css`
-        color: #606060;
-        border-radius: 0;
-        background-color: none;
-      `;
-    }
-  }}/* &:hover {
-    background-color: ${(props) => props.theme.color.black};
-    border-radius: 10px;
-    color: #eeeeee;
-  } */
-`;
-
-const MartialWrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-
-  width: 100%;
-  justify-items: center;
-
-  /* justify-content: end; */
-`;
-
-const Box2 = styled(Box)`
-  width: 97%;
-  margin-bottom: 10px;
-`;
+import {
+  PageWrapper,
+  ContentWrapper,
+  FilterMenu,
+  FilterGroup,
+  DescRow,
+  BoldText,
+  NormalText,
+  MartialWrapper,
+  Box2,
+} from "../../StyledComponents/martialListForm";
 
 const MartialListForm = () => {
-  // const [isHand, setIsHand] = useState(false);
-  // const [isWeapon, setIsWeapon] = useState(false);
-  // const [isHandAndWeapon, setIsHandAndWeapon] = useState(false);
-  // const [isDobok, setIsDobok] = useState(false);
-  // const [isFreebok, setIsFreebok] = useState(false);
-  // const [isUniform, setIsUniform] = useState(false);
-  // const [isAttack, setIsAttack] = useState(false);
-  // const [isGround, setIsGround] = useState(false);
-  // const [isMMA, setIsMMA] = useState(false);
-  // const [isEastern, setIsEastern] = useState(false);
-  // const [isWestern, setIsWestern] = useState(false);
-  // const [isSports, setIsSports] = useState(false);
-  // const [isNoSports, setIsNoSports] = useState(false);
-  // const [isCourtesy, setIsCourtesy] = useState(false);
-  // const [isFreedom, setIsFreedom] = useState(false);
   const tagReducer = useSelector((state: RootState) => state.tagReducer);
   const {
     isHand,
@@ -143,15 +49,13 @@ const MartialListForm = () => {
   const handleHand = async () => {
     if (isHand === false) {
       if (isWeapon) {
-        // await setIsWeapon(false); // ? 기존 태그 취소 처리
+        // ? 기존 태그 취소 처리
         await dispatch(selectTag({ ...tagReducer, isWeapon: false }));
       }
       if (isHandAndWeapon) {
-        // await setIsHandAndWeapon(false);
         await dispatch(selectTag({ ...tagReducer, isHandAndWeapon: false }));
       }
-      // await setIsHand(true);
-      console.log("자 이제 바꿔보자!");
+
       await dispatch(
         selectTag({
           ...tagReducer,
@@ -162,21 +66,18 @@ const MartialListForm = () => {
       );
     } else {
       // ? 새로운 태그 선택 처리
-      // setIsHand(false);
       dispatch(selectTag({ ...tagReducer, isHand: false }));
     }
   };
   const handleWeapon = async () => {
     if (isWeapon === false) {
       if (isHand) {
-        // await setIsHand(false);
         await dispatch(selectTag({ ...tagReducer, isHand: false }));
       }
       if (isHandAndWeapon) {
-        // await setIsHandAndWeapon(false);
         await dispatch(selectTag({ ...tagReducer, isHandAndWeapon: false }));
       }
-      // await setIsWeapon(true);
+
       await dispatch(
         selectTag({
           ...tagReducer,
@@ -186,18 +87,15 @@ const MartialListForm = () => {
         })
       );
     } else {
-      // setIsWeapon(false);
       dispatch(selectTag({ ...tagReducer, isWeapon: false }));
     }
   };
   const handleHandAndWeapon = async () => {
     if (isHandAndWeapon === false) {
       if (isHand) {
-        // await setIsHand(false);
         await dispatch(selectTag({ ...tagReducer, isHand: false }));
       }
       if (isWeapon) {
-        // await setIsWeapon(false);
         await dispatch(selectTag({ ...tagReducer, isWeapon: false }));
       }
       // await setIsHandAndWeapon(true);
@@ -210,21 +108,18 @@ const MartialListForm = () => {
         })
       );
     } else {
-      // setIsHandAndWeapon(false);
       dispatch(selectTag({ ...tagReducer, isHandAndWeapon: false }));
     }
   };
   const handleDobok = async () => {
     if (isDobok === false) {
       if (isFreebok) {
-        // await setIsFreebok(false);
         await dispatch(selectTag({ ...tagReducer, isFreebok: false }));
       }
       if (isUniform) {
-        // await setIsUniform(false);
         await dispatch(selectTag({ ...tagReducer, isUniform: false }));
       }
-      // await setIsDobok(true);
+
       await dispatch(
         selectTag({
           ...tagReducer,
@@ -234,21 +129,18 @@ const MartialListForm = () => {
         })
       );
     } else {
-      // setIsDobok(false);
       await dispatch(selectTag({ ...tagReducer, isDobok: false }));
     }
   };
   const handleFreeBok = async () => {
     if (isFreebok === false) {
       if (isDobok) {
-        // await setIsDobok(false);
         await dispatch(selectTag({ ...tagReducer, isDobok: false }));
       }
       if (isUniform) {
-        // await setIsUniform(false);
         await dispatch(selectTag({ ...tagReducer, isUniform: false }));
       }
-      // await setIsFreebok(true);
+
       await dispatch(
         selectTag({
           ...tagReducer,
@@ -258,21 +150,18 @@ const MartialListForm = () => {
         })
       );
     } else {
-      // setIsFreebok(false);
       await dispatch(selectTag({ ...tagReducer, isFreebok: false }));
     }
   };
   const handleUniform = async () => {
     if (isUniform === false) {
       if (isDobok) {
-        // await setIsDobok(false);
         await dispatch(selectTag({ ...tagReducer, isDobok: false }));
       }
       if (isFreebok) {
-        // await setIsFreebok(false);
         await dispatch(selectTag({ ...tagReducer, isFreebok: false }));
       }
-      // await setIsUniform(true);
+
       await dispatch(
         selectTag({
           ...tagReducer,
@@ -282,21 +171,18 @@ const MartialListForm = () => {
         })
       );
     } else {
-      // setIsUniform(false);
       await dispatch(selectTag({ ...tagReducer, isUniform: false }));
     }
   };
   const handleAttack = async () => {
     if (isAttack === false) {
       if (isGround) {
-        // await setIsGround(false);
         await dispatch(selectTag({ ...tagReducer, isGround: false }));
       }
       if (isMMA) {
-        // await setIsMMA(false);
         await dispatch(selectTag({ ...tagReducer, isMMA: false }));
       }
-      // await setIsAttack(true);
+
       await dispatch(
         selectTag({
           ...tagReducer,
@@ -306,21 +192,18 @@ const MartialListForm = () => {
         })
       );
     } else {
-      // setIsAttack(false);
       await dispatch(selectTag({ ...tagReducer, isAttack: false }));
     }
   };
   const handleGround = async () => {
     if (isGround === false) {
       if (isAttack) {
-        // await setIsAttack(false);
         await dispatch(selectTag({ ...tagReducer, isAttack: false }));
       }
       if (isMMA) {
-        // await setIsMMA(false);
         await dispatch(selectTag({ ...tagReducer, isMMA: false }));
       }
-      // await setIsGround(true);
+
       await dispatch(
         selectTag({
           ...tagReducer,
@@ -330,21 +213,18 @@ const MartialListForm = () => {
         })
       );
     } else {
-      // setIsGround(false);
       await dispatch(selectTag({ ...tagReducer, isGround: false }));
     }
   };
   const handleMMA = async () => {
     if (isMMA === false) {
       if (isAttack) {
-        // await setIsAttack(false);
         await dispatch(selectTag({ ...tagReducer, isAttack: false }));
       }
       if (isGround) {
-        // await setIsGround(false);
         await dispatch(selectTag({ ...tagReducer, isGround: false }));
       }
-      // await setIsMMA(true);
+
       await dispatch(
         selectTag({
           ...tagReducer,
@@ -354,97 +234,84 @@ const MartialListForm = () => {
         })
       );
     } else {
-      // setIsMMA(false);
       await dispatch(selectTag({ ...tagReducer, isMMA: false }));
     }
   };
   const handleEastern = async () => {
     if (isEastern === false) {
       if (isWestern) {
-        // await setIsWestern(false);
         await dispatch(selectTag({ ...tagReducer, isWestern: false }));
       }
-      // await setIsEastern(true);
+
       await dispatch(
         selectTag({ ...tagReducer, isWestern: false, isEastern: true })
       );
     } else {
-      // setIsEastern(false);
       await dispatch(selectTag({ ...tagReducer, isEastern: false }));
     }
   };
   const handleWestern = async () => {
     if (isWestern === false) {
       if (isEastern) {
-        // await setIsEastern(false);
         await dispatch(selectTag({ ...tagReducer, isEastern: false }));
       }
-      // await setIsWestern(true);
+
       await dispatch(
         selectTag({ ...tagReducer, isEastern: false, isWestern: true })
       );
     } else {
-      // setIsWestern(false);
       await dispatch(selectTag({ ...tagReducer, isWestern: false }));
     }
   };
   const handleSports = async () => {
     if (isSports === false) {
       if (isNoSports) {
-        // await setIsNoSports(false);
         await dispatch(selectTag({ ...tagReducer, isNoSports: false }));
       }
-      // await setIsSports(true);
+
       await dispatch(
         selectTag({ ...tagReducer, isNoSports: false, isSports: true })
       );
     } else {
-      // setIsSports(false);
       await dispatch(selectTag({ ...tagReducer, isSports: false }));
     }
   };
   const handleNoSports = async () => {
     if (isNoSports === false) {
       if (isSports) {
-        // await setIsSports(false);
         await dispatch(selectTag({ ...tagReducer, isSports: false }));
       }
-      // await setIsNoSports(true);
+
       await dispatch(
         selectTag({ ...tagReducer, isSports: false, isNoSports: true })
       );
     } else {
-      // setIsNoSports(false);
       await dispatch(selectTag({ ...tagReducer, isNoSports: false }));
     }
   };
   const handleCourtesy = async () => {
     if (isCourtesy === false) {
       if (isFreedom) {
-        // await setIsFreedom(false);
         await dispatch(selectTag({ ...tagReducer, isFreedom: false }));
       }
-      // await setIsCourtesy(true);
+
       await dispatch(
         selectTag({ ...tagReducer, isFreedom: false, isCourtesy: true })
       );
     } else {
-      // setIsCourtesy(false);
       await dispatch(selectTag({ ...tagReducer, isCourtesy: false }));
     }
   };
   const handleFreedom = async () => {
     if (isFreedom === false) {
       if (isCourtesy) {
-        // await setIsCourtesy(false);
         await dispatch(selectTag({ ...tagReducer, isCourtesy: false }));
       }
-      // await setIsFreedom(true);
+
       await dispatch(
         selectTag({ ...tagReducer, isCourtesy: false, isFreedom: true })
       );
     } else {
-      // setIsFreedom(false);
       await dispatch(selectTag({ ...tagReducer, isFreedom: false }));
     }
   };

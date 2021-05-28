@@ -10,6 +10,7 @@ export const ReviewWrapper = styled.div`
   box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   padding-left: 2%;
+  padding-right: 2%;
   padding-bottom: 7%;
 `;
 
@@ -28,7 +29,7 @@ export const ReviewBox = styled.div`
   flex-direction: column;
   width: 100%;
   min-height: 27em;
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 5px solid #eeeeee;
   padding-bottom: 15px;
 `;
 
