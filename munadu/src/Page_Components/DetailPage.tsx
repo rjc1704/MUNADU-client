@@ -20,6 +20,7 @@ import { Detail } from "../StyledComponents/detail";
 import martialJson from "../Function_Components/Common/martialData.json";
 import { useDispatch, useSelector } from "react-redux";
 import { getAverage } from "../Redux/Reducers/avgReducer";
+import HeaderBar from "../Function_Components/Common/HeaderBar";
 
 const ContentContainer = styled.div`
   display: flex;
@@ -251,56 +252,59 @@ export default function DetailPage() {
     dispatch(getAverage(martialId));
   }, []);
   return (
-    <PageContainer>
-      <Board>
-        <DetailInfo svg={theMartial.img}>
-          <DescBox>
-            <StarAndRating>
-              <StarPhoto src={star} />
-              <Rating>{Math.round(scoreAvg * 10) / 10}</Rating>
-            </StarAndRating>
-            <TextsBox>
-              <Texts>{theMartial.name}</Texts>
-              <SmallTexts>{theMartial.nation}</SmallTexts>
-            </TextsBox>
+    <>
+      <HeaderBar />
+      <PageContainer>
+        <Board>
+          <DetailInfo svg={theMartial.img}>
+            <DescBox>
+              <StarAndRating>
+                <StarPhoto src={star} />
+                <Rating>{Math.round(scoreAvg * 10) / 10}</Rating>
+              </StarAndRating>
+              <TextsBox>
+                <Texts>{theMartial.name}</Texts>
+                <SmallTexts>{theMartial.nation}</SmallTexts>
+              </TextsBox>
 
-            <TagBox>
-              {tags.map((tag) => {
-                return <Tag>{tag}</Tag>;
-              })}
-            </TagBox>
-          </DescBox>
-        </DetailInfo>
-      </Board>
-      <ContentContainer>
-        <TextWrapper>무술 개요</TextWrapper>
-        <MartialSummary></MartialSummary>
-        <TextWrapper>
-          <TextBox>
-            <Text onClick={showReviewMenu} idx={0} tabValue={tabMenu}>
-              사형의 조언
-            </Text>
-            <Text onClick={showCommentMenu} idx={1} tabValue={tabMenu}>
-              무술 한줄평
-            </Text>
-            <Text onClick={showLocationMenu} idx={2} tabValue={tabMenu}>
-              도장 위치
-            </Text>
-          </TextBox>
-          <div>
-            {isLogin ? (
-              <CreateReview Martials_id={martialId} Users_id={userId} />
-            ) : null}
-          </div>
-        </TextWrapper>
-        {tabMenu === 0 ? (
-          <ReadReview martialId={martialId} />
-        ) : tabMenu === 1 ? (
-          <ReadComment martialId={martialId} />
-        ) : (
-          <ReadLocation />
-        )}
-      </ContentContainer>
-    </PageContainer>
+              <TagBox>
+                {tags.map((tag) => {
+                  return <Tag>{tag}</Tag>;
+                })}
+              </TagBox>
+            </DescBox>
+          </DetailInfo>
+        </Board>
+        <ContentContainer>
+          <TextWrapper>무술 개요</TextWrapper>
+          <MartialSummary></MartialSummary>
+          <TextWrapper>
+            <TextBox>
+              <Text onClick={showReviewMenu} idx={0} tabValue={tabMenu}>
+                사형의 조언
+              </Text>
+              <Text onClick={showCommentMenu} idx={1} tabValue={tabMenu}>
+                무술 한줄평
+              </Text>
+              <Text onClick={showLocationMenu} idx={2} tabValue={tabMenu}>
+                도장 위치
+              </Text>
+            </TextBox>
+            <div>
+              {isLogin ? (
+                <CreateReview Martials_id={martialId} Users_id={userId} />
+              ) : null}
+            </div>
+          </TextWrapper>
+          {tabMenu === 0 ? (
+            <ReadReview martialId={martialId} />
+          ) : tabMenu === 1 ? (
+            <ReadComment martialId={martialId} />
+          ) : (
+            <ReadLocation />
+          )}
+        </ContentContainer>
+      </PageContainer>
+    </>
   );
 }
