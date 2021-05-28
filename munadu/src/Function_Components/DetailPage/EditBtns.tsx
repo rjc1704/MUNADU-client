@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import UpdateReview from "./UpdateReview";
+import DeleteReview from "./DeleteReview";
 
 const BtnsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 40%;
+  top: 35%;
+  right: 20%;
   align-items: center;
   justify-content: space-evenly;
   width: 12%;
@@ -14,6 +16,7 @@ const BtnsWrapper = styled.div`
   box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   min-height: 4em;
+  z-index: 3;
 `;
 const Text = styled.div`
   display: flex;
@@ -37,12 +40,16 @@ interface IProps {
   martialId: number;
 }
 export default function EditBtns({ reviewId, martialId }: IProps) {
+  console.log(`reviewId in EditBtns!!`, reviewId);
   const [isOpen, setIsOpen] = useState(false);
+  const [isDeleted, setIsDeleted] = useState(false);
   const editReview = () => {
-    console.log("들어왔다!");
-    // return <UpdateReview id={reviewId} />;
-    console.log(`review`, reviewId);
+    console.log(`reviewId in updateReview!`, reviewId);
     setIsOpen(true);
+  };
+  const deleteReview = () => {
+    console.log(`reviewId in deleteReview!`, reviewId);
+    setIsDeleted(true);
   };
   return (
     <BtnsWrapper>
@@ -51,7 +58,8 @@ export default function EditBtns({ reviewId, martialId }: IProps) {
         <UpdateReview reviewId={reviewId} martialId={martialId} />
       ) : null}
       <Hr></Hr>
-      <Text>삭제하기</Text>
+      <Text onClick={deleteReview}>삭제하기</Text>
+      {isDeleted ? <DeleteReview reviewId={reviewId} /> : null}
     </BtnsWrapper>
   );
 }

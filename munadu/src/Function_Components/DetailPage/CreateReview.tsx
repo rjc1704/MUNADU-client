@@ -8,6 +8,7 @@ import axios from "axios";
 import { RootState } from "../../Redux/Store/store";
 import martialImage from "../../Images/taekwondo.svg";
 import { NewBtn } from "../../StyledComponents/survey";
+import { createReview } from "../../Redux/Reducers/reviewReducer";
 import martialJson from "../Common/martialData.json";
 import {
   PhotoAndText,
@@ -42,6 +43,7 @@ function CreateReview({ Martials_id, Users_id }: IProps) {
   const [intensity, setIntensity] = useState(0);
   const [injury, setInjury] = useState(0);
   const [errorMsg, setErrorMsg] = useState("");
+  const dispatch = useDispatch();
   interface IMartial {
     id: number;
     name: string;
@@ -135,33 +137,22 @@ function CreateReview({ Martials_id, Users_id }: IProps) {
     ) {
       setErrorMsg("모든 항목이 입력되어야 합니다.");
     } else {
-      try {
-        const review: reviewProps = await axios.post(
-          `${process.env.REACT_APP_API_URL}/review/create`,
-          {
-            period: period,
-            comment: comment,
-            score: score,
-            practicality: practicality,
-            muscle: muscle,
-            difficulty: difficulty,
-            intensity: intensity,
-            injury: injury,
-            Martials_id: Martials_id,
-            Users_id: Users_id,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-              "Content-Type": "application/json",
-            },
-            withCredentials: true,
-          }
-        );
-        setInitialState();
-      } catch (err) {
-        alert(err);
-      }
+      dispatch(
+        createReview({
+          period,
+          comment,
+          score,
+          practicality,
+          muscle,
+          difficulty,
+          intensity,
+          injury,
+          Martials_id,
+          Users_id,
+          accessToken,
+        })
+      );
+      setInitialState();
     }
   };
   useEffect(() => {

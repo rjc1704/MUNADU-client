@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import styled, { StyledComponent } from "styled-components";
+import { idText } from "typescript";
 
 export const StyledBanner = styled.div`
   display: flex;
   width: 100%;
-  height: 10rem;
+  height: 9.95em;
   background-color: #1c1c1c;
   flex-direction: column;
 `;
@@ -29,7 +30,10 @@ const TextBanner = styled.div`
   text-align: center;
   color: #fbfbfb;
 `;
-
+interface IBannerButton {
+  idx: number;
+  tabValue: number;
+}
 const BannerButton = styled.div`
   font-family: Noto Sans KR Medium;
   font-style: normal;
@@ -40,7 +44,6 @@ const BannerButton = styled.div`
   align-items: center;
   letter-spacing: -0.015em;
   margin-top: 3rem;
-  color: #606060;
   & + & {
     padding-left: 4rem;
   }
@@ -49,6 +52,8 @@ const BannerButton = styled.div`
     color: #fbfbfb;
     text-decoration: underline;
   }
+  color: ${(props: IBannerButton) =>
+    props.idx === props.tabValue ? "#fbfbfb" : "#606060"};
 `;
 
 const ButtonWrapper = styled.div`
@@ -56,6 +61,7 @@ const ButtonWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  margin-bottom: 0.8%;
 `;
 
 interface IProps {
@@ -64,6 +70,8 @@ interface IProps {
 }
 
 const Banner = ({ checkSelected, isSelected }: IProps) => {
+  const [tabMenu, setTabMenu] = useState(0);
+  console.log(`tabMenu`, tabMenu);
   return (
     <StyledBanner>
       <TextWrapper>
@@ -80,10 +88,24 @@ const Banner = ({ checkSelected, isSelected }: IProps) => {
         )}
       </TextWrapper>
       <ButtonWrapper>
-        <BannerButton onClick={() => checkSelected(true)}>
+        <BannerButton
+          idx={0}
+          onClick={() => {
+            checkSelected(true);
+            setTabMenu(0);
+          }}
+          tabValue={tabMenu}
+        >
           추천 무술
         </BannerButton>
-        <BannerButton onClick={() => checkSelected(false)}>
+        <BannerButton
+          idx={1}
+          onClick={() => {
+            checkSelected(false);
+            setTabMenu(1);
+          }}
+          tabValue={tabMenu}
+        >
           무술 전체 보기
         </BannerButton>
       </ButtonWrapper>

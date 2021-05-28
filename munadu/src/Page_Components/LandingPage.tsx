@@ -8,6 +8,9 @@ import { useHistory } from "react-router";
 import Canvas from "../Function_Components/LandingPage/Canvas";
 import martialData from "../Function_Components/Common/martialData.json";
 import Button from "../StyledComponents/button";
+import axios from "axios";
+import HeaderBar from "../Function_Components/Common/HeaderBar";
+
 
 export interface Icard {
   id: number;
@@ -74,8 +77,23 @@ function LandingPage() {
     console.log(`2번째 실행되야함`, isLoad);
   }, [select]);
 
+
+  const cards: any = useSelector((state: RootState) => {
+    console.log(`state`, state);
+    return state.martialReducer.result
+      ? state.martialReducer.result.map((el: any) => {
+          return {
+            id: el.id,
+            name: el.name,
+            img: el.img,
+          };
+        })
+      : null;
+  });
+
   return (
     <div>
+      <HeaderBar></HeaderBar>
       <Landing.Board>
         <Landing.Guide>
           <Landing.Bgm isAudio={audio} onClick={setBgm}>
@@ -132,6 +150,7 @@ function LandingPage() {
             })}
           </Landing.CardBoard>
         </Landing.Base>
+
       </Landing.Board>
       <Canvas></Canvas>
     </div>

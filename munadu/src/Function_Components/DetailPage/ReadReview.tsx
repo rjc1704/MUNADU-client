@@ -61,16 +61,27 @@ export default function ReadReview({ martialId }: IProps) {
     };
     document.addEventListener("mousedown", handleClick);
   });
-
+  const [selReviewId, setSelReviewId] = useState(0);
+  const [selMartialId, setSelMartialId] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
-  const openEditMenu = () => {
+  const openEditMenu = (reviewId: number, martialId: number) => {
+    console.log(`reviewId in openEditMenu`, reviewId);
+    console.log(`martialId in openEditMenu`, martialId);
+    // console.log(`e.target in openEditMenu`, e.target);
+
+    setSelReviewId(reviewId);
+    setSelMartialId(martialId);
     setIsOpen(true);
   };
   const kebabRef = useRef<HTMLDivElement>(null);
   return (
     <ReviewWrapper>
+      {isOpen ? (
+        <div ref={kebabRef}>
+          <EditBtns reviewId={selReviewId} martialId={selMartialId} />
+        </div>
+      ) : null}
       <TotalCount>총 {reviewList.length}개의 조언</TotalCount>
-
       {reviewList.map((review, idx) => {
         return (
           <ReviewBox key={idx}>
@@ -82,11 +93,11 @@ export default function ReadReview({ martialId }: IProps) {
                 <Date>{review.updatedAt.slice(0, 10)}</Date>
               </NameAndDate>
               {isLogin && review.Users_id === userId ? (
-                <LayerBtn ref={kebabRef}>
-                  <Photo3 src={editBtn} onClick={openEditMenu}></Photo3>
-                  {isOpen ? (
-                    <EditBtns reviewId={review.id} martialId={martialId} />
-                  ) : null}
+                <LayerBtn>
+                  <Photo3
+                    src={editBtn}
+                    onClick={() => openEditMenu(review.id, martialId)}
+                  ></Photo3>
                 </LayerBtn>
               ) : null}
             </NameAndDateAndBtn>
