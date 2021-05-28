@@ -3,84 +3,135 @@ import { useSelector } from "react-redux";
 import { RootState } from "../Redux/Store/store";
 import { Landing } from "../StyledComponents/Landing";
 import styled from "styled-components";
-import { memo, useState } from "react";
+import { memo, useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import Canvas from "../Function_Components/LandingPage/Canvas";
-import axios from "axios";
+import martialData from "../Function_Components/Common/martialData.json";
+import Button from "../StyledComponents/button";
 
 export interface Icard {
   id: number;
   name: string;
   img: string;
 }
-
-const Button2: any = styled.button<{ background?: string }>`
-  background: ${(props) => (props.background ? props.background : "#1c1c1c")};
-  border-radius: 5px;
-  color: #ffffff;
-`;
+interface Imartial {
+  name: string;
+  weapon: number;
+  uniform: number;
+  origin: number;
+  sports: number;
+  manner: number;
+  attack: number;
+  nation: string;
+  caption: string;
+  video: string;
+  kcal: number;
+  img: string;
+  wiki: string;
+}
 
 function LandingPage() {
-  const [select, setSelect] = useState(0);
-  const history = useHistory();
-  //
-  const test = async () => {
-    const data: any = await axios.get("http://localhost:5000/user/info/1", {
-      headers: {
-        // Authorization: `Bearer ${accessToken}`,
-        "Content-Type": "application/json",
-      },
-      withCredentials: true,
-    });
-  };
-
-  const setCard = (key: number): void => {
-    setSelect(key);
-    test();
-  };
-
-  const cards: Icard[] = useSelector((state: RootState) => {
-    console.log(`state`, state);
-    return state.martialReducer.data.map((el: any) => {
+  const cards: Icard[] = martialData.martialData.map(
+    (el: Imartial, idx: number) => {
       return {
-        id: el.id,
+        id: idx,
         name: el.name,
         img: el.img,
       };
-    });
-  });
-  console.log(`cards`, cards);
+    }
+  );
+
+  const [audio, setAudio] = useState<boolean>(false);
+  const [select, setSelect] = useState(0);
+  const [isLoad, setIsLoad] = useState<boolean>(false);
+  const [img, setImg] = useState<string>(cards[select].img);
+  const history = useHistory();
+
+  const [bgm] = useState(new Audio("/landingBgm.mp3"));
+  useEffect(() => {
+    bgm.addEventListener("ended", () => setAudio(false));
+    return () => {
+      bgm.removeEventListener("ended", () => setAudio(false));
+      console.log(`이벤트 뤼스너`);
+    };
+  }, []);
+
+  const setBgm = () => {
+    setAudio(!audio);
+  };
+  useEffect(() => {
+    audio ? bgm.play() : bgm.pause();
+  }, [audio]);
+
+  const setCard = (key: number): void => {
+    setIsLoad(false);
+    setSelect(key);
+    const effect = new Audio("/button-45.mp3");
+    effect.play();
+  };
+  useEffect(() => {
+    setImg(cards[select].img);
+    console.log(`2번째 실행되야함`, isLoad);
+  }, [select]);
+
   return (
     <div>
       <Landing.Board>
-        <div>
+        <Landing.Guide>
+          <Landing.Bgm isAudio={audio} onClick={setBgm}>
+            {audio ? "OFF" : "BGM"}
+          </Landing.Bgm>
           <Landing.Title>
             무나두
             <br />
             무술? 너도 할 수 있어!
           </Landing.Title>
-          <Button2
+          <Button
             onClick={() => {
               history.push("/surveypage");
             }}
           >
             설문 조사
-          </Button2>
-          <Button2
+          </Button>
+          <Button
             onClick={() => {
               history.push("/mainpage");
             }}
           >
             시작 하기
-          </Button2>
-        </div>
-        <Landing.Img src={cards[select].img} />
+          </Button>
+        </Landing.Guide>
+        {cards.map((el) => {
+          if (el.id === select) {
+            return <img className="landing_martial select" src={img}></img>;
+          }
+          return <img className="landing_martial" src="dummy.svg"></img>;
+        })}
         <Landing.Name>{cards[select].name}</Landing.Name>
-        <Landing.CardBoard>
-          {cards.map((el, idx: number) => {
-            return <ReadCard key={idx} card={el} callback={setCard}></ReadCard>;
-          })}
-        </Landing.CardBoard>
+        <Landing.Base>
+          <Landing.CardBoard>
+            {cards.map((el, idx: number) => {
+              if (select === idx) {
+                return (
+                  <ReadCard
+                    key={idx}
+                    card={el}
+                    callback={setCard}
+                    isClick={true}
+                  ></ReadCard>
+                );
+              }
+              return (
+                <ReadCard
+                  key={idx}
+                  card={el}
+                  callback={setCard}
+                  isClick={false}
+                ></ReadCard>
+              );
+            })}
+          </Landing.CardBoard>
+        </Landing.Base>
       </Landing.Board>
       <Canvas></Canvas>
     </div>
