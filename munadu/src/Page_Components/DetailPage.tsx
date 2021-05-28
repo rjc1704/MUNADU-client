@@ -20,6 +20,8 @@ import { Detail } from "../StyledComponents/detail";
 import martialJson from "../Function_Components/Common/martialData.json";
 import { useDispatch, useSelector } from "react-redux";
 import { getAverage } from "../Redux/Reducers/avgReducer";
+import HeaderBar from "../Function_Components/Common/HeaderBar";
+import Header from "../StyledComponents/header";
 
 const ContentContainer = styled.div`
   display: flex;
@@ -149,6 +151,9 @@ const Board = styled.div`
 interface IProps {
   martialId: number;
 }
+const Div = styled.div`
+  width: 100%;
+`;
 
 export default function DetailPage() {
   const [tabMenu, setTabMenu] = useState(0);
@@ -252,6 +257,9 @@ export default function DetailPage() {
   }, []);
   return (
     <PageContainer>
+      <Div>
+        <HeaderBar />
+      </Div>
       <Board>
         <DetailInfo svg={theMartial.img}>
           <DescBox>
