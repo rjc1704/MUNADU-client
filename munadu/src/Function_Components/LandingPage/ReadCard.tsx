@@ -1,23 +1,38 @@
 import { memo } from "react";
 import { Icard } from "../../Page_Components/LandingPage";
-import { Card } from "../../StyledComponents/Card";
+import { Card, SelectCard } from "../../StyledComponents/Card";
 
 interface Iprops {
   card: Icard;
   callback: Function;
+  isClick: boolean;
 }
 
-function ReadCard({ card, callback }: Iprops) {
+function ReadCard({ card, callback, isClick }: Iprops) {
   //
+  if (isClick) {
+    return (
+      <SelectCard>
+        <Card
+          background={card.img}
+          onClick={(e) => {
+            e.preventDefault();
+            callback(card.id);
+          }}
+          isClick={isClick}
+        />
+      </SelectCard>
+    );
+  }
   return (
-    <div
+    <Card
+      background={card.img}
       onClick={(e) => {
         e.preventDefault();
         callback(card.id);
       }}
-    >
-      <Card background={card.img} />
-    </div>
+      isClick={isClick}
+    />
   );
 }
 

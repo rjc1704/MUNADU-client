@@ -102,6 +102,7 @@ function Canvas(props: any) {
       rgba(0, 0, 0, 1) 90%,
       rgba(0, 0, 0, 1) 100%
     );
+
     z-index: 3;
     position: absolute;
     top: 0;
@@ -116,12 +117,22 @@ function Canvas(props: any) {
     top: 0;
     left: 0;
   `;
+
+  const Back = styled.div`
+    background: black;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  `;
   return (
-    <div>
+    <Back>
       <Background></Background>
       <Overlay></Overlay>
       <Can ref={canvasRef} {...props}></Can>
-    </div>
+    </Back>
   );
 }
 

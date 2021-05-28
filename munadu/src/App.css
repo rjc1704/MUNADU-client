@@ -36,3 +36,30 @@
     transform: rotate(360deg);
   }
 }
+
+@keyframes select {
+  0% {
+    left: 0px;
+  }
+  100% {
+    left: 200px;
+  }
+}
+.landing_martial {
+  position: absolute;
+  width: 22vw;
+  height: 35vw;
+  z-index: 1;
+  top: -200px;
+  left: 15vw;
+  transition: 1s;
+  opacity: 0;
+}
+
+.select {
+  opacity: 1;
+  left: 20vw;
+}
+.nonselect {
+  display: none;
+}
