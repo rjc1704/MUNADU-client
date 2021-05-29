@@ -5,7 +5,7 @@ export const CommentCreateBox = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 244px;
+  height: 200px;
   border-bottom: 1px solid #eeeeee; ;
 `;
 

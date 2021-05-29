@@ -33,14 +33,13 @@ export default function CreateComment({ martialId }: IProps) {
   const ResetComment = () => {
     setComment("");
   };
-  console.log(comment);
   return (
     <>
       {isLogin ? (
         <CommentCreateBox>
           <CommentTitle>한줄평 남기기</CommentTitle>
           <CommentTextArea
-            rows={4}
+            rows={1}
             placeholder={"무술과 관련된 한줄평을 남겨주세요."}
             onChange={handleComment}
             value={comment}

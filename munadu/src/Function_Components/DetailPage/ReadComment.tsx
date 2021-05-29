@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import CreateComment from "./CreateComment";
+import EditComment from "./EditComment";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../Redux/Store/store";
 import { getCommentList } from "../../Redux/Reducers/commentReducer";
-import styled from "styled-components";
+
 import {
   NameAndDateAndBtn,
   NameAndDate,
@@ -46,14 +47,11 @@ export default function ReadComment({ martialId }: IProps) {
                   <Name>{comment.users.name}</Name>
                   <CommentDate>{comment.updatedAt.slice(0, 10)}</CommentDate>
                 </NameAndDate>
-                {/* {isLogin && review.Users_id === userId ? (
-                <LayerBtn>
-                  <Photo3
-                    src={editBtn}
-                    onClick={() => openEditMenu(review.id, martialId)}
-                  ></Photo3>
-                </LayerBtn>
-              ) : null} */}
+                <EditComment
+                  commentUserId={comment.Users_id}
+                  commentId={comment.id}
+                  commentMartialId={comment.Martials_id}
+                />
               </NameAndDateAndBtn>
               <Comment>{comment.comment}</Comment>
             </CommentBox>

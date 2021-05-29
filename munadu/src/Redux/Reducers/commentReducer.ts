@@ -43,6 +43,25 @@ export const createComment = createAsyncThunk(
     return res.data.data;
   }
 );
+interface IDeleteProps {
+  accessToken: string;
+  commentid: number;
+}
+
+export const deleteComment = createAsyncThunk(
+  "commentReducer/deleteComment",
+  async ({ accessToken, commentid }: IDeleteProps) => {
+    await axios.delete(`${process.env.REACT_APP_API_URL}/comment/delete`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      data: {
+        commentid,
+      },
+    });
+    return { commentid };
+  }
+);
 
 interface IComment {
   id: number;
@@ -69,6 +88,11 @@ const commentReducer = createSlice({
     },
     [createComment.fulfilled.type]: (state, action) => {
       state.data.commentList.unshift(action.payload);
+    },
+    [deleteComment.fulfilled.type]: (state, action) => {
+      state.data.commentList = state.data.commentList.filter(
+        (comment) => comment.id !== action.payload.commentid
+      );
     },
   },
 });
