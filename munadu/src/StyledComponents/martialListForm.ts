@@ -1,11 +1,5 @@
 import styled, { css } from "styled-components";
-import {
-  ContentCard,
-  ContentsTitle,
-  DetailTitle,
-  DetailCaption,
-  Box,
-} from "./recommendForm";
+import { Box } from "./recommendForm";
 
 export const PageWrapper = styled.div`
   display: flex;

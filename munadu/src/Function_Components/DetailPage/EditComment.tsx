@@ -5,11 +5,13 @@ import { RootState } from "../../Redux/Store/store";
 import editBtn from "./editBtn.svg";
 import { deleteComment } from "../../Redux/Reducers/commentReducer";
 import DeleteComment from "./DeleteComment";
+import UpdateComment from "./UpdateComment";
 
 interface IProps {
   commentUserId: number;
   commentId: number;
   commentMartialId: number;
+  comment: string;
 }
 
 const CommentEditBtn = styled.img`
@@ -55,6 +57,7 @@ const EditComment = ({
   commentUserId,
   commentId,
   commentMartialId,
+  comment,
 }: IProps) => {
   const editEl = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -79,6 +82,9 @@ const EditComment = ({
   const deleteSwitch = (toggle: boolean) => {
     setIsDeleteOpen(toggle);
   };
+  const updateSwitch = (toggle: boolean) => {
+    setIsUpdateOpen(toggle);
+  };
 
   return (
     <>
@@ -95,7 +101,15 @@ const EditComment = ({
               <EditBtn onClick={() => setIsUpdateOpen(true)}>
                 한줄평 편집하기
               </EditBtn>
-              {isUpdateOpen ? <div>수정페이지모달</div> : null}
+              {isUpdateOpen ? (
+                <UpdateComment
+                  accessToken={accessToken}
+                  comment={comment}
+                  commentId={commentId}
+                  editSwitch={editSwitch}
+                  updateSwitch={updateSwitch}
+                ></UpdateComment>
+              ) : null}
               <EditBtn
                 onClick={() => {
                   setIsDeleteOpen(true);

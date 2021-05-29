@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CommentCreateBox = styled.div`
+export const CommentCreateBox = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,11 +9,12 @@ export const CommentCreateBox = styled.div`
   border-bottom: 1px solid #eeeeee; ;
 `;
 
-export const CommentTextArea = styled.textarea`
+export const CommentTextArea = styled.input`
   border: 1px solid #c4c4c4;
   border-radius: 3px;
   display: flex;
   align-items: center;
+  align-self: center;
   outline: none;
   resize: none;
   width: 80%;

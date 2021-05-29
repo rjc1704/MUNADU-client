@@ -51,6 +51,7 @@ export default function ReadComment({ martialId }: IProps) {
                   commentUserId={comment.Users_id}
                   commentId={comment.id}
                   commentMartialId={comment.Martials_id}
+                  comment={comment.comment}
                 />
               </NameAndDateAndBtn>
               <Comment>{comment.comment}</Comment>

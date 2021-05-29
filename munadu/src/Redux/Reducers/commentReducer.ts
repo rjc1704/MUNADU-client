@@ -63,6 +63,34 @@ export const deleteComment = createAsyncThunk(
   }
 );
 
+interface IUpdateProps {
+  accessToken: string;
+  commentid: number;
+  comment: string;
+  curComment: string;
+}
+
+export const updateComment = createAsyncThunk(
+  "commentReducer/updateComment",
+  async ({ accessToken, commentid, comment, curComment }: IUpdateProps) => {
+    await axios.put(
+      `${process.env.REACT_APP_API_URL}/comment/update`,
+      {
+        commentid,
+        comment,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      }
+    );
+    return { commentid, curComment };
+  }
+);
+
 interface IComment {
   id: number;
   comment: string;
@@ -93,6 +121,12 @@ const commentReducer = createSlice({
       state.data.commentList = state.data.commentList.filter(
         (comment) => comment.id !== action.payload.commentid
       );
+    },
+    [updateComment.fulfilled.type]: (state, action) => {
+      const index = state.data.commentList.findIndex((comment) => {
+        return comment.id === action.payload.commentid;
+      });
+      state.data.commentList[index].comment = action.payload.curComment;
     },
   },
 });
