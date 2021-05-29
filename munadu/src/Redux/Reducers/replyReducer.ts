@@ -170,7 +170,7 @@ const replyReducer = createSlice({
     },
     [deleteReply.fulfilled.type]: (state, action) => {
       state.replyList = state.replyList.filter(
-        (review) => review.id !== action.payload.reviewId
+        (reply) => reply.id !== action.payload.replyId
       );
     },
   },

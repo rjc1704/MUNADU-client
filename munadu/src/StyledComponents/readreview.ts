@@ -196,13 +196,15 @@ export const Photo3 = styled.img`
   width: 7%;
   height: auto;
   cursor: pointer;
+  position: relative;
   /* margin-right: 3%; */
 `;
 export const LayerBtn = styled.div`
   display: flex;
   align-items: center;
-  width: 7%;
-  height: 5%;
+  width: 4em;
+  height: 1em;
   margin-right: 0;
-  position: inherit;
+  position: relative;
+  display: inline-block;
 `;
