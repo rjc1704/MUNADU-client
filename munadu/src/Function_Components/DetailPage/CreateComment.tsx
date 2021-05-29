@@ -39,7 +39,7 @@ export default function CreateComment({ martialId }: IProps) {
         <CommentCreateBox>
           <CommentTitle>한줄평 남기기</CommentTitle>
           <CommentTextArea
-            rows={1}
+            type="text"
             placeholder={"무술과 관련된 한줄평을 남겨주세요."}
             onChange={handleComment}
             value={comment}
@@ -47,7 +47,8 @@ export default function CreateComment({ martialId }: IProps) {
           <CommentBtn
             color="black"
             width="5%"
-            onClick={() => {
+            onClick={(e: any) => {
+              e.preventDefault();
               dispatch(
                 createComment({
                   comment,
