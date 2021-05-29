@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useLayoutEffect } from "react";
 import styled from "styled-components";
 import ReadReply from "./ReadReply";
 import profileImg from "./temp.svg";
@@ -9,6 +9,7 @@ import date from "date-and-time";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../Redux/Store/store";
 import { getReviewList } from "../../Redux/Reducers/reviewReducer";
+import { createReply } from "../../Redux/Reducers/replyReducer";
 import EditBtns from "./EditBtns";
 import {
   ReviewWrapper,
@@ -55,7 +56,6 @@ export const CommentTextArea = styled.input`
 `;
 
 export const CommentBtn = styled.button<{
-  color?: string;
   width?: string;
   margin?: string;
   height?: string;
@@ -63,14 +63,11 @@ export const CommentBtn = styled.button<{
   /* align-self: flex-end; */
 
   cursor: pointer;
-  background-color: ${(props) =>
-    props.color === "white"
-      ? props.theme.color.white
-      : props.theme.color.black};
-  color: ${(props) =>
-    props.color === "white"
-      ? props.theme.color.black
-      : props.theme.color.white};
+  background-color: ${(props) => {
+    if (props.disabled) return `#C4C4C4`;
+    else return props.theme.color.black;
+  }};
+  color: ${(props) => props.theme.color.white};
   padding: 7px;
   margin: 1% 2%;
   border-radius: 5px;
@@ -110,6 +107,7 @@ export const NickName = styled.div`
 `;
 export const ReplyTitle = styled(NickName)`
   font-size: 1.2rem;
+  margin-top: 1em;
   margin-bottom: 1em;
 `;
 
@@ -132,8 +130,9 @@ interface IProps {
 
 export default function ReadReview({ martialId }: IProps) {
   const [comment, setComment] = useState("");
+  const [reviewID, setReviewID] = useState(0);
   const dispatch = useDispatch();
-
+  const replyInput = useRef<HTMLInputElement>(null);
   const reviewList = useSelector(
     (state: RootState) => state.reviewReducer.reviewList
   );
@@ -151,6 +150,12 @@ export default function ReadReview({ martialId }: IProps) {
   };
   const isLogin = useSelector((state: RootState) => state.authReducer.isLogin);
   const userId = useSelector((state: RootState) => state.authReducer.id);
+  const accessToken = useSelector(
+    (state: RootState) => state.authReducer.accessToken
+  );
+  const replyList = useSelector(
+    (state: RootState) => state.replyReducer.replyList
+  );
   useEffect(() => {
     dispatch(getReviewList(martialId));
   }, []);
@@ -162,6 +167,31 @@ export default function ReadReview({ martialId }: IProps) {
     };
     document.addEventListener("mousedown", handleClick);
   });
+  // useEffect(() => {
+  //   console.log(`replyList[0]`, replyList[0]);
+  //   console.log("들어오긴했다!");
+  //   if (replyInput.current) {
+  //     console.log("몇번이나찍히나보자");
+  //     console.log(`replyInput.current`, replyInput.current);
+  //     console.log(`replyInput.current.value`, replyInput.current.value);
+  //     // replyInput.current.value = "";
+  //     replyInput.current.focus();
+  //   }
+  //   resetComment();
+  // }, [replyList[0]]);
+
+  // useLayoutEffect(() => {
+  //   console.log(`replyList[0]`, replyList[0]);
+  //   console.log("들어오긴했다!");
+  //   if (replyInput.current && replyInput.current.value === comment) {
+  //     console.log("몇번이나찍히나보자");
+  //     console.log(`replyInput.current`, replyInput.current);
+  //     console.log(`replyInput.current.value`, replyInput.current.value);
+  //     // replyInput.current.value = "";
+  //     replyInput.current.focus();
+  //   }
+  // }, [replyList.length]);
+
   const [selReviewId, setSelReviewId] = useState(0);
   const [selMartialId, setSelMartialId] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
@@ -171,14 +201,10 @@ export default function ReadReview({ martialId }: IProps) {
     setIsOpen(true);
   };
   const kebabRef = useRef<HTMLDivElement>(null);
-  const createReply = (e: any) => {
-    e.preventDefault();
-    console.log("답변 버튼 클릭!");
-  };
-  const replyList = useSelector(
-    (state: RootState) => state.replyReducer.replyList
-  );
 
+  const resetComment = () => {
+    setComment("");
+  };
   return (
     <ReviewWrapper>
       {isOpen ? (
@@ -393,29 +419,48 @@ export default function ReadReview({ martialId }: IProps) {
                 <Name4>{review.comment}</Name4>
               </Desc>
             </RatingsAndDesc>
+
             <ReplyBox>
               <CommentTextArea
-                placeholder={"사형의 조언에 댓글을 남겨보세요."}
+                placeholder={
+                  isLogin
+                    ? "사형의 조언에 댓글을 남겨보세요"
+                    : "로그인 후 댓글을 남길 수 있습니다"
+                }
                 onChange={handleComment}
+                ref={replyInput}
+                value={comment}
+                disabled={isLogin ? false : true}
               />
               <CommentBtn
-                color="black"
                 width="5%"
-                onClick={createReply}
-                // onClick={() => {
-                //   dispatch(
-                //     createComment({
-                //       comment,
-                //       userid: id,
-                //       martialid: martialId,
-                //       accessToken,
-                //     })
-                //   );
-                // }}
+                disabled={isLogin ? false : true}
+                onClick={async (e: any) => {
+                  e.preventDefault();
+                  await dispatch(
+                    createReply({
+                      comment,
+                      userId,
+                      reviewId: review.id,
+                      accessToken,
+                    })
+                  );
+                  // if (
+                  //   replyInput.current &&
+                  //   replyInput.current.value === comment
+                  // ) {
+                  //   console.log(`드뎌들왔어!`);
+                  //   replyInput.current.value = "";
+                  //   replyInput.current.focus();
+                  // }
+
+                  resetComment();
+                }}
               >
                 등록
               </CommentBtn>
             </ReplyBox>
+
             {replyList.filter((reply) => reply.Reviews_id === review.id)
               .length > 0 ? (
               <div>

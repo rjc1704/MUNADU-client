@@ -29,12 +29,18 @@ const SurveyBox = styled.div`
   z-index: 1;
   margin: auto 0;
 `;
+const Div = styled.div`
+  width: 100%;
+`;
 // 기본 margin 0으로 두고, margin-top = (전체높이 - box높이) /2 - headerHeight
 export default function SurveyPage() {
   // const [boxHeight, setBoxHeight] = useState()
   const getBoxHeight = (height: number) => {};
   return (
     <PageContainer>
+      <Div>
+        <HeaderBar />
+      </Div>
       <HalfBackground />
       <SurveyBox>
         <SurveyList></SurveyList>
