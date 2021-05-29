@@ -55,24 +55,26 @@ export default function ReadReply({ reviewId }: IProps) {
     (state: RootState) => state.replyReducer.replyList
   );
   useEffect(() => {
-    dispatch(getReplyList(reviewId));
+    dispatch(getReplyList());
   }, []);
-  console.log(`replyList`, replyList);
+
   return (
     <>
-      {replyList.map((reply) => {
-        return (
-          <ReplyWrapper>
-            <Photo4 src={profileImg}></Photo4>
-            <ReplyDescBox>
-              <NickName>{reply.users.name}</NickName>
-              <ReplyText>{reply.comment}</ReplyText>
-              <ReplyDateAndAgain>
-                <div>{reply.createdAt.slice(0, 10)}</div>
-              </ReplyDateAndAgain>
-            </ReplyDescBox>
-          </ReplyWrapper>
-        );
+      {replyList.map((reply, idx) => {
+        if (reply.Reviews_id === reviewId) {
+          return (
+            <ReplyWrapper key={idx}>
+              <Photo4 src={profileImg}></Photo4>
+              <ReplyDescBox>
+                <NickName>{reply.users.name}</NickName>
+                <ReplyText>{reply.comment}</ReplyText>
+                <ReplyDateAndAgain>
+                  <div>{reply.createdAt.slice(0, 10)}</div>
+                </ReplyDateAndAgain>
+              </ReplyDescBox>
+            </ReplyWrapper>
+          );
+        }
       })}
     </>
   );

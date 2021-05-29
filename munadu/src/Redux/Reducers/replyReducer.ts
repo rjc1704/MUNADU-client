@@ -9,9 +9,9 @@ import axios from "axios";
 
 export const getReplyList = createAsyncThunk(
   "reviewReducer/getReplyList",
-  async (id: number) => {
+  async () => {
     return await axios.get(
-      `${process.env.REACT_APP_API_URL}/reply/review-list/${id}`,
+      `${process.env.REACT_APP_API_URL}/reply/all-reply-list`,
       {
         headers: {
           "Content-Type": "application/json",
@@ -24,19 +24,19 @@ export const getReplyList = createAsyncThunk(
 
 interface CreateProps {
   comment: string;
-  Users_id: number;
-  Reviews_id: number;
+  userId: number;
+  reviewId: number;
   accessToken: string;
 }
 export const createReply = createAsyncThunk(
   "replyReducer/createReply",
-  async ({ comment, Users_id, Reviews_id, accessToken }: CreateProps) => {
+  async ({ comment, userId, reviewId, accessToken }: CreateProps) => {
     const resp = await axios.post(
       `${process.env.REACT_APP_API_URL}/reply/create`,
       {
         comment,
-        Users_id,
-        Reviews_id,
+        userId,
+        reviewId,
       },
       {
         headers: {
@@ -102,13 +102,17 @@ interface Ipayload {
 
 interface IcreatePayload {
   payload: {
-    id: number;
-    comment: string;
-    Users_id: number;
-    Reviews_id: number;
-    updatedAt: string;
-    createdAt: string;
-    users: { name: string };
+    data: {
+      data: {
+        id: number;
+        comment: string;
+        Users_id: number;
+        Reviews_id: number;
+        updatedAt: string;
+        createdAt: string;
+        users: { name: string };
+      };
+    };
   };
 }
 interface IupdatePayload {
@@ -148,14 +152,14 @@ const replyReducer = createSlice({
     },
     [createReply.fulfilled.type]: (state, action: IcreatePayload) => {
       console.log(`action in createReply`, action);
-      state.replyList.push({
-        id: action.payload.id,
-        comment: action.payload.comment,
-        Reviews_id: action.payload.Reviews_id,
-        Users_id: action.payload.Users_id,
-        createdAt: action.payload.createdAt,
-        updatedAt: action.payload.updatedAt,
-        users: { name: action.payload.users.name },
+      state.replyList.unshift({
+        id: action.payload.data.data.id,
+        comment: action.payload.data.data.comment,
+        Reviews_id: action.payload.data.data.Reviews_id,
+        Users_id: action.payload.data.data.Users_id,
+        createdAt: action.payload.data.data.createdAt,
+        updatedAt: action.payload.data.data.updatedAt,
+        users: action.payload.data.data.users,
       });
     },
     [updateReply.fulfilled.type]: (state, action: IupdatePayload) => {
