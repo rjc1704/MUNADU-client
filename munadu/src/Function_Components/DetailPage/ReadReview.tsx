@@ -9,8 +9,14 @@ import date from "date-and-time";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../Redux/Store/store";
 import { getReviewList } from "../../Redux/Reducers/reviewReducer";
-import { createReply } from "../../Redux/Reducers/replyReducer";
+import {
+  createReply,
+  getReplyList,
+  deleteReply,
+  updateReply,
+} from "../../Redux/Reducers/replyReducer";
 import EditBtns from "./EditBtns";
+import EditReview from "./EditReview";
 import {
   ReviewWrapper,
   TotalCount,
@@ -145,6 +151,12 @@ export default function ReadReview({ martialId }: IProps) {
     const bDate = date.parse(`${theBDate} ${theBTime}`, "YYYY-MM-DD HH:mm:ss");
     return bDate.getTime() - aDate.getTime();
   });
+  const deleteReplies = (replyId: number, accessToken: string) => {
+    dispatch(deleteReply({ replyId, accessToken }));
+  };
+  const replyList = useSelector(
+    (state: RootState) => state.replyReducer.replyList
+  );
   const handleComment = (e: any) => {
     setComment(e.target.value);
   };
@@ -153,20 +165,23 @@ export default function ReadReview({ martialId }: IProps) {
   const accessToken = useSelector(
     (state: RootState) => state.authReducer.accessToken
   );
-  const replyList = useSelector(
-    (state: RootState) => state.replyReducer.replyList
-  );
+
   useEffect(() => {
     dispatch(getReviewList(martialId));
+    dispatch(getReplyList());
   }, []);
+
   useEffect(() => {
-    const handleClick = (e: any) => {
-      if (kebabRef.current && !kebabRef.current.contains(e.target)) {
-        setIsOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClick);
-  });
+    dispatch(getReplyList());
+  }, [replyList.length]);
+  // useEffect(() => {
+  //   const handleClick = (e: any) => {
+  //     if (kebabRef.current && !kebabRef.current.contains(e.target)) {
+  //       setIsOpen(false);
+  //     }
+  //   };
+  //   document.addEventListener("mousedown", handleClick);
+  // });
   // useEffect(() => {
   //   console.log(`replyList[0]`, replyList[0]);
   //   console.log("들어오긴했다!");
@@ -205,13 +220,9 @@ export default function ReadReview({ martialId }: IProps) {
   const resetComment = () => {
     setComment("");
   };
+
   return (
     <ReviewWrapper>
-      {isOpen ? (
-        <div ref={kebabRef}>
-          <EditBtns reviewId={selReviewId} martialId={selMartialId} />
-        </div>
-      ) : null}
       <TotalCount>총 {sortedReviewList.length}개의 조언</TotalCount>
       {sortedReviewList.map((review, idx) => {
         return (
@@ -223,14 +234,12 @@ export default function ReadReview({ martialId }: IProps) {
                 <Name>{review.users.name}</Name>
                 <Date>{review.updatedAt.slice(0, 10)}</Date>
               </NameAndDate>
-              {isLogin && review.Users_id === userId ? (
-                <LayerBtn>
-                  <Photo3
-                    src={editBtn}
-                    onClick={() => openEditMenu(review.id, martialId)}
-                  ></Photo3>
-                </LayerBtn>
-              ) : null}
+              <EditReview
+                userId={userId}
+                reviewId={review.id}
+                martialId={martialId}
+                reviewUserId={review.Users_id}
+              />
             </NameAndDateAndBtn>
             <RatingsAndDesc>
               <Ratings>
@@ -465,7 +474,10 @@ export default function ReadReview({ martialId }: IProps) {
               .length > 0 ? (
               <div>
                 <ReplyTitle>댓글</ReplyTitle>
-                <ReadReply reviewId={review.id}></ReadReply>
+                <ReadReply
+                  reviewId={review.id}
+                  deleteReplies={deleteReplies}
+                ></ReadReply>
               </div>
             ) : null}
           </ReviewBox>

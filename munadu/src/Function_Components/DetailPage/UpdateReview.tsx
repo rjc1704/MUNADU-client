@@ -250,7 +250,6 @@ function UpdateReview({ reviewId, martialId }: IProps) {
           </Form>
         </Modal>
       ) : null}
-      ;
     </Div>
   );
 }

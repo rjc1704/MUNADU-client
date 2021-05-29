@@ -3,6 +3,7 @@ import styled from "styled-components";
 import profileImg from "./temp.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../Redux/Store/store";
+import EditReply from "./EditReply";
 import {
   createReply,
   getReplyList,
@@ -11,6 +12,7 @@ import {
 } from "../../Redux/Reducers/replyReducer";
 export const ReplyWrapper = styled.div`
   display: flex;
+  justify-content: space-between;
   width: 100%;
   border-top: 1px solid #eeeeee;
   padding-top: 1em;
@@ -19,7 +21,10 @@ export const ReplyWrapper = styled.div`
 export const ReplyDescBox = styled.div`
   display: flex;
   flex-direction: column;
+  max-width: 85%;
   padding: 0 1.3em 0.7em 1.3em;
+  height: 7em;
+  overflow-y: auto;
 `;
 
 export const NickName = styled.div`
@@ -45,18 +50,28 @@ export const Photo4 = styled.img`
   width: 3em;
 `;
 
+export const PhotoAndDesc = styled.div`
+  display: flex;
+`;
+export const PhotoWrapper = styled.div`
+  display: flex;
+  align-items: flex-start;
+`;
+
 interface IProps {
   reviewId: number;
+  deleteReplies: any;
 }
 
-export default function ReadReply({ reviewId }: IProps) {
+export default function ReadReply({ reviewId, deleteReplies }: IProps) {
   const dispatch = useDispatch();
   const replyList = useSelector(
     (state: RootState) => state.replyReducer.replyList
   );
+  const userId = useSelector((state: RootState) => state.authReducer.id);
   useEffect(() => {
     dispatch(getReplyList());
-  }, []);
+  }, [replyList.length]);
 
   return (
     <>
@@ -64,14 +79,24 @@ export default function ReadReply({ reviewId }: IProps) {
         if (reply.Reviews_id === reviewId) {
           return (
             <ReplyWrapper key={idx}>
-              <Photo4 src={profileImg}></Photo4>
-              <ReplyDescBox>
-                <NickName>{reply.users.name}</NickName>
-                <ReplyText>{reply.comment}</ReplyText>
-                <ReplyDateAndAgain>
-                  <div>{reply.createdAt.slice(0, 10)}</div>
-                </ReplyDateAndAgain>
-              </ReplyDescBox>
+              <PhotoAndDesc>
+                <PhotoWrapper>
+                  <Photo4 src={profileImg}></Photo4>
+                </PhotoWrapper>
+                <ReplyDescBox>
+                  <NickName>{reply.users.name}</NickName>
+                  <ReplyText>{reply.comment}</ReplyText>
+                  <ReplyDateAndAgain>
+                    <div>{reply.createdAt.slice(0, 10)}</div>
+                  </ReplyDateAndAgain>
+                </ReplyDescBox>
+              </PhotoAndDesc>
+              <EditReply
+                replyId={reply.id}
+                userId={userId}
+                replyUserId={reply.Users_id}
+                deleteReplies={deleteReplies}
+              />
             </ReplyWrapper>
           );
         }

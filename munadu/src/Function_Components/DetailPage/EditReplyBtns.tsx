@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import UpdateReview from "./UpdateReview";
-import DeleteReview from "./DeleteReview";
+import UpdateReply from "./UpdateReply";
+import DeleteReply from "./DeleteReply";
 
 const BtnsWrapper = styled.div`
   display: flex;
@@ -33,30 +33,27 @@ const Hr = styled.hr`
 `;
 
 interface IProps {
-  reviewId: number;
-  martialId: number;
+  replyId: number;
+  deleteReplies: any;
 }
-export default function EditBtns({ reviewId, martialId }: IProps) {
-  console.log(`reviewId in EditBtns!!`, reviewId);
+export default function EditReplyBtns({ replyId, deleteReplies }: IProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
-  const editReview = () => {
-    console.log(`reviewId in updateReview!`, reviewId);
+  const editReply = () => {
     setIsOpen(true);
   };
-  const deleteReview = () => {
-    console.log(`reviewId in deleteReview!`, reviewId);
+  const deleteReply = () => {
     setIsDeleted(true);
   };
   return (
     <BtnsWrapper>
-      <Text onClick={editReview}>조언 편집하기</Text>
-      {isOpen ? (
-        <UpdateReview reviewId={reviewId} martialId={martialId} />
-      ) : null}
+      <Text onClick={editReply}>댓글 편집하기</Text>
+      {isOpen ? <UpdateReply replyId={replyId} /> : null}
       <Hr></Hr>
-      <Text onClick={deleteReview}>삭제하기</Text>
-      {isDeleted ? <DeleteReview reviewId={reviewId} /> : null}
+      <Text onClick={deleteReply}>삭제하기</Text>
+      {isDeleted ? (
+        <DeleteReply replyId={replyId} deleteReplies={deleteReplies} />
+      ) : null}
     </BtnsWrapper>
   );
 }
