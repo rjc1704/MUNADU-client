@@ -164,7 +164,7 @@ interface IReview {
   Users_id: number;
   createdAt: string;
   updatedAt: string;
-  users: { name: string };
+  users: { name: string; img: string };
   accessToken?: string;
 }
 interface IState {
@@ -182,7 +182,7 @@ interface IcreatePayload {
     Reviews_id: number;
     createdAt: string;
     updatedAt: string;
-    users: { name: string };
+    users: { name: string; img: string };
     period: number;
     comment: string;
     score: number;
@@ -253,7 +253,10 @@ const reviewReducer = createSlice({
         Users_id: action.payload.Users_id,
         createdAt: action.payload.createdAt,
         updatedAt: action.payload.updatedAt,
-        users: { name: action.payload.users.name },
+        users: {
+          name: action.payload.users.name,
+          img: action.payload.users.img,
+        },
       });
     },
     [updateReviews.fulfilled.type]: (state, action: IupdatePayload) => {

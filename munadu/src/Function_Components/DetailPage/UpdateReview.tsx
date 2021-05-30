@@ -25,8 +25,9 @@ import { updateReviews } from "../../Redux/Reducers/reviewReducer";
 interface IProps {
   reviewId: number;
   martialId: number;
+  closeEditBtns: any;
 }
-function UpdateReview({ reviewId, martialId }: IProps) {
+function UpdateReview({ reviewId, martialId, closeEditBtns }: IProps) {
   const [isModal, setIsModal] = useState(true);
   const [period, setPeriod] = useState(0);
   const [comment, setComment] = useState("");
@@ -70,6 +71,7 @@ function UpdateReview({ reviewId, martialId }: IProps) {
   };
   const closeModal = () => {
     setInitialState();
+    closeEditBtns();
   };
   const accessToken = useSelector(
     (state: RootState) => state.authReducer.accessToken
@@ -142,6 +144,7 @@ function UpdateReview({ reviewId, martialId }: IProps) {
         })
       );
       setInitialState();
+      closeEditBtns();
     }
   };
 

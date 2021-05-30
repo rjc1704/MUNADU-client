@@ -199,7 +199,9 @@ export default function ReadReview({ martialId }: IProps) {
           <ReviewBox key={idx}>
             <NameAndDateAndBtn>
               <NameAndDate>
-                <Photo2 src={profileImg}></Photo2>
+                <Photo2
+                  src={`${process.env.REACT_APP_API_URL}${review.users.img}`}
+                ></Photo2>
 
                 <Name>{review.users.name}</Name>
                 <Date>{review.updatedAt.slice(0, 10)}</Date>
