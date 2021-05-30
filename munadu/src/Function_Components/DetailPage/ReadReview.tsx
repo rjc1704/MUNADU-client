@@ -54,7 +54,6 @@ export const CommentTextArea = styled.input`
   resize: none;
   width: 90%;
   margin: 1% 0;
-  /* align-content: center; */
   padding: 1%;
   ::placeholder {
     color: #c4c4c4;
@@ -157,8 +156,11 @@ export default function ReadReview({ martialId }: IProps) {
   const replyList = useSelector(
     (state: RootState) => state.replyReducer.replyList
   );
-  const handleComment = (e: any) => {
-    setComment(e.target.value);
+  const handleComment = async (e: any) => {
+    await setComment(e.target.value);
+  };
+  const saveReivewId = (reviewId: number) => {
+    setReviewID(reviewId);
   };
   const isLogin = useSelector((state: RootState) => state.authReducer.isLogin);
   const userId = useSelector((state: RootState) => state.authReducer.id);
@@ -174,38 +176,6 @@ export default function ReadReview({ martialId }: IProps) {
   useEffect(() => {
     dispatch(getReplyList());
   }, [replyList.length]);
-  // useEffect(() => {
-  //   const handleClick = (e: any) => {
-  //     if (kebabRef.current && !kebabRef.current.contains(e.target)) {
-  //       setIsOpen(false);
-  //     }
-  //   };
-  //   document.addEventListener("mousedown", handleClick);
-  // });
-  // useEffect(() => {
-  //   console.log(`replyList[0]`, replyList[0]);
-  //   console.log("들어오긴했다!");
-  //   if (replyInput.current) {
-  //     console.log("몇번이나찍히나보자");
-  //     console.log(`replyInput.current`, replyInput.current);
-  //     console.log(`replyInput.current.value`, replyInput.current.value);
-  //     // replyInput.current.value = "";
-  //     replyInput.current.focus();
-  //   }
-  //   resetComment();
-  // }, [replyList[0]]);
-
-  // useLayoutEffect(() => {
-  //   console.log(`replyList[0]`, replyList[0]);
-  //   console.log("들어오긴했다!");
-  //   if (replyInput.current && replyInput.current.value === comment) {
-  //     console.log("몇번이나찍히나보자");
-  //     console.log(`replyInput.current`, replyInput.current);
-  //     console.log(`replyInput.current.value`, replyInput.current.value);
-  //     // replyInput.current.value = "";
-  //     replyInput.current.focus();
-  //   }
-  // }, [replyList.length]);
 
   const [selReviewId, setSelReviewId] = useState(0);
   const [selMartialId, setSelMartialId] = useState(0);
@@ -437,8 +407,9 @@ export default function ReadReview({ martialId }: IProps) {
                     : "로그인 후 댓글을 남길 수 있습니다"
                 }
                 onChange={handleComment}
+                onKeyUp={() => saveReivewId(review.id)}
                 ref={replyInput}
-                value={comment}
+                value={review.id === reviewID ? comment : ""}
                 disabled={isLogin ? false : true}
               />
               <CommentBtn
@@ -454,15 +425,6 @@ export default function ReadReview({ martialId }: IProps) {
                       accessToken,
                     })
                   );
-                  // if (
-                  //   replyInput.current &&
-                  //   replyInput.current.value === comment
-                  // ) {
-                  //   console.log(`드뎌들왔어!`);
-                  //   replyInput.current.value = "";
-                  //   replyInput.current.focus();
-                  // }
-
                   resetComment();
                 }}
               >

@@ -11,6 +11,7 @@ interface IProps {
   userId: number;
   replyUserId: number;
   deleteReplies: any;
+  reviseReply: any;
 }
 
 const EditWrapper = styled.div`
@@ -23,6 +24,7 @@ export default function EditReply({
   userId,
   replyUserId,
   deleteReplies,
+  reviseReply,
 }: IProps) {
   const isLogin = useSelector((state: RootState) => state.authReducer.isLogin);
   const [isOpenEdit, setIsOpenEdit] = useState(false);
@@ -42,7 +44,11 @@ export default function EditReply({
           <Photo3 src={editBtn} onClick={() => setIsOpenEdit(true)}></Photo3>
           {isOpenEdit ? (
             <EditWrapper>
-              <EditReplyBtns replyId={replyId} deleteReplies={deleteReplies} />
+              <EditReplyBtns
+                replyId={replyId}
+                deleteReplies={deleteReplies}
+                reviseReply={reviseReply}
+              />
             </EditWrapper>
           ) : null}
         </LayerBtn>

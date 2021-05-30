@@ -51,17 +51,17 @@ export const createReply = createAsyncThunk(
   }
 );
 interface UpdateProps {
-  id: number;
+  replyId: number;
   comment: string;
   accessToken: string;
 }
 export const updateReply = createAsyncThunk(
   "replyReducer/updateReply",
-  async ({ id, comment, accessToken }: UpdateProps) => {
+  async ({ replyId, comment, accessToken }: UpdateProps) => {
     await axios.put(
       `${process.env.REACT_APP_API_URL}/reply/update`,
       {
-        id,
+        replyId,
         comment,
       },
       {
@@ -74,7 +74,7 @@ export const updateReply = createAsyncThunk(
     );
 
     return {
-      id,
+      replyId,
       comment,
     };
   }

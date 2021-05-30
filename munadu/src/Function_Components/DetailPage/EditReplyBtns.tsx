@@ -35,20 +35,25 @@ const Hr = styled.hr`
 interface IProps {
   replyId: number;
   deleteReplies: any;
+  reviseReply: any;
 }
-export default function EditReplyBtns({ replyId, deleteReplies }: IProps) {
+export default function EditReplyBtns({
+  replyId,
+  deleteReplies,
+  reviseReply,
+}: IProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
-  const editReply = () => {
-    setIsOpen(true);
-  };
+  // const editReply = () => {
+  //   setIsOpen(true);
+  // };
   const deleteReply = () => {
     setIsDeleted(true);
   };
   return (
     <BtnsWrapper>
-      <Text onClick={editReply}>댓글 편집하기</Text>
-      {isOpen ? <UpdateReply replyId={replyId} /> : null}
+      <Text onClick={reviseReply}>댓글 편집하기</Text>
+      {/* {isOpen ? <UpdateReply replyId={replyId} /> : null} */}
       <Hr></Hr>
       <Text onClick={deleteReply}>삭제하기</Text>
       {isDeleted ? (
