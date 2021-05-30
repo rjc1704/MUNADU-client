@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import profileImg from "./temp.svg";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,6 +10,7 @@ import {
   updateReply,
   deleteReply,
 } from "../../Redux/Reducers/replyReducer";
+import UpdateReply from "./UpdateReply";
 export const ReplyWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -21,7 +22,7 @@ export const ReplyWrapper = styled.div`
 export const ReplyDescBox = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 85%;
+  max-width: 100%;
   padding: 0 1.3em 0.7em 1.3em;
   height: 7em;
   overflow-y: auto;
@@ -72,7 +73,15 @@ export default function ReadReply({ reviewId, deleteReplies }: IProps) {
   useEffect(() => {
     dispatch(getReplyList());
   }, [replyList.length]);
-
+  const [isUpdate, setIsUpdate] = useState(false);
+  const [receivedId, setReceivedId] = useState(0);
+  const reviseReply = (theReplyId: number) => {
+    setReceivedId(theReplyId);
+    setIsUpdate(true);
+  };
+  const completeEdit = () => {
+    setIsUpdate(false);
+  };
   return (
     <>
       {replyList.map((reply, idx) => {
@@ -85,7 +94,15 @@ export default function ReadReply({ reviewId, deleteReplies }: IProps) {
                 </PhotoWrapper>
                 <ReplyDescBox>
                   <NickName>{reply.users.name}</NickName>
-                  <ReplyText>{reply.comment}</ReplyText>
+                  {isUpdate && reply.id === receivedId ? (
+                    <UpdateReply
+                      replyId={reply.id}
+                      completeEdit={completeEdit}
+                      replyComment={reply.comment}
+                    />
+                  ) : (
+                    <ReplyText>{reply.comment}</ReplyText>
+                  )}
                   <ReplyDateAndAgain>
                     <div>{reply.createdAt.slice(0, 10)}</div>
                   </ReplyDateAndAgain>
@@ -96,6 +113,7 @@ export default function ReadReply({ reviewId, deleteReplies }: IProps) {
                 userId={userId}
                 replyUserId={reply.Users_id}
                 deleteReplies={deleteReplies}
+                reviseReply={() => reviseReply(reply.id)}
               />
             </ReplyWrapper>
           );
