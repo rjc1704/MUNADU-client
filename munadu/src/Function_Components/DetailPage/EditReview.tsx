@@ -33,6 +33,9 @@ export default function EditReview({
     };
     document.addEventListener("mousedown", handleClick);
   });
+  const closeEditBtns = () => {
+    setIsOpenEdit(false);
+  };
   return (
     <>
       {isLogin && reviewUserId === userId ? (
@@ -44,7 +47,11 @@ export default function EditReview({
           ></Photo3>
           {isOpenEdit ? (
             <EditWrapper>
-              <EditBtns reviewId={reviewId} martialId={martialId} />
+              <EditBtns
+                reviewId={reviewId}
+                martialId={martialId}
+                closeEditBtns={closeEditBtns}
+              />
             </EditWrapper>
           ) : null}
         </LayerBtn>

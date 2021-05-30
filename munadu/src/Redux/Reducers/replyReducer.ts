@@ -87,7 +87,7 @@ interface IReply {
   updatedAt: string;
   Users_id: number;
   Reviews_id: number;
-  users: { name: string };
+  users: { name: string; img: string };
   accessToken?: string;
 }
 interface IState {
@@ -110,7 +110,7 @@ interface IcreatePayload {
         Reviews_id: number;
         updatedAt: string;
         createdAt: string;
-        users: { name: string };
+        users: { name: string; img: string };
       };
     };
   };

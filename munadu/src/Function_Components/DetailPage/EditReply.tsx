@@ -37,6 +37,9 @@ export default function EditReply({
     };
     document.addEventListener("mousedown", handleClick);
   });
+  const closeEditBtns = () => {
+    setIsOpenEdit(false);
+  };
   return (
     <>
       {isLogin && replyUserId === userId ? (
@@ -48,6 +51,7 @@ export default function EditReply({
                 replyId={replyId}
                 deleteReplies={deleteReplies}
                 reviseReply={reviseReply}
+                closeEditBtns={closeEditBtns}
               />
             </EditWrapper>
           ) : null}

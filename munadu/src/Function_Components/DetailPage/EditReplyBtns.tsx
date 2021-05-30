@@ -36,11 +36,13 @@ interface IProps {
   replyId: number;
   deleteReplies: any;
   reviseReply: any;
+  closeEditBtns: any;
 }
 export default function EditReplyBtns({
   replyId,
   deleteReplies,
   reviseReply,
+  closeEditBtns,
 }: IProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
@@ -52,12 +54,22 @@ export default function EditReplyBtns({
   };
   return (
     <BtnsWrapper>
-      <Text onClick={reviseReply}>댓글 편집하기</Text>
-      {/* {isOpen ? <UpdateReply replyId={replyId} /> : null} */}
+      <Text
+        onClick={() => {
+          reviseReply(replyId);
+          closeEditBtns();
+        }}
+      >
+        댓글 편집하기
+      </Text>
       <Hr></Hr>
       <Text onClick={deleteReply}>삭제하기</Text>
       {isDeleted ? (
-        <DeleteReply replyId={replyId} deleteReplies={deleteReplies} />
+        <DeleteReply
+          replyId={replyId}
+          deleteReplies={deleteReplies}
+          closeEditBtns={closeEditBtns}
+        />
       ) : null}
     </BtnsWrapper>
   );

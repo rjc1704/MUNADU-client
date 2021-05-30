@@ -7,15 +7,21 @@ import Modal from "../Common/Modal";
 interface IProps {
   replyId: number;
   deleteReplies: any;
+  closeEditBtns: any;
 }
 
-export default function DeleteReply({ replyId, deleteReplies }: IProps) {
+export default function DeleteReply({
+  replyId,
+  deleteReplies,
+  closeEditBtns,
+}: IProps) {
   const [isOpen, setIsOpen] = useState(true);
   const accessToken = useSelector(
     (state: RootState) => state.authReducer.accessToken
   );
   const closeModal = () => {
     setIsOpen(false);
+    closeEditBtns();
   };
   const dispatch = useDispatch();
   return (
@@ -30,6 +36,7 @@ export default function DeleteReply({ replyId, deleteReplies }: IProps) {
             // dispatch(deleteReply({ replyId, accessToken }));
             deleteReplies(replyId, accessToken);
             setIsOpen(false);
+            closeEditBtns();
           }}
           modalWidthPercent={38}
           modalHeightPercent={50}

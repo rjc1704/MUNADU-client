@@ -35,8 +35,13 @@ const Hr = styled.hr`
 interface IProps {
   reviewId: number;
   martialId: number;
+  closeEditBtns: any;
 }
-export default function EditBtns({ reviewId, martialId }: IProps) {
+export default function EditBtns({
+  reviewId,
+  martialId,
+  closeEditBtns,
+}: IProps) {
   console.log(`reviewId in EditBtns!!`, reviewId);
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
@@ -52,7 +57,11 @@ export default function EditBtns({ reviewId, martialId }: IProps) {
     <BtnsWrapper>
       <Text onClick={editReview}>조언 편집하기</Text>
       {isOpen ? (
-        <UpdateReview reviewId={reviewId} martialId={martialId} />
+        <UpdateReview
+          reviewId={reviewId}
+          martialId={martialId}
+          closeEditBtns={closeEditBtns}
+        />
       ) : null}
       <Hr></Hr>
       <Text onClick={deleteReview}>삭제하기</Text>
