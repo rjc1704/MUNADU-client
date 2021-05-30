@@ -22,7 +22,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAverage } from "../Redux/Reducers/avgReducer";
 import HeaderBar from "../Function_Components/Common/HeaderBar";
 import Header from "../StyledComponents/header";
-
+import RadarChart from "../Function_Components/Common/RadarChart";
+import Summary from "../Function_Components/DetailPage/Summary";
 
 const ContentContainer = styled.div`
   display: flex;
@@ -32,14 +33,6 @@ const ContentContainer = styled.div`
   min-height: 100vh;
   height: auto;
   overflow: visible;
-`;
-
-const MartialSummary = styled.div`
-  width: 100%;
-  min-height: 54%;
-  background: #ffffff;
-  box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
 `;
 
 const TextWrapper = styled.div`
@@ -172,16 +165,20 @@ export default function DetailPage() {
   const location = useLocation<IProps>();
   // ? history에서 받아온 props인 martialId 받아오는 방법
   const martialId = location.state.martialId;
-  console.log(`martialId in DetailPage`, martialId);
+  // console.log(`martialId in DetailPage`, martialId);
   const userId = useSelector((state: RootState) => state.authReducer.id);
-  console.log(`userId in DetailPage`, userId);
+  // console.log(`userId in DetailPage`, userId);
   const theMartial = martialJson.martialData.filter(
     (martial) => martial.id === martialId
   )[0];
   const scoreAvg = useSelector((state: RootState) => state.avgReducer.scoreAvg);
   const survey = useSelector((state: RootState) => state.surveyReducer);
   const isLogin = useSelector((state: RootState) => state.authReducer.isLogin);
-  console.log(`survey in SurveyList`, survey);
+  const reviewList = useSelector(
+    (state: RootState) => state.reviewReducer.reviewList
+  );
+
+  // console.log(`survey in SurveyList`, survey);
   const tags: string[] = [];
   switch (theMartial.weapon) {
     case 0:
@@ -256,8 +253,8 @@ export default function DetailPage() {
   useEffect(() => {
     dispatch(getAverage(martialId));
   }, []);
-  return (
 
+  return (
     <PageContainer>
       <Div>
         <HeaderBar />
@@ -273,46 +270,43 @@ export default function DetailPage() {
               <Texts>{theMartial.name}</Texts>
               <SmallTexts>{theMartial.nation}</SmallTexts>
             </TextsBox>
-
-
-              <TagBox>
-                {tags.map((tag) => {
-                  return <Tag>{tag}</Tag>;
-                })}
-              </TagBox>
-            </DescBox>
-          </DetailInfo>
-        </Board>
-        <ContentContainer>
-          <TextWrapper>무술 개요</TextWrapper>
-          <MartialSummary></MartialSummary>
-          <TextWrapper>
-            <TextBox>
-              <Text onClick={showReviewMenu} idx={0} tabValue={tabMenu}>
-                사형의 조언
-              </Text>
-              <Text onClick={showCommentMenu} idx={1} tabValue={tabMenu}>
-                무술 한줄평
-              </Text>
-              <Text onClick={showLocationMenu} idx={2} tabValue={tabMenu}>
-                도장 위치
-              </Text>
-            </TextBox>
-            <div>
-              {isLogin ? (
-                <CreateReview Martials_id={martialId} Users_id={userId} />
-              ) : null}
-            </div>
-          </TextWrapper>
-          {tabMenu === 0 ? (
-            <ReadReview martialId={martialId} />
-          ) : tabMenu === 1 ? (
-            <ReadComment martialId={martialId} />
-          ) : (
-            <ReadLocation />
-          )}
-        </ContentContainer>
-      </PageContainer>
-    
+            <TagBox>
+              {tags.map((tag) => {
+                return <Tag>{tag}</Tag>;
+              })}
+            </TagBox>
+          </DescBox>
+        </DetailInfo>
+      </Board>
+      <ContentContainer>
+        <TextWrapper>무술 개요</TextWrapper>
+        <Summary martialId={martialId} />
+        <TextWrapper>
+          <TextBox>
+            <Text onClick={showReviewMenu} idx={0} tabValue={tabMenu}>
+              사형의 조언
+            </Text>
+            <Text onClick={showCommentMenu} idx={1} tabValue={tabMenu}>
+              무술 한줄평
+            </Text>
+            <Text onClick={showLocationMenu} idx={2} tabValue={tabMenu}>
+              도장 위치
+            </Text>
+          </TextBox>
+          <div>
+            {isLogin ? (
+              <CreateReview Martials_id={martialId} Users_id={userId} />
+            ) : null}
+          </div>
+        </TextWrapper>
+        {tabMenu === 0 ? (
+          <ReadReview martialId={martialId} />
+        ) : tabMenu === 1 ? (
+          <ReadComment martialId={martialId} />
+        ) : (
+          <ReadLocation />
+        )}
+      </ContentContainer>
+    </PageContainer>
   );
 }

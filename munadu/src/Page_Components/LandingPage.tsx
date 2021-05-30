@@ -11,7 +11,6 @@ import Button from "../StyledComponents/button";
 import axios from "axios";
 import HeaderBar from "../Function_Components/Common/HeaderBar";
 
-
 export interface Icard {
   id: number;
   name: string;
@@ -77,19 +76,18 @@ function LandingPage() {
     console.log(`2번째 실행되야함`, isLoad);
   }, [select]);
 
-
-  const cards: any = useSelector((state: RootState) => {
-    console.log(`state`, state);
-    return state.martialReducer.result
-      ? state.martialReducer.result.map((el: any) => {
-          return {
-            id: el.id,
-            name: el.name,
-            img: el.img,
-          };
-        })
-      : null;
-  });
+  // const cards: any = useSelector((state: RootState) => {
+  //   console.log(`state`, state);
+  //   return state.martialReducer.result
+  //     ? state.martialReducer.result.map((el: any) => {
+  //         return {
+  //           id: el.id,
+  //           name: el.name,
+  //           img: el.img,
+  //         };
+  //       })
+  //     : null;
+  // });
 
   return (
     <div>
@@ -150,7 +148,6 @@ function LandingPage() {
             })}
           </Landing.CardBoard>
         </Landing.Base>
-
       </Landing.Board>
       <Canvas></Canvas>
     </div>
