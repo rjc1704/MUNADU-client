@@ -13,6 +13,7 @@ import { useHistory } from "react-router";
 import { setAuth } from "../Redux/Reducers/authReducer";
 import Modal from "../Function_Components/Common/Modal";
 import axios from "axios";
+import HeaderBar from "../Function_Components/Common/HeaderBar";
 
 interface Ialert {
   email: boolean;
@@ -122,71 +123,78 @@ export default function SignUpPage() {
   };
 
   return (
-    <SingBackground>
-      <SignBoard
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleSignUp();
-        }}
-      >
-        <Title>회원 가입</Title>
-        <InputForm
-          name="이메일"
-          type="text"
-          ref={emailRef}
-          callback={currentEmail}
-        ></InputForm>
-        <Alert color={isAlert.email}>{emailAlert}</Alert>
-        <InputForm name="닉네임" type="text" callback={currentName}></InputForm>
-        <Alert color={isAlert.name}>{nameAlert}</Alert>
-        <InputForm
-          name="비밀번호"
-          type="password"
-          callback={currentPassword}
-        ></InputForm>
-        <Alert color={isAlert.password}>{passwordAlert}</Alert>
-        <InputForm
-          name="비밀번호 확인"
-          type="password"
-          callback={currentCheckPassword}
-        ></InputForm>
-        <Alert color={isAlert.checkpassword}>{checkPasswordAlert}</Alert>
-        <Alert>{alert}</Alert>
-        <Button
-          color="black"
-          width="100%"
-          margin="10px 0px"
-          height="38px"
-          type="submit"
-        >
-          회원 가입
-        </Button>
-        <Button
-          color="white"
-          margin="10px 0px"
-          width="100%"
-          height="38px"
-          onClick={() => {
-            history.push("/signinpage");
+    <>
+      <HeaderBar isCheck={false}></HeaderBar>
+      <SingBackground>
+        <SignBoard
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSignUp();
           }}
         >
-          이미 계정이 있으신가요? <b>로그인</b>
-        </Button>
-      </SignBoard>
-      {isModal ? (
-        <Modal
-          close={closeModal}
-          headerText="회원 가입 완료"
-          okBtnText="확인"
-          callback={closeModal}
-        >
-          <div>
-            회원 가입이 완료되었습니다
-            <br />
-            메인 페이지로 이동합니다
-          </div>
-        </Modal>
-      ) : null}
-    </SingBackground>
+          <Title>회원 가입</Title>
+          <InputForm
+            name="이메일"
+            type="text"
+            ref={emailRef}
+            callback={currentEmail}
+          ></InputForm>
+          <Alert color={isAlert.email}>{emailAlert}</Alert>
+          <InputForm
+            name="닉네임"
+            type="text"
+            callback={currentName}
+          ></InputForm>
+          <Alert color={isAlert.name}>{nameAlert}</Alert>
+          <InputForm
+            name="비밀번호"
+            type="password"
+            callback={currentPassword}
+          ></InputForm>
+          <Alert color={isAlert.password}>{passwordAlert}</Alert>
+          <InputForm
+            name="비밀번호 확인"
+            type="password"
+            callback={currentCheckPassword}
+          ></InputForm>
+          <Alert color={isAlert.checkpassword}>{checkPasswordAlert}</Alert>
+          <Alert>{alert}</Alert>
+          <Button
+            color="black"
+            width="100%"
+            margin="10px 0px"
+            height="38px"
+            type="submit"
+          >
+            회원 가입
+          </Button>
+          <Button
+            color="white"
+            margin="10px 0px"
+            width="100%"
+            height="38px"
+            onClick={() => {
+              history.push("/signinpage");
+            }}
+          >
+            이미 계정이 있으신가요? <b>로그인</b>
+          </Button>
+        </SignBoard>
+        {isModal ? (
+          <Modal
+            close={closeModal}
+            headerText="회원 가입 완료"
+            okBtnText="확인"
+            callback={closeModal}
+          >
+            <div>
+              회원 가입이 완료되었습니다
+              <br />
+              메인 페이지로 이동합니다
+            </div>
+          </Modal>
+        ) : null}
+      </SingBackground>
+    </>
   );
 }

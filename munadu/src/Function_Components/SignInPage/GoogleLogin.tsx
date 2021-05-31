@@ -16,6 +16,7 @@ export default function GoogleLogin() {
 
   return (
     <div>
+      로그인
       <GoogleLoginButton
         clientConfig={clientID}
         responseHandler={resGoogle}
