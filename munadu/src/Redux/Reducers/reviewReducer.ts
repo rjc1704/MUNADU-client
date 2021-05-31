@@ -22,6 +22,21 @@ export const getReviewList = createAsyncThunk(
   }
 );
 
+export const getUserReviewList = createAsyncThunk(
+  "reviewReducer/getUserReviewList",
+  async (id: number) => {
+    return await axios.get(
+      `${process.env.REACT_APP_API_URL}/review/user-list/${id}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      }
+    );
+  }
+);
+
 interface CreateProps {
   period: number;
   comment: string;
@@ -169,6 +184,7 @@ interface IReview {
 }
 interface IState {
   reviewList: IReview[];
+  userReviewList: IReview[];
 }
 
 interface Ipayload {
@@ -236,6 +252,9 @@ const reviewReducer = createSlice({
   extraReducers: {
     [getReviewList.fulfilled.type]: (state, action: Ipayload) => {
       state.reviewList = action.payload.data.data;
+    },
+    [getUserReviewList.fulfilled.type]: (state, action: Ipayload) => {
+      state.userReviewList = action.payload.data.data;
     },
     [createReview.fulfilled.type]: (state, action: IcreatePayload) => {
       console.log(`action in createReview`, action);

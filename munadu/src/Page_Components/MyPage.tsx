@@ -9,6 +9,7 @@ import Button from "../StyledComponents/button";
 import SetProfile from "../Function_Components/MyPage/SetProfile";
 import SetPassword from "../Function_Components/MyPage/SetPassword";
 import HeaderBar from "../Function_Components/Common/HeaderBar";
+import ReadReview from "../Function_Components/DetailPage/ReadReview";
 
 export default function MyPage() {
   const userData: Istate = useSelector((state: RootState) => {
@@ -18,7 +19,7 @@ export default function MyPage() {
     return state.authReducer.isSocial;
   });
   const [isChange, setIsChange] = useState<boolean>(true);
-
+  const userId = useSelector((state: RootState) => state.authReducer.id);
   return (
     <>
       <HeaderBar></HeaderBar>
@@ -65,7 +66,9 @@ export default function MyPage() {
               </DetailInfo>
             </MyPageStyle.board>{" "}
             <MyPageStyle.contentBoard>
-              <MyPageStyle.setBoard>ㅇㅇ</MyPageStyle.setBoard>
+              <MyPageStyle.setBoard>
+                <ReadReview userID={userId} />
+              </MyPageStyle.setBoard>
             </MyPageStyle.contentBoard>
           </>
         ) : (

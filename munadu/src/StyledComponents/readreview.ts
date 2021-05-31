@@ -210,3 +210,86 @@ export const LayerBtn = styled.div`
   display: flex;
   justify-content: flex-end;
 `;
+
+export const ReplyBox = styled.form`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: auto;
+`;
+
+export const ReplyWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  border-top: 1px solid #eeeeee;
+  padding-top: 1em;
+`;
+
+export const ReplyDescBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 0 1.3em 0.7em 1.3em;
+`;
+
+export const NickName = styled.div`
+  font-size: 1rem;
+  font-family: ${(props) => props.theme.fontFamily.subFont};
+  font-weight: 700;
+`;
+export const ReplyTitle = styled(NickName)`
+  font-size: 1.2rem;
+  margin-top: 1em;
+  margin-bottom: 1em;
+`;
+
+export const ReplyText = styled.p`
+  width: 100%;
+`;
+export const ReplyDateAndAgain = styled.div`
+  display: flex;
+  font-size: 0.8rem;
+  color: #979797;
+`;
+
+export const Photo4 = styled.img`
+  width: 3em;
+`;
+export const CommentTextArea = styled.input`
+  border: 1px solid #c4c4c4;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  outline: none;
+  resize: none;
+  width: 90%;
+  margin: 1% 0;
+  padding: 1%;
+  ::placeholder {
+    color: #c4c4c4;
+  }
+`;
+
+export const CommentBtn = styled.button<{
+  width?: string;
+  margin?: string;
+  height?: string;
+}>`
+  /* align-self: flex-end; */
+
+  cursor: pointer;
+  background-color: ${(props) => {
+    if (props.disabled) return `#C4C4C4`;
+    else return props.theme.color.black;
+  }};
+  color: ${(props) => props.theme.color.white};
+  padding: 7px;
+  margin: 1% 2%;
+  border-radius: 5px;
+  font-weight: 500;
+  outline: none;
+  border: 1px solid ${(props) => props.theme.color.black};
+  min-width: 5.5rem;
+  width: ${(props) => (props.width ? props.width : "")};
+  height: ${(props) => (props.height ? props.height : "")};
+`;
