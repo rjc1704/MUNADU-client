@@ -8,13 +8,14 @@ import { MyPageStyle } from "../../StyledComponents/myPage";
 import Modal from "../Common/Modal";
 
 export default function SetImage({ callback }: any) {
-  const token: string = useSelector((state: RootState) => {
+  const token = useSelector((state: RootState) => {
     return state.authReducer.accessToken;
   });
+  const userImg = useSelector((state: RootState) => {
+    return state.userReducer.img;
+  });
   const dispatch = useDispatch();
-  const [imgBase64, setImgBase64] = useState(
-    `${process.env.REACT_APP_API_URL}/uploads/profile.png`
-  );
+  const [imgBase64, setImgBase64] = useState(userImg);
   const [imgFile, setImgFile] = useState<any>();
   const [onBtn, setOnBtn] = useState<boolean>(true);
   const [errMessage, setErrMessage] = useState<string>("");
@@ -50,7 +51,7 @@ export default function SetImage({ callback }: any) {
         setErrMessage("");
         setOnBtn(false);
       } else {
-        setImgBase64(`${process.env.REACT_APP_API_URL}/uploads/profile.png`);
+        setImgBase64(userImg);
         setOnBtn(true);
       }
     }
