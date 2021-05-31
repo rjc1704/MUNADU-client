@@ -6,6 +6,7 @@ import editBtn from "./editBtn.svg";
 import EditReplyBtns from "./EditReplyBtns";
 import { Photo3, LayerBtn } from "../../StyledComponents/readreview";
 import { deleteReply } from "../../Redux/Reducers/replyReducer";
+
 interface IProps {
   replyId: number;
   userId: number;
@@ -17,6 +18,18 @@ interface IProps {
 const EditWrapper = styled.div`
   position: absolute;
   width: 7em;
+`;
+
+export const EditBtnWrapper = styled.div`
+  position: absolute;
+  top: 2em;
+  left: -10px;
+  width: 160px;
+  height: 90px;
+  background: #ffffff;
+  box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  z-index: 1;
 `;
 
 export default function EditReply({
@@ -46,14 +59,14 @@ export default function EditReply({
         <LayerBtn ref={kebabRef}>
           <Photo3 src={editBtn} onClick={() => setIsOpenEdit(true)}></Photo3>
           {isOpenEdit ? (
-            <EditWrapper>
+            <EditBtnWrapper>
               <EditReplyBtns
                 replyId={replyId}
                 deleteReplies={deleteReplies}
                 reviseReply={reviseReply}
                 closeEditBtns={closeEditBtns}
               />
-            </EditWrapper>
+            </EditBtnWrapper>
           ) : null}
         </LayerBtn>
       ) : null}

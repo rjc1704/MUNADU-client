@@ -186,12 +186,10 @@ export default function SurveyList() {
         case "3":
           break;
       }
-      console.log(`filterResult`, filterResult);
+
       setSurveyResult(filterResult);
-      console.log(`surveyResult`, surveyResult);
 
       dispatch(saveAnswer({ ...surveyState, result: surveyResult }));
-      console.log("왜 result가 안먹히는걸까?");
     }
     // else if (surveyResult) {
     //   console.log("들어왔다!!!!!!");
@@ -210,9 +208,13 @@ export default function SurveyList() {
     } else {
       // 설문 결과창 출력!
 
-      console.log(`isShow`, isShow);
       dispatch(
-        saveAnswer({ ...surveyState, isShow: true, result: surveyResult })
+        saveAnswer({
+          ...surveyState,
+          isShow: true,
+          result: surveyResult,
+          index: index + 1,
+        })
       );
     }
   };
@@ -257,7 +259,7 @@ export default function SurveyList() {
       <ProgressBarBox>
         <ProgressBar idx={index} />
       </ProgressBarBox>
-      {(index / (SurveyJson.surveys.length - 1)) * 100 + " %"}
+      {Math.floor((index / SurveyJson.surveys.length) * 100) + " %"}
       {isShow === false ? (
         <Question>{SurveyJson.surveys[index].question}</Question>
       ) : (

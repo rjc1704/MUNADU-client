@@ -6,6 +6,7 @@ export const PhotoAndText = styled.div`
   justify-content: flex-start;
   align-items: flex-end;
   height: auto;
+  margin-bottom: 15px;
 `;
 
 export const Photo = styled.img`
@@ -16,14 +17,13 @@ export const TextAndInput = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin-top: 1%;
+  margin-top: 3%;
 `;
 
 export const MartialTitle = styled.div`
   font-family: ${(props) => props.theme.fontFamily.mainFont};
   font-size: 1.5rem;
   font-weight: 900;
-  margin-left: 2.5rem;
 `;
 export const Nation = styled.div`
   font-family: ${(props) => props.theme.fontFamily.subFont};
@@ -61,8 +61,10 @@ export const InputAdvice = styled.textarea`
   box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.1);
   border: none;
   border-radius: 5px;
-  height: 9.5em;
+  height: 7.5em;
   overflow: auto;
+  resize: none;
+  font-size: 1rem;
   &::-webkit-input-placeholder {
     color: #606060;
     margin-right: 10px;
@@ -86,6 +88,7 @@ export const Div = styled.div`
 export const Form = styled.form`
   width: 100%;
   height: 100%;
+  margin-bottom: 1em;
 `;
 export const ErrorMsg = styled.div`
   display: flex;

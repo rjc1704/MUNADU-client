@@ -170,7 +170,6 @@ export default function ReadReview({ martialId }: IProps) {
 
   useEffect(() => {
     dispatch(getReviewList(martialId));
-    dispatch(getReplyList());
   }, []);
 
   useEffect(() => {

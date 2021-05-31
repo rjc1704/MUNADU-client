@@ -34,7 +34,7 @@ export default function HeaderBar() {
       <Header.HeaderWrapper>
         <Header.HeaderBox>
           <Header.HeaderLogo onClick={() => history.push("/")}>
-            무나두
+            <img src={"/munadoLogo.svg"} />
           </Header.HeaderLogo>
           {!isUser.isLogin ? (
             <div>

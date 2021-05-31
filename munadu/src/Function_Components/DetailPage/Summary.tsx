@@ -7,6 +7,7 @@ import { RootState } from "../../Redux/Store/store";
 import youtube from "./img/youtube.svg";
 import wiki from "./img/wiki.svg";
 import { useHistory } from "react-router";
+import { withRouter } from "react-router-dom";
 
 const MartialSummary = styled.div`
   display: flex;
@@ -39,7 +40,7 @@ const ChartWrapper = styled.div``;
 const SummaryKey = styled.div`
   justify-content: space-around;
   flex-direction: column;
-  width: 150px;
+  min-width: 8em;
   display: flex;
 `;
 const SummaryValue = styled.div`
@@ -246,6 +247,7 @@ const Summary = ({ martialId }: IProps) => {
       pathname: "/detailpage",
       state: { martialId: id },
     });
+    window.location.replace("/detailpage");
   };
 
   return (

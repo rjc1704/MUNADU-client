@@ -70,6 +70,7 @@ export const Photo2 = styled.img`
   width: 15%;
   height: auto;
   margin-right: 10%;
+  border-radius: 50%;
 `;
 
 export const Name = styled.div`
@@ -206,5 +207,6 @@ export const LayerBtn = styled.div`
   height: 1em;
   margin-right: 0;
   position: relative;
-  display: inline-block;
+  display: flex;
+  justify-content: flex-end;
 `;

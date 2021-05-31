@@ -4,15 +4,17 @@ export const MainPageWrapper = styled.div`
   display: flex;
   justify-content: center;
   width: 100vw;
-  height: 80vh;
+  height: auto;
   background-color: #eeeeee;
-  overflow: scroll;
+  /* overflow-x: hidden; */
 `;
 export const MainPageBox = styled.div`
   display: flex;
   width: 64%;
+  height: auto;
   flex-direction: column;
-  padding-bottom: 300px;
+
+  /* padding-bottom: 300px; */
 `;
 export const Box = styled.div`
   display: flex;
@@ -24,8 +26,9 @@ export const ContentsWrapper = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 250px;
+  /* height: 250px; */
   justify-content: space-between;
+  margin-bottom: 20px;
 `;
 
 export const ContentCard = styled.div`
