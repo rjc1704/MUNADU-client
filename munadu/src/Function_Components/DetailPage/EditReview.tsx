@@ -8,7 +8,14 @@ import { Photo3, LayerBtn } from "../../StyledComponents/readreview";
 
 const EditWrapper = styled.div`
   position: absolute;
-  width: 7em;
+  top: 2em;
+  left: -10px;
+  width: 160px;
+  height: 90px;
+  background: #ffffff;
+  box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  z-index: 1;
 `;
 interface IProps {
   userId: number;

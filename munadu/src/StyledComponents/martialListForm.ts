@@ -86,5 +86,5 @@ export const MartialWrapper = styled.div`
 
 export const Box2 = styled(Box)`
   width: 97%;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 `;

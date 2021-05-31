@@ -9,6 +9,9 @@ export const CommentWrapper = styled.div`
   background: #ffffff;
   box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
+
+  padding-left: 2%;
+  padding-right: 2%;
   padding-bottom: 7%;
 `;
 
@@ -19,7 +22,6 @@ export const CommentHeader = styled.div`
   font-size: 1.25rem;
   font-weight: 500;
   color: #606060;
-  padding-left: 2%;
   border-bottom: 1px solid #eeeeee; ;
 `;
 

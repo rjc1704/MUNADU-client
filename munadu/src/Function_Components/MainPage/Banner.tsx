@@ -31,8 +31,8 @@ const TextBanner = styled.div`
   color: #fbfbfb;
 `;
 interface IBannerButton {
-  idx: number;
-  tabValue: number;
+  idx: boolean;
+  tabValue: boolean;
 }
 const BannerButton = styled.div`
   font-family: Noto Sans KR Medium;
@@ -52,6 +52,12 @@ const BannerButton = styled.div`
     color: #fbfbfb;
     text-decoration: underline;
   }
+  text-decoration: ${(props) => {
+    if (props.tabValue === props.idx) {
+      return "underline";
+    } else return "none";
+  }};
+  text-underline-position: under;
   color: ${(props: IBannerButton) =>
     props.idx === props.tabValue ? "#fbfbfb" : "#606060"};
 `;
@@ -89,22 +95,22 @@ const Banner = ({ checkSelected, isSelected }: IProps) => {
       </TextWrapper>
       <ButtonWrapper>
         <BannerButton
-          idx={0}
+          idx={true}
           onClick={() => {
             checkSelected(true);
             setTabMenu(0);
           }}
-          tabValue={tabMenu}
+          tabValue={isSelected}
         >
           추천 무술
         </BannerButton>
         <BannerButton
-          idx={1}
+          idx={false}
           onClick={() => {
             checkSelected(false);
             setTabMenu(1);
           }}
-          tabValue={tabMenu}
+          tabValue={isSelected}
         >
           무술 전체 보기
         </BannerButton>

@@ -174,7 +174,6 @@ function CreateReview({ Martials_id, Users_id }: IProps) {
         >
           <Form>
             <PhotoAndText>
-              <Photo src={theMartial.img}></Photo>
               <MartialTitle>{theMartial.name}</MartialTitle>
               <Nation>{theMartial.nation}</Nation>
             </PhotoAndText>

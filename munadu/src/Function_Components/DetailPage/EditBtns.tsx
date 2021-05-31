@@ -16,14 +16,20 @@ const BtnsWrapper = styled.div`
   z-index: 3;
 `;
 const Text = styled.div`
+  height: 45px;
+  width: 160px;
+  font-family: Noto Sans KR Medium;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 100%;
-  font-family: ${(props) => props.theme.fontFamily.subFont};
-  font-weight: 500;
-  font-size: 1rem;
+  justify-content: center;
+  text-align: center;
+  letter-spacing: -0.015em;
   cursor: pointer;
+  border: 1px solid #eeeeee;
 `;
 const Hr = styled.hr`
   width: 100%;
@@ -63,7 +69,6 @@ export default function EditBtns({
           closeEditBtns={closeEditBtns}
         />
       ) : null}
-      <Hr></Hr>
       <Text onClick={deleteReview}>삭제하기</Text>
       {isDeleted ? <DeleteReview reviewId={reviewId} /> : null}
     </BtnsWrapper>

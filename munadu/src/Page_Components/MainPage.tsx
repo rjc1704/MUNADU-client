@@ -15,7 +15,8 @@ export default function MainPage() {
 
   const Main = styled.div`
     height: 100vh;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
   `;
 
   const SurveyBtn = styled.div`

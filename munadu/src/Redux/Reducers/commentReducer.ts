@@ -98,7 +98,7 @@ interface IComment {
   Martials_id: number;
   createdAt: string;
   updatedAt: string;
-  users: { name: string };
+  users: { name: string; img: string };
 }
 
 const initialState = {

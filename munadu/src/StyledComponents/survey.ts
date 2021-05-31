@@ -23,10 +23,12 @@ export const ResultBox = styled.div`
   justify-content: space-evenly;
   width: 100%;
   max-height: 10%;
+  /* overflow: visible; */
   overflow: auto;
   background: #fffbfb;
   border: 1px solid #c4c4c4;
   border-radius: 5px;
+  /* padding-top: 100%; */
 `;
 export const Question = styled.p`
   display: flex;
@@ -89,9 +91,7 @@ export type ProgressBarType = {
   idx: number;
 };
 export const ProgressBar = styled.div<ProgressBarType>`
-  width: calc(
-    ${(props) => props.idx} / calc(${SurveyJson.surveys.length} - 1) * 100%
-  );
+  width: calc(${(props) => props.idx / SurveyJson.surveys.length}*100%);
   height: 100%;
   background: ${(props) => props.theme.color.black};
 `;
@@ -116,8 +116,8 @@ export const MartialBox = styled.div`
 `;
 // ? border-bottom 은 props로 필터링된 배열의 length가 1개이거나 2개 이상일 때는 마지막 index는 props를 넣어서 border-bottom 설정하지말자.
 export const Photo = styled.img`
-  width: 8%;
-  height: auto;
+  width: 3em;
+  height: 3em;
   margin-right: 10px;
 `;
 export const MartialTextWrapper = styled.div`

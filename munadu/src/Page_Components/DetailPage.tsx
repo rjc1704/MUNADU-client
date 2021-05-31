@@ -163,11 +163,17 @@ export default function DetailPage() {
   };
   const dispatch = useDispatch();
   const location = useLocation<IProps>();
-  // ? history에서 받아온 props인 martialId 받아오는 방법
   const martialId = location.state.martialId;
-  // console.log(`martialId in DetailPage`, martialId);
+  // const [theMartialId, setMartialId] = useState(0);
+  // useEffect(() => {
+  //   setMartialId(martialId);
+  // }, []);
+
+  // console.log(`theMartialId:`, theMartialId);
+  // ? history에서 받아온 props인 martialId 받아오는 방법
+
   const userId = useSelector((state: RootState) => state.authReducer.id);
-  // console.log(`userId in DetailPage`, userId);
+
   const theMartial = martialJson.martialData.filter(
     (martial) => martial.id === martialId
   )[0];
@@ -299,6 +305,7 @@ export default function DetailPage() {
             ) : null}
           </div>
         </TextWrapper>
+        {console.log(`martialId above Tab: `, martialId)}
         {tabMenu === 0 ? (
           <ReadReview martialId={martialId} />
         ) : tabMenu === 1 ? (

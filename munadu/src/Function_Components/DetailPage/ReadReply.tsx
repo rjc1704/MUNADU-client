@@ -49,6 +49,7 @@ export const ReplyDateAndAgain = styled.div`
 
 export const Photo4 = styled.img`
   width: 3em;
+  border-radius: 50%;
 `;
 
 export const PhotoAndDesc = styled.div`
