@@ -12,6 +12,7 @@ interface IProps {
   commentId: number;
   commentMartialId: number;
   comment: string;
+  reviseComment: any;
 }
 
 const CommentEditBtn = styled.img`
@@ -58,6 +59,7 @@ const EditComment = ({
   commentId,
   commentMartialId,
   comment,
+  reviseComment,
 }: IProps) => {
   const editEl = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -85,7 +87,10 @@ const EditComment = ({
   const updateSwitch = (toggle: boolean) => {
     setIsUpdateOpen(toggle);
   };
-
+  const [isOpenEdit, setIsOpenEdit] = useState(false);
+  const closeEditBtns = () => {
+    setIsOpenEdit(false);
+  };
   return (
     <>
       {isLogin && commentUserId === id ? (
@@ -97,19 +102,16 @@ const EditComment = ({
                 isOpen ? setIsOpen(false) : setIsOpen(true);
               }}
             />
+
             <EditBtnWrapper>
-              <EditBtn onClick={() => setIsUpdateOpen(true)}>
+              <EditBtn
+                onClick={() => {
+                  reviseComment(commentId);
+                }}
+              >
                 한줄평 편집하기
               </EditBtn>
-              {isUpdateOpen ? (
-                <UpdateComment
-                  accessToken={accessToken}
-                  comment={comment}
-                  commentId={commentId}
-                  editSwitch={editSwitch}
-                  updateSwitch={updateSwitch}
-                ></UpdateComment>
-              ) : null}
+
               <EditBtn
                 onClick={() => {
                   setIsDeleteOpen(true);
