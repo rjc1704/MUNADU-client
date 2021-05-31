@@ -2,13 +2,10 @@ import ReadCard from "../Function_Components/LandingPage/ReadCard";
 import { useSelector } from "react-redux";
 import { RootState } from "../Redux/Store/store";
 import { Landing } from "../StyledComponents/Landing";
-import styled from "styled-components";
 import { memo, useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import Canvas from "../Function_Components/LandingPage/Canvas";
-import martialData from "../Function_Components/Common/martialData.json";
 import Button from "../StyledComponents/button";
-import axios from "axios";
 import HeaderBar from "../Function_Components/Common/HeaderBar";
 
 export interface Icard {
@@ -33,16 +30,17 @@ interface Imartial {
 }
 
 function LandingPage() {
-  const cards: Icard[] = martialData.martialData.map(
-    (el: Imartial, idx: number) => {
-      return {
-        id: idx,
-        name: el.name,
-        img: el.img,
-      };
-    }
-  );
-
+  const cards: any = useSelector((state: RootState) => {
+    return state.martialReducer.result
+      ? state.martialReducer.result.map((el: any) => {
+          return {
+            id: el.id,
+            name: el.name,
+            img: el.img,
+          };
+        })
+      : null;
+  });
   const [audio, setAudio] = useState<boolean>(false);
   const [select, setSelect] = useState(0);
   const [isLoad, setIsLoad] = useState<boolean>(false);
@@ -54,7 +52,6 @@ function LandingPage() {
     bgm.addEventListener("ended", () => setAudio(false));
     return () => {
       bgm.removeEventListener("ended", () => setAudio(false));
-      console.log(`이벤트 뤼스너`);
     };
   }, []);
 
@@ -67,13 +64,12 @@ function LandingPage() {
 
   const setCard = (key: number): void => {
     setIsLoad(false);
-    setSelect(key);
+    setSelect(key - 1);
     const effect = new Audio("/button-45.mp3");
     effect.play();
   };
   useEffect(() => {
     setImg(cards[select].img);
-    console.log(`2번째 실행되야함`, isLoad);
   }, [select]);
 
   // const cards: any = useSelector((state: RootState) => {
@@ -117,7 +113,7 @@ function LandingPage() {
             시작 하기
           </Button>
         </Landing.Guide>
-        {cards.map((el) => {
+        {cards.map((el: any) => {
           if (el.id === select) {
             return <img className="landing_martial select" src={img}></img>;
           }
@@ -126,7 +122,7 @@ function LandingPage() {
         <Landing.Name>{cards[select].name}</Landing.Name>
         <Landing.Base>
           <Landing.CardBoard>
-            {cards.map((el, idx: number) => {
+            {cards.map((el: any, idx: number) => {
               if (select === idx) {
                 return (
                   <ReadCard

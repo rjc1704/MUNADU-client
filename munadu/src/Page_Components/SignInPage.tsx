@@ -12,12 +12,14 @@ import {
 } from "../StyledComponents/sign";
 import { setAuth } from "../Redux/Reducers/authReducer";
 import { RootState } from "../Redux/Store/store";
+import GoogleLogin from "../Function_Components/SignInPage/GoogleLogin";
 
 interface Ilogin {
   isLogin: boolean;
   accessToken: string;
   id: number;
   err: string;
+  isSocial: boolean;
 }
 
 export default function SignInPage() {
@@ -101,6 +103,7 @@ export default function SignInPage() {
         >
           계정이 없으신가요? <b>회원가입</b>
         </Button>
+        <GoogleLogin></GoogleLogin>
       </SignBoard>
     </SingBackground>
   );
