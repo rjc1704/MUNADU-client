@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import CreateComment from "./CreateComment";
 import EditComment from "./EditComment";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,6 +19,7 @@ import {
   CommentHeader,
   CommentWrapper,
 } from "../../StyledComponents/ReadComment";
+import UpdateComment from "./UpdateComment";
 export const ReplyWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -81,7 +82,15 @@ export default function ReadComment({ martialId }: IProps) {
   const commentList = useSelector(
     (state: RootState) => state.commentReducer.data.commentList
   );
-
+  const [isUpdate, setIsUpdate] = useState(false);
+  const [receivedId, setReceivedId] = useState(0);
+  const reviseComment = (theCommentId: number) => {
+    setReceivedId(theCommentId);
+    setIsUpdate(true);
+  };
+  const completeEdit = () => {
+    setIsUpdate(false);
+  };
   return (
     <div>
       <CommentWrapper>
@@ -92,13 +101,19 @@ export default function ReadComment({ martialId }: IProps) {
             <ReplyWrapper key={idx}>
               <PhotoAndDesc>
                 <PhotoWrapper>
-                  <Photo4
-                    src={`${process.env.REACT_APP_API_URL}${comment.users.img}`}
-                  ></Photo4>
+                  <Photo4 src={comment.users.img}></Photo4>
                 </PhotoWrapper>
                 <ReplyDescBox>
                   <Name>{comment.users.name}</Name>
-                  <ReplyText>{comment.comment}</ReplyText>
+                  {isUpdate && comment.id === receivedId ? (
+                    <UpdateComment
+                      commentId={comment.id}
+                      completeEdit={completeEdit}
+                      comment={comment.comment}
+                    />
+                  ) : (
+                    <ReplyText>{comment.comment}</ReplyText>
+                  )}
                   <CommentDate>{comment.updatedAt.slice(0, 10)}</CommentDate>
                 </ReplyDescBox>
               </PhotoAndDesc>
@@ -107,6 +122,7 @@ export default function ReadComment({ martialId }: IProps) {
                 commentId={comment.id}
                 commentMartialId={comment.Martials_id}
                 comment={comment.comment}
+                reviseComment={() => reviseComment(comment.id)}
               />
             </ReplyWrapper>
           );
