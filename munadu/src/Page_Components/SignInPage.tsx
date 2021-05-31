@@ -13,6 +13,7 @@ import {
 import { setAuth } from "../Redux/Reducers/authReducer";
 import { RootState } from "../Redux/Store/store";
 import GoogleLogin from "../Function_Components/SignInPage/GoogleLogin";
+import HeaderBar from "../Function_Components/Common/HeaderBar";
 
 interface Ilogin {
   isLogin: boolean;
@@ -63,48 +64,51 @@ export default function SignInPage() {
     }
   };
   return (
-    <SingBackground>
-      <SignBoard
-        onSubmit={(e) => {
-          e.preventDefault();
-          logIn();
-        }}
-      >
-        <Title>로그인</Title>
-        <InputForm
-          name="이메일"
-          type="text"
-          ref={emailRef}
-          callback={setEmailData}
-        ></InputForm>
-        <InputForm
-          name="비밀번호"
-          type="password"
-          callback={setPasswordData}
-        ></InputForm>
-        <Alert>{alert}</Alert>
-        <Button
-          color="black"
-          width="100%"
-          margin="10px 0px"
-          height="38px"
-          type="submit"
-        >
-          로그인
-        </Button>
-        <Button
-          color="white"
-          margin="10px 0px"
-          width="100%"
-          height="38px"
-          onClick={() => {
-            history.push("/signuppage");
+    <>
+      <HeaderBar></HeaderBar>
+      <SingBackground>
+        <SignBoard
+          onSubmit={(e) => {
+            e.preventDefault();
+            logIn();
           }}
         >
-          계정이 없으신가요? <b>회원가입</b>
-        </Button>
-        <GoogleLogin></GoogleLogin>
-      </SignBoard>
-    </SingBackground>
+          <Title>로그인</Title>
+          <InputForm
+            name="이메일"
+            type="text"
+            ref={emailRef}
+            callback={setEmailData}
+          ></InputForm>
+          <InputForm
+            name="비밀번호"
+            type="password"
+            callback={setPasswordData}
+          ></InputForm>
+          <Alert>{alert}</Alert>
+          <Button
+            color="black"
+            width="100%"
+            margin="10px 0px"
+            height="38px"
+            type="submit"
+          >
+            로그인
+          </Button>
+          <Button
+            color="white"
+            margin="10px 0px"
+            width="100%"
+            height="38px"
+            onClick={() => {
+              history.push("/signuppage");
+            }}
+          >
+            계정이 없으신가요? <b>회원가입</b>
+          </Button>
+          <GoogleLogin></GoogleLogin>
+        </SignBoard>
+      </SingBackground>
+    </>
   );
 }

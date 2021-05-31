@@ -18,14 +18,9 @@ interface Icheck {
   signup: boolean;
 }
 
-export default function HeaderBar() {
+export default function HeaderBar({ isCheck = true }: { isCheck?: boolean }) {
   const isUser: Istate = useSelector((state: RootState) => {
     return state.authReducer;
-  });
-  console.log(`isUser`, isUser);
-  const [isCheck, setIsCheck] = useState<Icheck>({
-    login: true,
-    signup: false,
   });
   const history = useHistory();
   const dispatch = useDispatch();
@@ -39,18 +34,16 @@ export default function HeaderBar() {
           {!isUser.isLogin ? (
             <div>
               <Button
-                color={isCheck.login ? "white" : ""}
+                color={isCheck ? "white" : ""}
                 onClick={() => {
-                  setIsCheck({ signup: false, login: true });
                   history.push("/signinpage");
                 }}
               >
                 로그인
               </Button>
               <Button
-                color={isCheck.signup ? "white" : ""}
+                color={isCheck ? "" : "white"}
                 onClick={() => {
-                  setIsCheck({ signup: true, login: false });
                   history.push("/signuppage");
                 }}
               >
@@ -71,7 +64,6 @@ export default function HeaderBar() {
               <Button
                 color="white"
                 onClick={() => {
-                  console.log(`isUser.id`, isUser.id);
                   dispatch(setUser(isUser.id));
                   history.push("/mypage");
                 }}
