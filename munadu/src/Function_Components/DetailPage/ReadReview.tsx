@@ -8,7 +8,10 @@ import bar from "./bar.svg";
 import date from "date-and-time";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../Redux/Store/store";
-import { getReviewList } from "../../Redux/Reducers/reviewReducer";
+import {
+  getReviewList,
+  getUserReviewList,
+} from "../../Redux/Reducers/reviewReducer";
 import {
   createReply,
   getReplyList,
@@ -43,97 +46,24 @@ import {
   Name3,
   Photo3,
   LayerBtn,
+  ReplyBox,
+  ReplyWrapper,
+  ReplyDescBox,
+  NickName,
+  ReplyTitle,
+  ReplyText,
+  ReplyDateAndAgain,
+  Photo4,
+  CommentTextArea,
+  CommentBtn,
 } from "../../StyledComponents/readreview";
 
-export const CommentTextArea = styled.input`
-  border: 1px solid #c4c4c4;
-  border-radius: 3px;
-  display: flex;
-  align-items: center;
-  outline: none;
-  resize: none;
-  width: 90%;
-  margin: 1% 0;
-  padding: 1%;
-  ::placeholder {
-    color: #c4c4c4;
-  }
-`;
-
-export const CommentBtn = styled.button<{
-  width?: string;
-  margin?: string;
-  height?: string;
-}>`
-  /* align-self: flex-end; */
-
-  cursor: pointer;
-  background-color: ${(props) => {
-    if (props.disabled) return `#C4C4C4`;
-    else return props.theme.color.black;
-  }};
-  color: ${(props) => props.theme.color.white};
-  padding: 7px;
-  margin: 1% 2%;
-  border-radius: 5px;
-  font-weight: 500;
-  outline: none;
-  border: 1px solid ${(props) => props.theme.color.black};
-  min-width: 5.5rem;
-  width: ${(props) => (props.width ? props.width : "")};
-  height: ${(props) => (props.height ? props.height : "")};
-`;
-
-export const ReplyBox = styled.form`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: auto;
-`;
-
-export const ReplyWrapper = styled.div`
-  display: flex;
-  width: 100%;
-  border-top: 1px solid #eeeeee;
-  padding-top: 1em;
-`;
-
-export const ReplyDescBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 0 1.3em 0.7em 1.3em;
-`;
-
-export const NickName = styled.div`
-  font-size: 1rem;
-  font-family: ${(props) => props.theme.fontFamily.subFont};
-  font-weight: 700;
-`;
-export const ReplyTitle = styled(NickName)`
-  font-size: 1.2rem;
-  margin-top: 1em;
-  margin-bottom: 1em;
-`;
-
-export const ReplyText = styled.p`
-  width: 100%;
-`;
-export const ReplyDateAndAgain = styled.div`
-  display: flex;
-  font-size: 0.8rem;
-  color: #979797;
-`;
-
-export const Photo4 = styled.img`
-  width: 3em;
-`;
-
 interface IProps {
-  martialId: number;
+  martialId?: number;
+  userID?: number;
 }
 
-export default function ReadReview({ martialId }: IProps) {
+export default function ReadReview({ martialId = 1, userID }: IProps) {
   const [comment, setComment] = useState("");
   const [reviewID, setReviewID] = useState(0);
   const dispatch = useDispatch();
@@ -141,7 +71,7 @@ export default function ReadReview({ martialId }: IProps) {
   const reviewList = useSelector(
     (state: RootState) => state.reviewReducer.reviewList
   );
-  const sortedReviewList = reviewList.slice().sort((a: any, b: any) => {
+  let sortedReviewList = reviewList.slice().sort((a: any, b: any) => {
     const theADate = a.createdAt.slice(0, 10);
     const theATime = a.createdAt.slice(11, 19);
     const aDate = date.parse(`${theADate} ${theATime}`, "YYYY-MM-DD HH:mm:ss");
@@ -153,23 +83,39 @@ export default function ReadReview({ martialId }: IProps) {
   const deleteReplies = (replyId: number, accessToken: string) => {
     dispatch(deleteReply({ replyId, accessToken }));
   };
+  const isLogin = useSelector((state: RootState) => state.authReducer.isLogin);
+  const userId = useSelector((state: RootState) => state.authReducer.id);
+  const accessToken = useSelector(
+    (state: RootState) => state.authReducer.accessToken
+  );
   const replyList = useSelector(
     (state: RootState) => state.replyReducer.replyList
   );
+  const userReviewList = useSelector(
+    (state: RootState) => state.reviewReducer.userReviewList
+  );
+  const sortedUserReviewList = userReviewList.slice().sort((a: any, b: any) => {
+    const theADate = a.createdAt.slice(0, 10);
+    const theATime = a.createdAt.slice(11, 19);
+    const aDate = date.parse(`${theADate} ${theATime}`, "YYYY-MM-DD HH:mm:ss");
+    const theBDate = b.createdAt.slice(0, 10);
+    const theBTime = b.createdAt.slice(11, 19);
+    const bDate = date.parse(`${theBDate} ${theBTime}`, "YYYY-MM-DD HH:mm:ss");
+    return bDate.getTime() - aDate.getTime();
+  });
+
+  if (userId === userID) sortedReviewList = sortedUserReviewList;
+
   const handleComment = async (e: any) => {
     await setComment(e.target.value);
   };
   const saveReivewId = (reviewId: number) => {
     setReviewID(reviewId);
   };
-  const isLogin = useSelector((state: RootState) => state.authReducer.isLogin);
-  const userId = useSelector((state: RootState) => state.authReducer.id);
-  const accessToken = useSelector(
-    (state: RootState) => state.authReducer.accessToken
-  );
 
   useEffect(() => {
     dispatch(getReviewList(martialId));
+    if (isLogin) dispatch(getUserReviewList(userId));
   }, []);
 
   useEffect(() => {
@@ -192,7 +138,10 @@ export default function ReadReview({ martialId }: IProps) {
 
   return (
     <ReviewWrapper>
-      <TotalCount>총 {sortedReviewList.length}개의 조언</TotalCount>
+      <TotalCount>
+        총 {sortedReviewList.length}
+        개의 조언
+      </TotalCount>
       {sortedReviewList.map((review, idx) => {
         return (
           <ReviewBox key={idx}>
