@@ -1,17 +1,14 @@
 import dummy from "../authDummy.json";
-import {
-  createSlice,
-  PayloadAction,
-  createAsyncThunk,
-  current,
-} from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 import axios from "axios";
+import { stat } from "fs";
 
 export interface Istate {
   isLogin: boolean;
   accessToken: string;
   id: number;
   err: string;
+  isSocial: boolean;
 }
 interface IpayLoad {
   payload: {
@@ -26,12 +23,33 @@ interface Ilogin {
   password: string;
 }
 
+interface Isocial {
+  token: string;
+  type: number;
+}
+
 export const setAuth = createAsyncThunk(
   "authReducer/setAuth",
   async ({ email, password }: Ilogin) => {
     return await axios.post(
-      `http://localhost:5000/user/signin`,
+      `${process.env.REACT_APP_API_URL}/user/signin`,
       { email: email, password: password },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      }
+    );
+  }
+);
+
+export const signInSocial = createAsyncThunk(
+  "authReducer/signInSocial",
+  async ({ token, type }: Isocial) => {
+    return await axios.post(
+      `${process.env.REACT_APP_API_URL}/user/sociallogin`,
+      { token, type },
       {
         headers: {
           "Content-Type": "application/json",
@@ -58,14 +76,29 @@ const authReducer = createSlice({
     },
     [setAuth.fulfilled.type]: (state, action: IpayLoad) => {
       state.isLogin = true;
+      state.isSocial = false;
       state.id = action.payload.data.data.id;
       state.accessToken = action.payload.data.data.accessToken;
     },
     [setAuth.rejected.type]: (state) => {
       state.isLogin = false;
       state.accessToken = "";
-      state.err =
-        "잘못된 이메일과 비밀번호를 입력하셨습니다. 다시 입력해주세요";
+      state.err = "로그인 실패, 다시 입력해주세요";
+    },
+    [signInSocial.pending.type]: (state) => {
+      state.isLogin = false;
+      state.err = "";
+    },
+    [signInSocial.fulfilled.type]: (state, action: IpayLoad) => {
+      state.isLogin = true;
+      state.isSocial = true;
+      state.id = action.payload.data.data.id;
+      state.accessToken = action.payload.data.data.accessToken;
+    },
+    [signInSocial.rejected.type]: (state) => {
+      state.isLogin = false;
+      state.accessToken = "";
+      state.err = "로그인 실패, 다시 입력해주세요";
     },
   },
 });
