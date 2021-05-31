@@ -15,11 +15,10 @@ export default function DetailInfo({ img, svg, children }: Idetail) {
   const isSocial = useSelector((state: RootState) => {
     return state.authReducer.isSocial;
   });
-  const imgSrc = isSocial ? img : `${process.env.REACT_APP_API_URL}${img}`;
   return (
     <Detail.board>
       <Detail.imgBox>
-        {img ? <Detail.img src={imgSrc}></Detail.img> : null}
+        {img ? <Detail.img src={img}></Detail.img> : null}
         {svg ? <Detail.img src={svg} /> : null}
       </Detail.imgBox>
       <Detail.childrenBoard>{children}</Detail.childrenBoard>

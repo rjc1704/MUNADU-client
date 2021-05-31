@@ -90,9 +90,7 @@ export default function ReadReply({ reviewId, deleteReplies }: IProps) {
             <ReplyWrapper key={idx}>
               <PhotoAndDesc>
                 <PhotoWrapper>
-                  <Photo4
-                    src={`${process.env.REACT_APP_API_URL}${reply.users.img}`}
-                  ></Photo4>
+                  <Photo4 src={reply.users.img}></Photo4>
                 </PhotoWrapper>
                 <ReplyDescBox>
                   <NickName>{reply.users.name}</NickName>

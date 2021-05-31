@@ -195,13 +195,12 @@ export default function ReadReview({ martialId }: IProps) {
     <ReviewWrapper>
       <TotalCount>총 {sortedReviewList.length}개의 조언</TotalCount>
       {sortedReviewList.map((review, idx) => {
+        console.log(`review.users.img`, review);
         return (
           <ReviewBox key={idx}>
             <NameAndDateAndBtn>
               <NameAndDate>
-                <Photo2
-                  src={`${process.env.REACT_APP_API_URL}${review.users.img}`}
-                ></Photo2>
+                <Photo2 src={review.users.img}></Photo2>
 
                 <Name>{review.users.name}</Name>
                 <Date>{review.updatedAt.slice(0, 10)}</Date>
