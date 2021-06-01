@@ -20,7 +20,12 @@
       "video": "https://www.youtube.com/watch?v=hWzjtwjNgd8",
       "kcal": 514,
       "img": "/martialImg/wtf_teakwondo.svg",
-      "wiki": "https://namu.wiki/w/%EC%84%B8%EA%B3%84%ED%83%9C%EA%B6%8C%EB%8F%84%EC%97%B0%EB%A7%B9"
+      "wiki": "https://namu.wiki/w/%EC%84%B8%EA%B3%84%ED%83%9C%EA%B6%8C%EB%8F%84%EC%97%B0%EB%A7%B9",
+      "coord": [
+        [37.2853218, 127.0532306],
+        [37.2923207, 127.0508702],
+        [37.278923, 127.0048148]
+      ]
     },
     {
       "id": 2,
@@ -36,7 +41,12 @@
       "video": "https://www.youtube.com/watch?v=doLgDKo00MY",
       "kcal": 514,
       "img": "/martialImg/itf_taekwondo.svg",
-      "wiki": "https://namu.wiki/w/%EA%B5%AD%EC%A0%9C%ED%83%9C%EA%B6%8C%EB%8F%84%EC%97%B0%EB%A7%B9?from=ITF%20%ED%83%9C%EA%B6%8C%EB%8F%84"
+      "wiki": "https://namu.wiki/w/%EA%B5%AD%EC%A0%9C%ED%83%9C%EA%B6%8C%EB%8F%84%EC%97%B0%EB%A7%B9?from=ITF%20%ED%83%9C%EA%B6%8C%EB%8F%84",
+      "coord": [
+        [37.3120538, 126.8323498],
+        [37.4950853, 126.8918172],
+        [37.4818002, 126.9722277]
+      ]
     },
     {
       "id": 3,
@@ -52,7 +62,12 @@
       "video": "https://www.youtube.com/watch?v=wIsP6dwoS8M&t=55s",
       "kcal": 440,
       "img": "/martialImg/daehan_kendo.svg",
-      "wiki": "https://namu.wiki/w/%EB%8C%80%ED%95%9C%EA%B2%80%EB%8F%84%ED%9A%8C"
+      "wiki": "https://namu.wiki/w/%EB%8C%80%ED%95%9C%EA%B2%80%EB%8F%84%ED%9A%8C",
+      "coord": [
+        [37.2487711, 127.0359704],
+        [37.2743275, 126.9529603],
+        [37.2731161, 127.0490145]
+      ]
     },
     {
       "id": 4,
@@ -68,7 +83,12 @@
       "video": "https://www.youtube.com/watch?v=X2br_aVqP64",
       "kcal": 440,
       "img": "/martialImg/haedong_kendo.svg",
-      "wiki": "https://namu.wiki/w/%ED%95%B4%EB%8F%99%EA%B2%80%EB%8F%84"
+      "wiki": "https://namu.wiki/w/%ED%95%B4%EB%8F%99%EA%B2%80%EB%8F%84",
+      "coord": [
+        [37.2512196, 127.026888],
+        [37.2699166, 126.9584434],
+        [37.2560597, 127.0404727]
+      ]
     },
     {
       "id": 5,
@@ -84,7 +104,12 @@
       "video": "https://www.youtube.com/watch?v=B-pL851OVsA&t=128s",
       "kcal": 514,
       "img": "/martialImg/judo.svg",
-      "wiki": "https://namu.wiki/w/%EC%9C%A0%EB%8F%84"
+      "wiki": "https://namu.wiki/w/%EC%9C%A0%EB%8F%84",
+      "coord": [
+        [37.2743457, 127.0441575],
+        [37.2850263, 127.0527839],
+        [37.2583927, 127.0308909]
+      ]
     },
     {
       "id": 6,
@@ -100,7 +125,12 @@
       "video": "https://www.youtube.com/watch?v=klG8wSgMLgw",
       "kcal": 900,
       "img": "/martialImg/jiujitsu.svg",
-      "wiki": "https://namu.wiki/w/%EC%A3%BC%EC%A7%93%EC%88%98"
+      "wiki": "https://namu.wiki/w/%EC%A3%BC%EC%A7%93%EC%88%98",
+      "coord": [
+        [37.2719112, 127.0361242],
+        [37.274273, 127.0443383],
+        [37.2544769, 127.0750343]
+      ]
     },
     {
       "id": 7,
@@ -116,7 +146,12 @@
       "video": "https://www.youtube.com/watch?v=Gxlefwc--PA",
       "kcal": 514,
       "img": "/martialImg/hapkido.svg",
-      "wiki": "https://namu.wiki/w/%ED%95%A9%EA%B8%B0%EB%8F%84"
+      "wiki": "https://namu.wiki/w/%ED%95%A9%EA%B8%B0%EB%8F%84",
+      "coord": [
+        [37.2849536, 127.0517767],
+        [37.2957471, 126.9940617],
+        [37.3026504, 127.015979]
+      ]
     },
     {
       "id": 8,
@@ -132,7 +167,12 @@
       "video": "https://www.youtube.com/watch?v=8V9mjm8j6Vw",
       "kcal": 768,
       "img": "/martialImg/boxing.svg",
-      "wiki": "https://namu.wiki/w/%EA%B6%8C%ED%88%AC"
+      "wiki": "https://namu.wiki/w/%EA%B6%8C%ED%88%AC",
+      "coord": [
+        [37.2735248, 127.0436326],
+        [37.2963231, 126.9832893],
+        [37.2784375, 127.0006746]
+      ]
     },
     {
       "id": 9,
@@ -148,7 +188,12 @@
       "video": "https://www.youtube.com/watch?v=-KbZoBN7OeY",
       "kcal": 800,
       "img": "/martialImg/kickboxing.svg",
-      "wiki": "https://namu.wiki/w/%ED%82%A5%EB%B3%B5%EC%8B%B1"
+      "wiki": "https://namu.wiki/w/%ED%82%A5%EB%B3%B5%EC%8B%B1",
+      "coord": [
+        [37.2794096, 127.004245],
+        [37.2537068, 127.0109267],
+        [37.2499469, 126.9787274]
+      ]
     },
     {
       "id": 10,
@@ -164,7 +209,12 @@
       "video": "https://www.youtube.com/watch?v=FQrk8kj7PJc",
       "kcal": 514,
       "img": "/martialImg/kravmaga.svg",
-      "wiki": "https://namu.wiki/w/%ED%81%AC%EB%9D%BC%EB%B8%8C%20%EB%A7%88%EA%B0%80"
+      "wiki": "https://namu.wiki/w/%ED%81%AC%EB%9D%BC%EB%B8%8C%20%EB%A7%88%EA%B0%80",
+      "coord": [
+        [37.5182648, 127.0400952],
+        [37.3673861, 127.1063254],
+        [37.4945154, 127.0204582]
+      ]
     },
     {
       "id": 11,
@@ -180,7 +230,12 @@
       "video": "https://www.youtube.com/watch?v=LAMUciGayhc",
       "kcal": 514,
       "img": "/martialImg/muay_thai.svg",
-      "wiki": "https://namu.wiki/w/%EB%AC%B4%EC%97%90%ED%83%80%EC%9D%B4"
+      "wiki": "https://namu.wiki/w/%EB%AC%B4%EC%97%90%ED%83%80%EC%9D%B4",
+      "coord": [
+        [37.2820153, 127.1595859],
+        [37.2821494, 126.9740224],
+        [37.2734451, 126.941891]
+      ]
     },
     {
       "id": 12,
@@ -196,7 +251,12 @@
       "video": "https://www.youtube.com/watch?v=Lrk0_0_j1n8",
       "kcal": 514,
       "img": "/martialImg/kali_arnis.svg",
-      "wiki": "https://namu.wiki/w/%EC%B9%BC%EB%A6%AC%20%EC%95%84%EB%A5%B4%EB%8B%88%EC%8A%A4"
+      "wiki": "https://namu.wiki/w/%EC%B9%BC%EB%A6%AC%20%EC%95%84%EB%A5%B4%EB%8B%88%EC%8A%A4",
+      "coord": [
+        [37.2152458, 127.0436526],
+        [37.5778157, 126.9723288],
+        [37.5573496, 126.8402851]
+      ]
     },
     {
       "id": 13,
@@ -212,7 +272,8 @@
       "video": "https://www.youtube.com/watch?v=VgoVEnFSZjI",
       "kcal": 514,
       "img": "/martialImg/KFM.svg",
-      "wiki": "https://namu.wiki/w/%EC%BC%80%EC%9D%B4%EC%8B%9C%20%ED%8C%8C%EC%9D%B4%ED%8C%85%20%EB%A9%94%EC%86%8C%EB%93%9C"
+      "wiki": "https://namu.wiki/w/%EC%BC%80%EC%9D%B4%EC%8B%9C%20%ED%8C%8C%EC%9D%B4%ED%8C%85%20%EB%A9%94%EC%86%8C%EB%93%9C",
+      "coord": [[37.5385979, 126.8365745]]
     },
     {
       "id": 14,
@@ -228,7 +289,12 @@
       "video": "https://www.youtube.com/watch?v=HZm9kI0OhRY",
       "kcal": 514,
       "img": "/martialImg/karate.svg",
-      "wiki": "https://namu.wiki/w/%EA%B7%B9%EC%A7%84%EA%B3%B5%EC%88%98%EB%8F%84"
+      "wiki": "https://namu.wiki/w/%EA%B7%B9%EC%A7%84%EA%B3%B5%EC%88%98%EB%8F%84",
+      "coord": [
+        [37.5458889, 126.862815],
+        [37.4721791, 126.6441662],
+        [37.4825772, 126.983093]
+      ]
     },
     {
       "id": 15,
@@ -244,7 +310,12 @@
       "video": "https://www.youtube.com/watch?v=kkRe8xzWqcY",
       "kcal": 514,
       "img": "/martialImg/kudo.svg",
-      "wiki": "https://namu.wiki/w/%EB%8C%80%EB%8F%84%EC%88%99%20%EA%B3%B5%EB%8F%84"
+      "wiki": "https://namu.wiki/w/%EB%8C%80%EB%8F%84%EC%88%99%20%EA%B3%B5%EB%8F%84",
+      "coord": [
+        [37.5583706, 126.9290693],
+        [35.822983, 128.722987],
+        [35.5356091, 129.314101]
+      ]
     },
     {
       "id": 16,
@@ -260,7 +331,12 @@
       "video": "https://www.youtube.com/watch?v=7SYkb7qK2RI",
       "kcal": 400,
       "img": "/martialImg/wushu.svg",
-      "wiki": "https://namu.wiki/w/%EC%9A%B0%EC%8A%88"
+      "wiki": "https://namu.wiki/w/%EC%9A%B0%EC%8A%88",
+      "coord": [
+        [37.5204567, 126.9103828],
+        [37.5801463, 126.8834804],
+        [37.607516, 126.9246785]
+      ]
     },
     {
       "id": 17,
@@ -276,7 +352,12 @@
       "video": "https://www.youtube.com/watch?v=vga3DhizK5A",
       "kcal": 452,
       "img": "/martialImg/tekkyun.svg",
-      "wiki": "https://namu.wiki/w/%ED%83%9D%EA%B2%AC"
+      "wiki": "https://namu.wiki/w/%ED%83%9D%EA%B2%AC",
+      "coord": [
+        [37.5605838, 126.9090604],
+        [37.4774224, 126.9527602],
+        [37.4536432, 126.9040137]
+      ]
     },
     {
       "id": 18,
@@ -292,7 +373,12 @@
       "video": "https://www.youtube.com/watch?v=-BJfRknJDZQ",
       "kcal": 350,
       "img": "/martialImg/wingchun.svg",
-      "wiki": "https://namu.wiki/w/%EC%98%81%EC%B6%98%EA%B6%8C"
+      "wiki": "https://namu.wiki/w/%EC%98%81%EC%B6%98%EA%B6%8C",
+      "coord": [
+        [37.5551505, 126.9178062],
+        [37.5566867, 126.9351028],
+        [37.481679, 127.0440329]
+      ]
     },
     {
       "id": 19,
@@ -308,7 +394,12 @@
       "video": "https://www.youtube.com/watch?v=H7kgILKgs6o",
       "kcal": 514,
       "img": "/martialImg/jeetkunedo.svg",
-      "wiki": "https://namu.wiki/w/%EC%A0%88%EA%B6%8C%EB%8F%84"
+      "wiki": "https://namu.wiki/w/%EC%A0%88%EA%B6%8C%EB%8F%84",
+      "coord": [
+        [37.5219663, 127.0204688],
+        [37.4903301, 127.0354648],
+        [37.6870821, 126.76927]
+      ]
     },
     {
       "id": 20,
@@ -324,7 +415,11 @@
       "video": "https://www.youtube.com/watch?v=A0wKfgTu8sc",
       "kcal": 514,
       "img": "/martialImg/hanmoodo.svg",
-      "wiki": "https://ko.wikipedia.org/wiki/%ED%95%9C%EB%AC%B4%EB%8F%84"
+      "wiki": "https://ko.wikipedia.org/wiki/%ED%95%9C%EB%AC%B4%EB%8F%84",
+      "coord": [
+        [35.0720908, 128.9868562],
+        [35.0804094, 128.9650357]
+      ]
     },
     {
       "id": 21,
@@ -340,7 +435,12 @@
       "video": "https://www.youtube.com/watch?v=CWeEVVaw5z8",
       "kcal": 500,
       "img": "/martialImg/capoeira.svg",
-      "wiki": "https://namu.wiki/w/%EC%B9%B4%ED%8F%AC%EC%97%90%EB%9D%BC"
+      "wiki": "https://namu.wiki/w/%EC%B9%B4%ED%8F%AC%EC%97%90%EB%9D%BC",
+      "coord": [
+        [37.5571347, 127.0815224],
+        [37.4944939, 126.7612322],
+        [37.5555028, 126.9415448]
+      ]
     },
     {
       "id": 22,
@@ -356,7 +456,8 @@
       "video": "https://www.youtube.com/watch?v=KwzFB-hz1ZY",
       "kcal": 515,
       "img": "/martialImg/sambo.svg",
-      "wiki": "https://namu.wiki/w/%EC%82%BC%EB%B3%B4(%EB%AC%B4%EC%88%A0)"
+      "wiki": "https://namu.wiki/w/%EC%82%BC%EB%B3%B4(%EB%AC%B4%EC%88%A0)",
+      "coord": [[35.8632619, 129.2220646]]
     },
     {
       "id": 23,
@@ -372,7 +473,12 @@
       "video": "https://www.youtube.com/watch?v=Wo1WZ5JuyZA",
       "kcal": 515,
       "img": "/martialImg/wrestling.svg",
-      "wiki": "https://namu.wiki/w/%EB%A0%88%EC%8A%AC%EB%A7%81"
+      "wiki": "https://namu.wiki/w/%EB%A0%88%EC%8A%AC%EB%A7%81",
+      "coord": [
+        [37.5953545, 127.0826792],
+        [37.5887973, 127.0509705],
+        [37.5152338, 127.0370229]
+      ]
     },
     {
       "id": 24,
@@ -388,7 +494,12 @@
       "video": "https://www.youtube.com/watch?v=dgyYAPnq4N0",
       "kcal": 514,
       "img": "/martialImg/taichi.svg",
-      "wiki": "https://namu.wiki/w/%ED%83%9C%EA%B7%B9%EA%B6%8C"
+      "wiki": "https://namu.wiki/w/%ED%83%9C%EA%B7%B9%EA%B6%8C",
+      "coord": [
+        [37.5572367, 127.0828179],
+        [37.5567356, 127.0825143],
+        [37.5807191, 127.0448162]
+      ]
     },
     {
       "id": 25,
@@ -404,7 +515,12 @@
       "video": "https://www.youtube.com/watch?v=qdUeyOzZOxQ",
       "kcal": 514,
       "img": "/martialImg/militarymartialarts.svg",
-      "wiki": "https://namu.wiki/w/%ED%8A%B9%EA%B3%B5%EB%AC%B4%EC%88%A0"
+      "wiki": "https://namu.wiki/w/%ED%8A%B9%EA%B3%B5%EB%AC%B4%EC%88%A0",
+      "coord": [
+        [37.5569653, 127.0883294],
+        [37.5378185, 127.0536555],
+        [37.5588067, 127.0880246]
+      ]
     },
     {
       "id": 26,
@@ -420,7 +536,12 @@
       "video": "https://www.youtube.com/watch?v=GupN7eB4Bag",
       "kcal": 514,
       "img": "/martialImg/ssireum.svg",
-      "wiki": "https://namu.wiki/w/%EC%94%A8%EB%A6%84"
+      "wiki": "https://namu.wiki/w/%EC%94%A8%EB%A6%84",
+      "coord": [
+        [37.5148022, 127.0736261],
+        [37.5148022, 127.0736261],
+        [37.520934, 127.122959]
+      ]
     },
     {
       "id": 27,
@@ -436,7 +557,12 @@
       "video": "https://www.youtube.com/watch?v=palQikL1G3g",
       "kcal": 514,
       "img": "/martialImg/aikido.svg",
-      "wiki": "https://namu.wiki/w/%EC%95%84%EC%9D%B4%ED%82%A4%EB%8F%84"
+      "wiki": "https://namu.wiki/w/%EC%95%84%EC%9D%B4%ED%82%A4%EB%8F%84",
+      "coord": [
+        [37.4841666, 126.9795743],
+        [37.5548545, 126.937873],
+        [37.4028822, 126.9617737]
+      ]
     },
     {
       "id": 28,
@@ -452,7 +578,12 @@
       "video": "https://www.youtube.com/watch?v=zd6-1cyhg4g",
       "kcal": 514,
       "img": "/martialImg/fencing.svg",
-      "wiki": "https://namu.wiki/w/%ED%8E%9C%EC%8B%B1"
+      "wiki": "https://namu.wiki/w/%ED%8E%9C%EC%8B%B1",
+      "coord": [
+        [37.4972985, 126.997805],
+        [37.4882806, 126.9928333],
+        [37.5377788, 126.999205]
+      ]
     },
     {
       "id": 29,
@@ -468,7 +599,8 @@
       "video": "https://www.youtube.com/watch?v=2tiuBePQaQo&t=480s",
       "kcal": 514,
       "img": "/martialImg/systema.svg",
-      "wiki": "https://namu.wiki/w/%EC%8B%9C%EC%8A%A4%ED%85%8C%EB%A7%88"
+      "wiki": "https://namu.wiki/w/%EC%8B%9C%EC%8A%A4%ED%85%8C%EB%A7%88",
+      "coord": [[36.8020738, 127.1311525]]
     },
     {
       "id": 30,
@@ -484,7 +616,12 @@
       "video": "https://www.youtube.com/watch?v=nBKGfvRRpeI",
       "kcal": 514,
       "img": "/martialImg/gongkwonyusul.svg",
-      "wiki": "https://namu.wiki/w/%EA%B3%B5%EA%B6%8C%EC%9C%A0%EC%88%A0"
+      "wiki": "https://namu.wiki/w/%EA%B3%B5%EA%B6%8C%EC%9C%A0%EC%88%A0",
+      "coord": [
+        [37.0034962, 127.1765645],
+        [37.6702816, 126.7619659],
+        [37.7232133, 126.7390278]
+      ]
     }
   ]
 }
