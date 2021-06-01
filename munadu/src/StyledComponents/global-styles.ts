@@ -5,9 +5,14 @@ import { normalize } from "styled-normalize";
 const GlobalStyle = createGlobalStyle`
   ${normalize}
 
-  html,
+  html{
+    min-height:100%;
+    position:relative;
+  }
+
   body {
     overflow: hidden;
+    height: 100%;
   }
 
   * {

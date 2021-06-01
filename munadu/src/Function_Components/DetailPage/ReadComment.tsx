@@ -3,7 +3,11 @@ import CreateComment from "./CreateComment";
 import EditComment from "./EditComment";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../Redux/Store/store";
-import { getCommentList } from "../../Redux/Reducers/commentReducer";
+import {
+  getCommentList,
+  getUserComment,
+  getUserReply,
+} from "../../Redux/Reducers/commentReducer";
 import styled from "styled-components";
 
 import {
@@ -72,13 +76,24 @@ export const PhotoWrapper = styled.div`
 // import profileImg from "./temp.svg";
 
 interface IProps {
-  martialId: number;
+  martialId?: number;
+  userId?: number;
+  isReview?: boolean;
 }
-export default function ReadComment({ martialId }: IProps) {
+export default function ReadComment({ martialId, userId, isReview }: IProps) {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getCommentList(martialId));
-  }, []);
+    if (martialId) {
+      dispatch(getCommentList(martialId));
+    } else if (userId) {
+      if (isReview) {
+        dispatch(getUserReply(userId));
+      } else {
+        dispatch(getUserComment(userId));
+      }
+    }
+  }, [isReview]);
+
   const commentList = useSelector(
     (state: RootState) => state.commentReducer.data.commentList
   );
@@ -95,7 +110,7 @@ export default function ReadComment({ martialId }: IProps) {
     <div>
       <CommentWrapper>
         <CommentHeader>총 {commentList.length}개의 한줄평</CommentHeader>
-        <CreateComment martialId={martialId} />
+        {martialId ? <CreateComment martialId={martialId} /> : null}
         {commentList.map((comment, idx) => {
           return (
             <ReplyWrapper key={idx}>

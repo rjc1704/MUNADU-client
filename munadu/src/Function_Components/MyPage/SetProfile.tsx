@@ -32,6 +32,7 @@ export default function SetProfile({ userData, callback }: Idata) {
   const uploadProfile = () => {
     dispatch(setProfile({ name, address, token }));
     setIsModal(true);
+    setIsChange(true);
   };
   const changeAddress = (data: string): void => {
     setIsChange(false);
@@ -44,33 +45,35 @@ export default function SetProfile({ userData, callback }: Idata) {
   return (
     <>
       <MyPageStyle.content>
-        <MyPageStyle.title>닉네임 변경</MyPageStyle.title>
-        <Input width={400} value={name} onChange={changeName}></Input>
-        <MyPageStyle.title>주소 변경</MyPageStyle.title>
-        <div>
-          {typeof address === "string" && address !== "null"
-            ? address
-            : "주소 찾기 버튼을 눌러 주소를 변경해주세요"}
-        </div>
-        <SetAddress changeAddress={changeAddress}></SetAddress>
+        <MyPageStyle.subTitle>닉네임 및 주소 변경</MyPageStyle.subTitle>
+        <Input value={name} onChange={changeName}></Input>
+        <MyPageStyle.addressBox>
+          <Input
+            value={
+              typeof address === "string" && address !== "null"
+                ? address
+                : "주소 찾기 버튼을 눌러 주소를 변경해주세요"
+            }
+          ></Input>
+          <SetAddress changeAddress={changeAddress}></SetAddress>
+        </MyPageStyle.addressBox>
+        <MyPageStyle.buttonPosition>
+          <Button
+            onClick={uploadProfile}
+            color={isChange ? "white" : "black"}
+            disabled={isChange}
+          >
+            정보 변경
+          </Button>
+          <Button
+            onClick={() => {
+              callback(true);
+            }}
+          >
+            취소
+          </Button>
+        </MyPageStyle.buttonPosition>
       </MyPageStyle.content>
-
-      <MyPageStyle.buttonPosition>
-        <Button
-          onClick={uploadProfile}
-          color={isChange ? "white" : "black"}
-          disabled={isChange}
-        >
-          정보 변경
-        </Button>
-        <Button
-          onClick={() => {
-            callback(true);
-          }}
-        >
-          취소
-        </Button>
-      </MyPageStyle.buttonPosition>
 
       {isModal ? (
         <Modal

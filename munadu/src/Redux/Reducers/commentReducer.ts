@@ -16,6 +16,36 @@ export const getCommentList = createAsyncThunk(
   }
 );
 
+export const getUserComment = createAsyncThunk(
+  "commentReducer/getUserComment",
+  async (id: number) => {
+    return await axios.get(
+      `${process.env.REACT_APP_API_URL}/comment/user-list/${id}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      }
+    );
+  }
+);
+
+export const getUserReply = createAsyncThunk(
+  "commentReducer/getUserReply",
+  async (id: number) => {
+    return await axios.get(
+      `${process.env.REACT_APP_API_URL}/reply/user-list/${id}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      }
+    );
+  }
+);
+
 interface ICreateProps {
   comment: string;
   userid: number;
@@ -127,6 +157,12 @@ const commentReducer = createSlice({
         return comment.id === action.payload.commentid;
       });
       state.data.commentList[index].comment = action.payload.curComment;
+    },
+    [getUserComment.fulfilled.type]: (state, action) => {
+      state.data.commentList = action.payload.data.data;
+    },
+    [getUserReply.fulfilled.type]: (state, action) => {
+      state.data.commentList = action.payload.data.data;
     },
   },
 });

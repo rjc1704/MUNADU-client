@@ -30,6 +30,7 @@ export default function SetAddress({ changeAddress }: any) {
   return (
     <>
       <Button
+        margin={"0px 0px 0px 10px"}
         onClick={() => {
           setIsModal(true);
         }}
