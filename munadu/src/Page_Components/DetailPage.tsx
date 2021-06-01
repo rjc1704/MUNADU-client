@@ -35,7 +35,7 @@ const ContentContainer = styled.div`
   overflow: visible;
 `;
 
-const TextWrapper = styled.div`
+export const TextWrapper = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
@@ -56,7 +56,7 @@ interface Itext {
   tabValue: number;
   idx: number;
 }
-const Text = styled.div<Itext>`
+export const Text = styled.div<Itext>`
   margin-right: 5%;
   cursor: pointer;
   text-decoration: ${(props) => {
@@ -68,7 +68,7 @@ const Text = styled.div<Itext>`
     if (props.tabValue !== props.idx) return "#606060";
   }};
 `;
-const TextBox = styled.div`
+export const TextBox = styled.div`
   display: flex;
   justify-content: flex-start;
   min-width: 50%;

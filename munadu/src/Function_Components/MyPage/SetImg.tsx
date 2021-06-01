@@ -60,6 +60,7 @@ export default function SetImage({ callback }: any) {
   const uploadImg = (): void => {
     dispatch(setImg({ form: imgFile, token: token }));
     setIsModal(true);
+    setOnBtn(true);
   };
 
   const closeModal = (): void => {

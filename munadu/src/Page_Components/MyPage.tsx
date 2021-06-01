@@ -9,7 +9,7 @@ import Button from "../StyledComponents/button";
 import SetProfile from "../Function_Components/MyPage/SetProfile";
 import SetPassword from "../Function_Components/MyPage/SetPassword";
 import HeaderBar from "../Function_Components/Common/HeaderBar";
-import ReadReview from "../Function_Components/DetailPage/ReadReview";
+import UserLecord from "../Function_Components/MyPage/UserLecord";
 
 export default function MyPage() {
   const userData: Istate = useSelector((state: RootState) => {
@@ -58,17 +58,20 @@ export default function MyPage() {
                 </p>
               </div>
             </MyPageStyle.userProfile>
-            <ReadReview userID={userId} />
+            <UserLecord userId={userId}></UserLecord>
           </MyPageStyle.setBoard>
         </MyPageStyle.contentBoard>
       ) : (
         <MyPageStyle.setBoard>
           <MyPageStyle.contentBoard>
             {isSocial ? (
-              <SetProfile
-                userData={userData}
-                callback={setIsChange}
-              ></SetProfile>
+              <>
+                <SetImage callback={setIsChange}></SetImage>
+                <SetProfile
+                  userData={userData}
+                  callback={setIsChange}
+                ></SetProfile>
+              </>
             ) : (
               <>
                 <SetImage callback={setIsChange}></SetImage>

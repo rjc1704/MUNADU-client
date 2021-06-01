@@ -32,6 +32,7 @@ export default function SetProfile({ userData, callback }: Idata) {
   const uploadProfile = () => {
     dispatch(setProfile({ name, address, token }));
     setIsModal(true);
+    setIsChange(true);
   };
   const changeAddress = (data: string): void => {
     setIsChange(false);
@@ -56,7 +57,6 @@ export default function SetProfile({ userData, callback }: Idata) {
           ></Input>
           <SetAddress changeAddress={changeAddress}></SetAddress>
         </MyPageStyle.addressBox>
-
         <MyPageStyle.buttonPosition>
           <Button
             onClick={uploadProfile}
