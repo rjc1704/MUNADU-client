@@ -26,6 +26,7 @@ export const ReplyWrapper = styled.div`
   width: 100%;
   border-top: 1px solid #eeeeee;
   padding-top: 1em;
+  min-height: 10em;
 `;
 
 export const ReplyDescBox = styled.div`
@@ -33,7 +34,7 @@ export const ReplyDescBox = styled.div`
   flex-direction: column;
   max-width: 100%;
   padding: 0 1.3em 0.7em 1.3em;
-  height: 7em;
+  height: 8em;
   overflow-y: auto;
 `;
 

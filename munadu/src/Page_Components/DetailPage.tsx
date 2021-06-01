@@ -311,7 +311,7 @@ export default function DetailPage() {
         ) : tabMenu === 1 ? (
           <ReadComment martialId={martialId} />
         ) : (
-          <ReadLocation />
+          <ReadLocation martialId={martialId} />
         )}
       </ContentContainer>
     </PageContainer>
