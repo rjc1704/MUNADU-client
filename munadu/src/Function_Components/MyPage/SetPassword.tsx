@@ -118,32 +118,43 @@ export default function SetPassword({ callback }: Idata) {
   return (
     <>
       <MyPageStyle.content>
-        <p>현재 비밀번호</p>
-        <Input type="password" width={400} onChange={changePsd}></Input>
-        <p>변경할 비밀번호</p>
-        <Input type="password" width={400} onChange={changeAfterPsd}></Input>
+        <MyPageStyle.subTitle>비밀번호 변경</MyPageStyle.subTitle>
+        <Input
+          placeholder="현재 비밀번호"
+          type="password"
+          onChange={changePsd}
+        ></Input>
+        <Alert color={isErr.afterpsd}></Alert>
+        <Input
+          placeholder="변경할 비밀번호"
+          type="password"
+          onChange={changeAfterPsd}
+        ></Input>
         <Alert color={isErr.afterpsd}>{errMessage.afterpsd}</Alert>
-        <p>변경할 비밀번호 확인</p>
-        <Input type="password" width={400} onChange={changeCheckPsd}></Input>
+        <Input
+          placeholder="변경할 비밀번호 확인"
+          type="password"
+          onChange={changeCheckPsd}
+        ></Input>
         <Alert color={isErr.checkpsd}>{errMessage.checkpsd}</Alert>
         <Alert color={false}>{errMessage.errMsg}</Alert>
+        <MyPageStyle.buttonPosition>
+          <Button
+            onClick={uploadPassword}
+            color={isChange ? "white" : "black"}
+            disabled={isChange}
+          >
+            비밀번호 변경
+          </Button>
+          <Button
+            onClick={() => {
+              callback(true);
+            }}
+          >
+            취소
+          </Button>
+        </MyPageStyle.buttonPosition>
       </MyPageStyle.content>
-      <MyPageStyle.buttonPosition>
-        <Button
-          onClick={uploadPassword}
-          color={isChange ? "white" : "black"}
-          disabled={isChange}
-        >
-          정보 변경
-        </Button>
-        <Button
-          onClick={() => {
-            callback(true);
-          }}
-        >
-          취소
-        </Button>
-      </MyPageStyle.buttonPosition>
 
       {isModal ? (
         <Modal

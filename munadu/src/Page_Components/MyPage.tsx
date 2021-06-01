@@ -21,58 +21,49 @@ export default function MyPage() {
   const [isChange, setIsChange] = useState<boolean>(true);
   const userId = useSelector((state: RootState) => state.authReducer.id);
   return (
-    <>
+    <MyPageStyle.page>
       <HeaderBar></HeaderBar>
-      <MyPageStyle.page>
-        {isChange ? (
-          <>
-            <MyPageStyle.board>
-              <DetailInfo img={userData.img ? userData.img : ""}>
-                <MyPageStyle.textBoard>
-                  <div>
-                    <p>주소 :</p>
-                    <p>닉네임 :</p>
-                    <p>이메일 :</p>
-                  </div>
-                  <MyPageStyle.textContent>
-                    <p>
-                      {userData.address !== "null"
-                        ? userData.address
-                        : "프로필 수정을 통해 주소를 입력해주세요"}
-                    </p>
-                    <p>{userData.name}</p>
-                    <p>{userData.email}</p>
-                  </MyPageStyle.textContent>
-                  {isChange ? (
-                    <Button
-                      color="white"
-                      onClick={() => {
-                        setIsChange(false);
-                      }}
-                    >
-                      내 정보 수정
-                    </Button>
-                  ) : (
-                    <Button
-                      color="white"
-                      onClick={() => {
-                        setIsChange(true);
-                      }}
-                    >
-                      내 정보 보기
-                    </Button>
-                  )}
-                </MyPageStyle.textBoard>
-              </DetailInfo>
-            </MyPageStyle.board>{" "}
-            <MyPageStyle.contentBoard>
-              <MyPageStyle.setBoard>
-                <ReadReview userID={userId} />
-              </MyPageStyle.setBoard>
-            </MyPageStyle.contentBoard>
-          </>
-        ) : (
+      <MyPageStyle.board>
+        <DetailInfo img={userData.img ? userData.img : ""}>
+          <MyPageStyle.textBoard>
+            <MyPageStyle.textContent>{userData.name}</MyPageStyle.textContent>
+          </MyPageStyle.textBoard>
+        </DetailInfo>
+      </MyPageStyle.board>
+      {isChange ? (
+        <MyPageStyle.contentBoard>
           <MyPageStyle.setBoard>
+            <MyPageStyle.baseInfo>
+              <MyPageStyle.title>기본 정보</MyPageStyle.title>
+              <Button
+                color="black"
+                onClick={() => {
+                  setIsChange(false);
+                }}
+              >
+                내 정보 수정
+              </Button>
+            </MyPageStyle.baseInfo>
+            <MyPageStyle.userProfile>
+              <div>
+                <MyPageStyle.userInfo>이메일</MyPageStyle.userInfo>
+                <p>{userData.email}</p>
+              </div>
+              <div>
+                <MyPageStyle.userInfo>주소</MyPageStyle.userInfo>
+                <p>
+                  {userData.address === "null"
+                    ? "정보 수정을 통해 주소를 입력해주세요"
+                    : userData.address}
+                </p>
+              </div>
+            </MyPageStyle.userProfile>
+            <ReadReview userID={userId} />
+          </MyPageStyle.setBoard>
+        </MyPageStyle.contentBoard>
+      ) : (
+        <MyPageStyle.setBoard>
+          <MyPageStyle.contentBoard>
             {isSocial ? (
               <SetProfile
                 userData={userData}
@@ -88,9 +79,9 @@ export default function MyPage() {
                 <SetPassword callback={setIsChange}></SetPassword>
               </>
             )}
-          </MyPageStyle.setBoard>
-        )}
-      </MyPageStyle.page>
-    </>
+          </MyPageStyle.contentBoard>
+        </MyPageStyle.setBoard>
+      )}
+    </MyPageStyle.page>
   );
 }

@@ -68,41 +68,46 @@ export default function SetImage({ callback }: any) {
   return (
     <>
       <MyPageStyle.content>
-        <MyPageStyle.title>프로필 이미지 변경</MyPageStyle.title>
+        <MyPageStyle.subTitle>프로필 이미지 변경</MyPageStyle.subTitle>
         <MyPageStyle.contentBoard>
           <Detail.imgBox>
             <MyPageStyle.imgLabel htmlFor="file">
               <Detail.img src={imgBase64}></Detail.img>
+              <MyPageStyle.imgInput
+                type="file"
+                accept="image/jpeg, image/png, image/jpg"
+                onChange={changeImage}
+                id="file"
+              ></MyPageStyle.imgInput>
             </MyPageStyle.imgLabel>
           </Detail.imgBox>
-          <div>
-            <p>이미지를 눌러 원하는 이미지 파일을 업로드 해주세요</p>
+          <MyPageStyle.imgBox>
+            <MyPageStyle.guideText>
+              좌측 버튼을 눌러 원하는
+              <br />
+              이미지 파일을 업로드 해주세요
+            </MyPageStyle.guideText>
             <MyPageStyle.errMessage>{errMessage}</MyPageStyle.errMessage>
-            <MyPageStyle.imgInput
-              type="file"
-              accept="image/jpeg, image/png, image/jpg"
-              onChange={changeImage}
-              id="file"
-            ></MyPageStyle.imgInput>
-          </div>
+            <MyPageStyle.buttonPosition>
+              <Button
+                onClick={uploadImg}
+                color={onBtn ? "white" : ""}
+                disabled={onBtn}
+              >
+                이미지 변경
+              </Button>
+              <Button
+                onClick={() => {
+                  callback(true);
+                }}
+              >
+                취소
+              </Button>
+            </MyPageStyle.buttonPosition>
+          </MyPageStyle.imgBox>
         </MyPageStyle.contentBoard>
       </MyPageStyle.content>
-      <MyPageStyle.buttonPosition>
-        <Button
-          onClick={uploadImg}
-          color={onBtn ? "white" : ""}
-          disabled={onBtn}
-        >
-          이미지 변경
-        </Button>
-        <Button
-          onClick={() => {
-            callback(true);
-          }}
-        >
-          취소
-        </Button>
-      </MyPageStyle.buttonPosition>
+
       {isModal ? (
         <Modal
           close={closeModal}
