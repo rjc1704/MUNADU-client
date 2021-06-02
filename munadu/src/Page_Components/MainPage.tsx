@@ -1,13 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Banner from "../Function_Components/MainPage/Banner";
 import MartialListForm from "../Function_Components/MainPage/MartialListForm";
 import RecommendForm from "../Function_Components/MainPage/RecommendForm";
-import { useHistory } from "react-router";
+import { useHistory, useLocation } from "react-router";
 import HeaderBar from "../Function_Components/Common/HeaderBar";
+
+interface IProps {
+  select: boolean;
+}
 
 export default function MainPage() {
   const [isSelected, setIsSelected] = useState(true);
+  const location = useLocation<IProps>();
+
+  useEffect(() => {
+    setIsSelected(location.state.select);
+  }, [location]);
 
   const checkSelected = (e: boolean) => {
     setIsSelected(e);

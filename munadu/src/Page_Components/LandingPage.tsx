@@ -107,7 +107,10 @@ function LandingPage() {
           </Button>
           <Button
             onClick={() => {
-              history.push("/mainpage");
+              history.push({
+                pathname: "/mainpage",
+                state: { select: true },
+              });
             }}
           >
             시작 하기
