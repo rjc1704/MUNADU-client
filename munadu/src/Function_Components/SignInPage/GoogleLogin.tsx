@@ -1,6 +1,8 @@
 import { GoogleLoginButton } from "ts-react-google-login-component";
 import { signInSocial } from "../../Redux/Reducers/authReducer";
 import { useDispatch } from "react-redux";
+import Button from "../../StyledComponents/button";
+import { GoogleIcon } from "../../StyledComponents/sign";
 
 export default function GoogleLogin() {
   const clientID = {
@@ -16,14 +18,18 @@ export default function GoogleLogin() {
 
   return (
     <div>
-      로그인
       <GoogleLoginButton
         clientConfig={clientID}
         responseHandler={resGoogle}
         failureHandler={(e) => {
           console.log(e);
         }}
-      ></GoogleLoginButton>
+      >
+        <Button color="white" margin="10px 0px" width="100%" height="38px">
+          <GoogleIcon src="https://cdn.icon-icons.com/icons2/2699/PNG/512/google_logo_icon_169090.png"></GoogleIcon>
+          구글 로그인
+        </Button>
+      </GoogleLoginButton>
     </div>
   );
 }

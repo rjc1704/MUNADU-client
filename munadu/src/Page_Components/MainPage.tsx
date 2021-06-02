@@ -15,7 +15,9 @@ export default function MainPage() {
   const location = useLocation<IProps>();
 
   useEffect(() => {
-    setIsSelected(location.state.select);
+    if (location.state) {
+      setIsSelected(location.state.select);
+    }
   }, [location]);
 
   const checkSelected = (e: boolean) => {

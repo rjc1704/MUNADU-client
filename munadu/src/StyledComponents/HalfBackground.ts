@@ -9,6 +9,7 @@ const HalfBackground = styled.div<HalfProps>`
   background: ${(props) => props.theme.color.black};
   width: 100%;
   height: 42.5vh;
+  z-index: 1;
 `;
 
 export default HalfBackground;
