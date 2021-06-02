@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   SingBackground,
   SignBoard,
@@ -14,7 +14,8 @@ import { setAuth } from "../Redux/Reducers/authReducer";
 import Modal from "../Function_Components/Common/Modal";
 import axios from "axios";
 import HeaderBar from "../Function_Components/Common/HeaderBar";
-
+import HalfBackground from "../StyledComponents/HalfBackground";
+import GoogleLogin from "../Function_Components/SignInPage/GoogleLogin";
 interface Ialert {
   email: boolean;
   password: boolean;
@@ -53,26 +54,41 @@ export default function SignUpPage() {
     }
     setEmail(e.target.value);
   };
+
   const currentName = (e: any) => {
-    if (!Inspect(name, "name")) {
-      setNameAlert("공백, 특문을 제외한 2~10글자로 입력");
-      setIsAlert({ ...isAlert, name: false });
-    } else {
-      setNameAlert("사용 가능한 닉네임입니다.");
-      setIsAlert({ ...isAlert, name: true });
-    }
     setName(e.target.value);
   };
-  const currentPassword = (e: any) => {
-    if (!Inspect(password, "password")) {
-      setPasswordAlert("문자와 숫자로 구성되어야 합니다.");
-      setIsAlert({ ...isAlert, password: false });
+
+  useEffect(() => {
+    if (Inspect(name, "name")) {
+      setNameAlert("사용 가능한 닉네임입니다.");
+      setIsAlert({ ...isAlert, name: true });
+    } else if (name === "") {
+      setNameAlert("");
+      setIsAlert({ ...isAlert, name: false });
     } else {
-      setPasswordAlert("사용 가능한 비밀번호입니다.");
-      setIsAlert({ ...isAlert, password: true });
+      setNameAlert("공백, 특문을 제외한 2~10글자로 입력");
+      setIsAlert({ ...isAlert, name: false });
     }
+  }, [name]);
+
+  const currentPassword = (e: any) => {
     setPassword(e.target.value);
   };
+
+  useEffect(() => {
+    if (Inspect(password, "password")) {
+      setPasswordAlert("사용 가능한 비밀번호입니다.");
+      setIsAlert({ ...isAlert, password: true });
+    } else if (password === "") {
+      setPasswordAlert("");
+      setIsAlert({ ...isAlert, password: false });
+    } else {
+      setPasswordAlert("문자와 숫자로 구성되어야 합니다.");
+      setIsAlert({ ...isAlert, password: false });
+    }
+  }, [password]);
+
   const currentCheckPassword = (e: any) => {
     if (password !== e.target.value) {
       setCheckPasswordAlert("비밀 번호가 다릅니다.");
@@ -179,6 +195,7 @@ export default function SignUpPage() {
           >
             이미 계정이 있으신가요? <b>로그인</b>
           </Button>
+          <GoogleLogin></GoogleLogin>
         </SignBoard>
         {isModal ? (
           <Modal
@@ -195,6 +212,7 @@ export default function SignUpPage() {
           </Modal>
         ) : null}
       </SingBackground>
+      <HalfBackground />
     </>
   );
 }

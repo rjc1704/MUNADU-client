@@ -14,7 +14,7 @@ import { setAuth } from "../Redux/Reducers/authReducer";
 import { RootState } from "../Redux/Store/store";
 import GoogleLogin from "../Function_Components/SignInPage/GoogleLogin";
 import HeaderBar from "../Function_Components/Common/HeaderBar";
-
+import HalfBackground from "../StyledComponents/HalfBackground";
 interface Ilogin {
   isLogin: boolean;
   accessToken: string;
@@ -65,7 +65,7 @@ export default function SignInPage() {
   };
   return (
     <>
-      <HeaderBar></HeaderBar>
+      <HeaderBar />
       <SingBackground>
         <SignBoard
           onSubmit={(e) => {
@@ -109,6 +109,7 @@ export default function SignInPage() {
           <GoogleLogin></GoogleLogin>
         </SignBoard>
       </SingBackground>
+      <HalfBackground />
     </>
   );
 }

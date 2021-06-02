@@ -97,26 +97,77 @@ export default function HeaderBar({ isCheck = true }: { isCheck?: boolean }) {
               </Header.hbgMenu>
             </>
           ) : (
-            <div>
-              <Button
-                color=""
+            <>
+              <Header.btnBoard>
+                <Button
+                  color=""
+                  onClick={() => {
+                    dispatch(setNoAuth());
+                    history.push("/");
+                  }}
+                >
+                  로그아웃
+                </Button>
+                <Button
+                  color="white"
+                  onClick={() => {
+                    dispatch(setUser(isUser.id));
+                    history.push("/mypage");
+                  }}
+                >
+                  내 정보
+                </Button>
+              </Header.btnBoard>
+              <Header.hbgBtn
                 onClick={() => {
-                  dispatch(setNoAuth());
-                  history.push("/");
+                  setIsOpen(!isOpen);
                 }}
               >
-                로그아웃
-              </Button>
-              <Button
-                color="white"
-                onClick={() => {
-                  dispatch(setUser(isUser.id));
-                  history.push("/mypage");
-                }}
-              >
-                내 정보
-              </Button>
-            </div>
+                <img src={isOpen ? "/exit.svg" : "/hamburger.svg"}></img>
+              </Header.hbgBtn>
+              <Header.hbgMenu isOpen={isOpen}>
+                <Header.hbgMenuBtnBoard>
+                  <Button
+                    color=""
+                    onClick={() => {
+                      dispatch(setNoAuth());
+                      history.push("/");
+                    }}
+                  >
+                    로그아웃
+                  </Button>
+                  <Button
+                    color="white"
+                    onClick={() => {
+                      dispatch(setUser(isUser.id));
+                      history.push("/mypage");
+                    }}
+                  >
+                    내 정보
+                  </Button>
+                </Header.hbgMenuBtnBoard>
+                <Header.hbgMenuBtn
+                  onClick={() => {
+                    history.push({
+                      pathname: "/mainpage",
+                      state: { select: true },
+                    });
+                  }}
+                >
+                  추천 무술
+                </Header.hbgMenuBtn>
+                <Header.hbgMenuBtn
+                  onClick={() => {
+                    history.push({
+                      pathname: "/mainpage",
+                      state: { select: false },
+                    });
+                  }}
+                >
+                  무술 전체 보기
+                </Header.hbgMenuBtn>
+              </Header.hbgMenu>
+            </>
           )}
         </Header.HeaderBox>
       </Header.HeaderWrapper>
