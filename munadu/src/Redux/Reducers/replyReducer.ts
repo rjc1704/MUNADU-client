@@ -8,7 +8,7 @@ import {
 import axios from "axios";
 
 export const getReplyList = createAsyncThunk(
-  "reviewReducer/getReplyList",
+  "replyReducer/getReplyList",
   async () => {
     return await axios.get(
       `${process.env.REACT_APP_API_URL}/reply/all-reply-list`,

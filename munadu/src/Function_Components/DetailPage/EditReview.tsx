@@ -16,6 +16,11 @@ const EditWrapper = styled.div`
   box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   z-index: 1;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    left: -70px;
+    width: 140px;
+    height: 50px;
+  }
 `;
 interface IProps {
   userId: number;

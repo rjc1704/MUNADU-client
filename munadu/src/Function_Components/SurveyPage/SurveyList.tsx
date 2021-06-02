@@ -265,8 +265,9 @@ export default function SurveyList() {
       <OptionAndBtn>
         {isShow === false ? (
           <OptionBox>
-            <AnswerText>
+            <AnswerText htmlFor={"one"}>
               <Input
+                id="one"
                 type="radio"
                 value="0"
                 name="chkInfo"
