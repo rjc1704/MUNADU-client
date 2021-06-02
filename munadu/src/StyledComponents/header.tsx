@@ -17,6 +17,9 @@ const HeaderBox = styled.div`
   width: 64%;
   height: 4em;
   background: ${(props) => props.theme.color.black};
+  @media (max-width: 1024px) {
+    width: 95%;
+  }
 `;
 const HeaderLogo = styled.div`
   color: ${(props) => props.theme.color.white};
@@ -25,9 +28,59 @@ const HeaderLogo = styled.div`
   font-weight: 900;
   cursor: pointer;
 `;
+const btnBoard = styled.div`
+  @media (max-width: 1024px) {
+    display: none;
+  }
+`;
+const hbgBtn = styled.div`
+  display: none;
+  cursor: pointer;
+  @media (max-width: 1024px) {
+    display: block;
+  }
+`;
+const hbgMenu = styled.div<{ isOpen: boolean }>`
+  display: none;
+  transition: 0.5s;
+  position: absolute;
+  top: 4em;
+  height: 100vh;
+  width: 300px;
+  right: ${(props) => (props.isOpen ? "0px" : "-300px")};
+  @media (max-width: 1024px) {
+    display: block;
+    justify-content: center;
+    background-color: white;
+  }
+`;
+const hbgMenuBtnBoard = styled.div`
+  background-color: ${(props) => props.theme.color.black};
+  width: 100%;
+  height: 55px;
+  display: flex;
+  justify-content: center;
+  button {
+  }
+`;
+
+const hbgMenuBtn = styled.div`
+  background-color: ${(props) => props.theme.color.white};
+  width: 100%;
+  text-align: center;
+  margin: 13px 0px;
+  cursor: pointer;
+`;
+
 const Header = {
   HeaderWrapper,
   HeaderBox,
   HeaderLogo,
+  btnBoard,
+  hbgBtn,
+  hbgMenu,
+  hbgMenuBtnBoard,
+  hbgMenuBtn,
 };
+
 export default Header;

@@ -3,25 +3,22 @@ import Header from "../../StyledComponents/header";
 import Button from "../../StyledComponents/button";
 import { useSelector } from "react-redux";
 import { RootState } from "../../Redux/Store/store";
-import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { useDispatch } from "react-redux";
 import { setNoAuth, Istate } from "../../Redux/Reducers/authReducer";
 import { setUser } from "../../Redux/Reducers/userReducer";
+import { useState } from "react";
 
 const HeaderBoard = styled.div`
   position: relative;
   z-index: 10;
 `;
-interface Icheck {
-  login: boolean;
-  signup: boolean;
-}
 
 export default function HeaderBar({ isCheck = true }: { isCheck?: boolean }) {
   const isUser: Istate = useSelector((state: RootState) => {
     return state.authReducer;
   });
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const history = useHistory();
   const dispatch = useDispatch();
   return (
@@ -32,24 +29,73 @@ export default function HeaderBar({ isCheck = true }: { isCheck?: boolean }) {
             <img src={"/munadoLogo.svg"} />
           </Header.HeaderLogo>
           {!isUser.isLogin ? (
-            <div>
-              <Button
-                color={isCheck ? "white" : ""}
+            <>
+              <Header.btnBoard>
+                <Button
+                  color={isCheck ? "white" : ""}
+                  onClick={() => {
+                    history.push("/signinpage");
+                  }}
+                >
+                  로그인
+                </Button>
+                <Button
+                  color={isCheck ? "" : "white"}
+                  onClick={() => {
+                    history.push("/signuppage");
+                  }}
+                >
+                  회원가입
+                </Button>
+              </Header.btnBoard>
+              <Header.hbgBtn
                 onClick={() => {
-                  history.push("/signinpage");
+                  setIsOpen(!isOpen);
                 }}
               >
-                로그인
-              </Button>
-              <Button
-                color={isCheck ? "" : "white"}
-                onClick={() => {
-                  history.push("/signuppage");
-                }}
-              >
-                회원가입
-              </Button>
-            </div>
+                <img src={isOpen ? "/exit.svg" : "/hamburger.svg"}></img>
+              </Header.hbgBtn>
+              <Header.hbgMenu isOpen={isOpen}>
+                <Header.hbgMenuBtnBoard>
+                  <Button
+                    color={isCheck ? "white" : ""}
+                    onClick={() => {
+                      history.push("/signinpage");
+                    }}
+                  >
+                    로그인
+                  </Button>
+                  <Button
+                    color={isCheck ? "" : "white"}
+                    onClick={() => {
+                      history.push("/signuppage");
+                    }}
+                  >
+                    회원가입
+                  </Button>
+                </Header.hbgMenuBtnBoard>
+                <Header.hbgMenuBtn
+                  onClick={() => {
+                    history.push({
+                      pathname: "/mainpage",
+                      state: { select: true },
+                    });
+                  }}
+                >
+                  추천 무술
+                </Header.hbgMenuBtn>
+                <Header.hbgMenuBtn
+                  onClick={() => {
+                    history.push({
+                      pathname: "/mainpage",
+                      state: { select: false },
+                    });
+                  }}
+                >
+                  무술 전체 보기
+                </Header.hbgMenuBtn>
+              </Header.hbgMenu>
+            </>
           ) : (
             <div>
               <Button

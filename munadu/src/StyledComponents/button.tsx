@@ -21,7 +21,11 @@ const Button = styled.button<{
   border-radius: 5px;
   font-weight: 500;
   outline: none;
-  border: 1px solid ${(props) => props.theme.color.black};
+  border: 1px solid
+    ${(props) =>
+      props.color === "white"
+        ? props.theme.color.black
+        : props.theme.color.white};
   min-width: 5.5rem;
   width: ${(props) => (props.width ? props.width : "")};
   height: ${(props) => (props.height ? props.height : "")};

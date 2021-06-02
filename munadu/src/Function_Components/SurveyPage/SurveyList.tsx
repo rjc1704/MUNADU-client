@@ -219,7 +219,10 @@ export default function SurveyList() {
     }
   };
   const moveToMain = () => {
-    history.push("/mainpage");
+    history.push({
+      pathname: "/mainpage",
+      state: { select: false },
+    });
   };
   const check = (e: any) => {
     if (e.target.checked) {
