@@ -7,14 +7,19 @@ export const PageWrapper = styled.div`
   width: 100%;
   height: auto;
   background-color: ${(props) => props.theme.color.grey};
+  margin: 0;
+  padding: 0;
 `;
 
 export const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 64%;
-
   margin: 0;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    width: 90%;
+    /* align-items: center; */
+  }
 `;
 
 export const FilterMenu = styled.div`
@@ -24,16 +29,28 @@ export const FilterMenu = styled.div`
   width: 100%;
   height: auto;
   margin: 0.7em 0;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 10%;
+    justify-content: flex-start;
+  }
 `;
 export const FilterGroup = styled.div`
   display: flex;
   flex-direction: column;
   height: 7em;
-
   justify-content: space-evenly;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    justify-content: flex-start;
+    height: auto;
+  }
 `;
 export const DescRow = styled.div`
   display: flex;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    margin-bottom: 5px;
+  }
 `;
 export const BoldText = styled.div`
   font-family: ${(props) => props.theme.fontFamily.subFont};
@@ -81,7 +98,12 @@ export const MartialWrapper = styled.div`
   width: 100%;
   justify-items: center;
 
-  /* justify-content: end; */
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+  }
 `;
 
 export const Box2 = styled(Box)`

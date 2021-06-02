@@ -39,6 +39,9 @@ export const Question = styled.p`
   font-weight: 500;
   line-height: 150%;
   min-height: 20%;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    font-size: 1.2rem;
+  }
 `;
 export const NewBtn = styled(Button)`
   min-width: 20%;
@@ -53,6 +56,9 @@ export const BtnWrapper = styled.div`
   width: 100%;
   justify-content: flex-end;
   padding: 0px;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    justify-content: center;
+  }
 `;
 export const BtnWrapper2 = styled(BtnWrapper)`
   justify-content: space-between;
