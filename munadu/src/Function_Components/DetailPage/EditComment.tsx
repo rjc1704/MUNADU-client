@@ -35,6 +35,11 @@ const EditBtnWrapper = styled.div`
   box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   z-index: 1;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    left: -110px;
+    width: 130px;
+    height: auto;
+  }
 `;
 
 const EditBtn = styled.div`
@@ -52,6 +57,10 @@ const EditBtn = styled.div`
   letter-spacing: -0.015em;
   cursor: pointer;
   border: 1px solid #eeeeee;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    width: 100%;
+    height: 30px;
+  }
 `;
 
 const EditComment = ({

@@ -191,10 +191,6 @@ export default function SurveyList() {
 
       dispatch(saveAnswer({ ...surveyState, result: surveyResult }));
     }
-    // else if (surveyResult) {
-    //   console.log("들어왔다!!!!!!");
-    //   dispatch(saveAnswer({ ...surveyState, result: surveyResult }));
-    // }
 
     if (index <= 4) {
       // setIndex(index + 1);
@@ -228,34 +224,28 @@ export default function SurveyList() {
     if (e.target.checked) {
       setIsInactive(false);
       console.log(`${index}번 문제에서 ${e.target.value}를 선택했습니다.`);
-      // if (index === 0) setAnswer0(e.target.value);
+
       if (index === 0)
         dispatch(saveAnswer({ ...surveyState, weapon0: e.target.value }));
-      // if (index === 1) setAnswer1(e.target.value);
+
       if (index === 1)
         dispatch(saveAnswer({ ...surveyState, uniform1: e.target.value }));
-      // if (index === 2) setAnswer2(e.target.value);
+
       if (index === 2)
         dispatch(saveAnswer({ ...surveyState, origin2: e.target.value }));
-      // if (index === 3) setAnswer3(e.target.value);
+
       if (index === 3)
         dispatch(saveAnswer({ ...surveyState, sports3: e.target.value }));
-      // if (index === 4) setAnswer4(e.target.value);
+
       if (index === 4)
         dispatch(saveAnswer({ ...surveyState, manner4: e.target.value }));
-      // if (index === 5) setAnswer5(e.target.value);
+
       if (index === 5)
         dispatch(saveAnswer({ ...surveyState, attack5: e.target.value }));
     } else {
       console.log("오류입니다.");
     }
   };
-  // useEffect(() => {
-  //   console.log(`isInactive`, isInactive);
-  // }, [isInactive]);
-  // useEffect(() => {
-  //   console.log(`surveyResult`, surveyResult);
-  // }, [surveyResult]);
 
   return (
     <Div>
@@ -275,8 +265,9 @@ export default function SurveyList() {
       <OptionAndBtn>
         {isShow === false ? (
           <OptionBox>
-            <AnswerText>
+            <AnswerText htmlFor={"one"}>
               <Input
+                id="one"
                 type="radio"
                 value="0"
                 name="chkInfo"

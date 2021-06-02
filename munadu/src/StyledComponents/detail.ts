@@ -9,7 +9,8 @@ const board = styled.div`
   display: flex;
   margin: 0px auto 10px auto;
   width: 64%;
-  @media (max-width: 1024px) {
+
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
     width: 95%;
   }
 `;

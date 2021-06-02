@@ -14,6 +14,9 @@ const BtnsWrapper = styled.div`
   border-radius: 5px;
   min-height: 4em;
   z-index: 3;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    min-height: 2em;
+  }
 `;
 const Text = styled.div`
   height: 45px;
@@ -30,6 +33,10 @@ const Text = styled.div`
   letter-spacing: -0.015em;
   cursor: pointer;
   border: 1px solid #eeeeee;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    height: 30px;
+    width: 100%;
+  }
 `;
 const Hr = styled.hr`
   width: 100%;

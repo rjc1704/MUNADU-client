@@ -39,6 +39,9 @@ export const Question = styled.p`
   font-weight: 500;
   line-height: 150%;
   min-height: 20%;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    font-size: 1.2rem;
+  }
 `;
 export const NewBtn = styled(Button)`
   min-width: 20%;
@@ -53,6 +56,9 @@ export const BtnWrapper = styled.div`
   width: 100%;
   justify-content: flex-end;
   padding: 0px;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    justify-content: center;
+  }
 `;
 export const BtnWrapper2 = styled(BtnWrapper)`
   justify-content: space-between;
@@ -95,13 +101,14 @@ export const ProgressBar = styled.div<ProgressBarType>`
   height: 100%;
   background: ${(props) => props.theme.color.black};
 `;
-export const AnswerText = styled.div`
+export const AnswerText = styled.label`
   display: flex;
   align-items: center;
   font-size: 1rem;
   font-family: ${(props) => props.theme.fontFamily.subFont};
   font-weight: 500;
   margin: 1em 0;
+  cursor: pointer;
 `;
 export const Input = styled.input`
   margin: 0 15px 0 15px;

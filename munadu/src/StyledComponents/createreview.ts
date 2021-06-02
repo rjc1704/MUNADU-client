@@ -84,6 +84,10 @@ export const StarWrapper = styled.div`
 export const Div = styled.div`
   width: 100%;
   height: 100%;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    margin-left: 20px;
+    margin-right: 5px;
+  }
 `;
 export const Form = styled.form`
   width: 100%;
@@ -100,4 +104,10 @@ export const ErrorMsg = styled.div`
 `;
 export const NewBtn2 = styled(Button)`
   font-size: 1rem;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    position: fixed;
+    bottom: 1%;
+    left: 32%;
+    z-index: 9999;
+  }
 `;

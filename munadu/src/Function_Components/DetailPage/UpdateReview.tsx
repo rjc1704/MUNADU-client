@@ -153,7 +153,7 @@ function UpdateReview({ reviewId, martialId, closeEditBtns }: IProps) {
       {isModal ? (
         <Modal
           close={closeModal}
-          headerText={"조언 작성하기"}
+          headerText={"조언 수정하기"}
           okBtnText={"확인"}
           cancelBtnText={"뒤로"}
           callback={updateReview}

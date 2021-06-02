@@ -12,6 +12,7 @@ const theme: DefaultTheme = {
     surveyGauge: "90%",
     contentBox: "64%",
     modalBox: "38%",
+    media: "1024px",
   },
   height: {
     loginBox: "54%",
