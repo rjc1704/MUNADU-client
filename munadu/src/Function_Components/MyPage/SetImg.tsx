@@ -33,9 +33,7 @@ export default function SetImage({ callback }: any) {
 
           img.onload = () => {
             if (img.height >= 500 || img.width >= 500) {
-              setErrMessage(
-                "이미지 사이즈가 너무 큽니다. 다른 이미지를 업로드 해주세요"
-              );
+              setErrMessage("이미지 사이즈가 너무 큽니다.");
               setOnBtn(true);
             }
           };
@@ -84,7 +82,7 @@ export default function SetImage({ callback }: any) {
           </Detail.imgBox>
           <MyPageStyle.imgBox>
             <MyPageStyle.guideText>
-              좌측 버튼을 눌러 원하는
+              이미지를 눌러 원하는
               <br />
               이미지 파일을 업로드 해주세요
             </MyPageStyle.guideText>

@@ -40,6 +40,10 @@ const userProfile = styled.div`
       margin: 10px 0px;
     }
   }
+  @media (max-width: 1024px) {
+    padding: 10px 17px;
+    font-size: 15px;
+  }
 `;
 
 const userInfo = styled.p`
@@ -65,6 +69,9 @@ const baseInfo = styled.div`
 const setBoard = styled.div`
   width: 64%;
   margin: 0px auto;
+  @media (max-width: 1024px) {
+    width: 95%;
+  }
 `;
 
 const imgInput = styled.input`
@@ -83,9 +90,14 @@ const content = styled.div`
   background-color: ${(props) => props.theme.color.white};
   box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
+  @media (max-width: 1024px) {
+    min-width: 360px;
+    margin: 0px auto 10px 0px;
+  }
 `;
 const errMessage = styled.p`
   color: red;
+  text-align: center;
 `;
 
 const title = styled.p`
@@ -117,6 +129,9 @@ const addressBox = styled.div`
 
 const imgBox = styled.div`
   margin-left: 20px;
+  @media (max-width: 1024px) {
+    margin-left: 0px;
+  }
 `;
 
 const guideText = styled.p`
