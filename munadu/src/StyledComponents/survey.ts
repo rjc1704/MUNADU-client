@@ -101,13 +101,14 @@ export const ProgressBar = styled.div<ProgressBarType>`
   height: 100%;
   background: ${(props) => props.theme.color.black};
 `;
-export const AnswerText = styled.div`
+export const AnswerText = styled.label`
   display: flex;
   align-items: center;
   font-size: 1rem;
   font-family: ${(props) => props.theme.fontFamily.subFont};
   font-weight: 500;
   margin: 1em 0;
+  cursor: pointer;
 `;
 export const Input = styled.input`
   margin: 0 15px 0 15px;

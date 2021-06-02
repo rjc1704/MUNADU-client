@@ -93,6 +93,9 @@ export const Name = styled.div`
   font-weight: 500;
   color: #1c1c1c;
   min-width: 7em;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    min-width: 5em;
+  }
 `;
 export const Name4 = styled(Name)`
   line-height: 140%;
@@ -120,7 +123,7 @@ export const StarPhoto = styled.img<IStar>`
 export const StarWrapper = styled.div`
   display: flex;
   @media only screen and (max-width: ${(props) => props.theme.width.media}) {
-    width: 80%;
+    width: 70%;
     height: auto;
   }
 `;
@@ -141,9 +144,9 @@ export const NameAndBar = styled.div`
 export const BarWrapper = styled.div`
   display: flex;
   min-width: 100%;
-  justify-content: space-between;
+  justify-content: flex-start;
   @media only screen and (max-width: ${(props) => props.theme.width.media}) {
-    min-width: 30%;
+    min-width: 20%;
     /* margin-top: 10px; */
   }
 `;
@@ -162,6 +165,7 @@ export const BarPhoto = styled.img<Ibar>`
   @media only screen and (max-width: ${(props) => props.theme.width.media}) {
     z-index: 0;
     position: relative;
+    width: 15%;
   }
 `;
 interface Ibar2 {
@@ -176,6 +180,9 @@ export const BarPhoto2 = styled.img<Ibar2>`
   filter: ${(props) => {
     if (props.idx > props.muscle) return "opacity(25%)";
   }};
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    width: 15%;
+  }
 `;
 interface Ibar3 {
   idx: number;
@@ -189,6 +196,9 @@ export const BarPhoto3 = styled.img<Ibar3>`
   filter: ${(props) => {
     if (props.idx > props.difficulty) return "opacity(25%)";
   }};
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    width: 15%;
+  }
 `;
 interface Ibar4 {
   idx: number;
@@ -202,6 +212,9 @@ export const BarPhoto4 = styled.img<Ibar4>`
   filter: ${(props) => {
     if (props.idx > props.intensity) return "opacity(25%)";
   }};
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    width: 15%;
+  }
 `;
 interface Ibar5 {
   idx: number;
@@ -215,6 +228,9 @@ export const BarPhoto5 = styled.img<Ibar5>`
   filter: ${(props) => {
     if (props.idx > props.injury) return "opacity(25%)";
   }};
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    width: 15%;
+  }
 `;
 
 export const Name2 = styled(Name)`

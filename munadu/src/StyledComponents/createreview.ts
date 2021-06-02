@@ -104,4 +104,10 @@ export const ErrorMsg = styled.div`
 `;
 export const NewBtn2 = styled(Button)`
   font-size: 1rem;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    position: fixed;
+    bottom: 1%;
+    left: 32%;
+    z-index: 9999;
+  }
 `;

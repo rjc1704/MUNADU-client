@@ -18,8 +18,7 @@ import { useHistory } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import HeaderBar from "./Function_Components/Common/HeaderBar";
-//
-// color: ${(props) => props.theme.color.white};
+
 function App() {
   const authState = useSelector((state) => state.authReducer);
 

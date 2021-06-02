@@ -17,6 +17,9 @@ const Text = styled.div`
   font-weight: 500;
   font-size: 1.5rem;
   margin-bottom: 0.7em;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    font-size: 1.2rem;
+  }
 `;
 
 export default function ReadLocation({ martialId }) {
