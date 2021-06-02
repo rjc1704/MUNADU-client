@@ -26,7 +26,10 @@ const DarkBackground = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.5); ;
+  background: rgba(0, 0, 0, 0.5);
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    z-index: 1;
+  }
 `;
 const DialogBlock = styled.div`
   display: flex;
@@ -35,6 +38,9 @@ const DialogBlock = styled.div`
   height: 100%;
   padding: 2rem;
   background: ${(props) => props.theme.color.grey};
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    /* z-index: 1; */
+  }
 `;
 const DialogHeader = styled.div`
   display: flex;
@@ -79,6 +85,10 @@ const DialogWrapper = styled.div<sizeType>`
   animation: ${Scale} 0.3s ease-out;
   position: relative;
   z-index: 3;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    width: 90%;
+    z-index: 10;
+  }
 `;
 
 export default function Modal({

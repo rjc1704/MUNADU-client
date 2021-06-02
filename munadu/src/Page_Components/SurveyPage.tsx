@@ -28,6 +28,9 @@ const SurveyBox = styled.div`
   box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.07);
   z-index: 1;
   margin: auto 0;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    width: 90%;
+  }
 `;
 const Div = styled.div`
   width: 100%;

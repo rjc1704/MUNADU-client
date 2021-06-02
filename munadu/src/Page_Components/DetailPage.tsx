@@ -33,6 +33,9 @@ const ContentContainer = styled.div`
   min-height: 100vh;
   height: auto;
   overflow: visible;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    width: 90%;
+  }
 `;
 
 export const TextWrapper = styled.div`
@@ -44,6 +47,9 @@ export const TextWrapper = styled.div`
   font-size: 1.5rem;
   font-weight: bold;
   margin: 2% auto;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    /* flex-direction: column; */
+  }
 `;
 
 const StarPhoto = styled.img`
@@ -67,11 +73,20 @@ export const Text = styled.div<Itext>`
   color: ${(props) => {
     if (props.tabValue !== props.idx) return "#606060";
   }};
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    font-size: 1.2rem;
+    margin: 10px 0;
+  }
 `;
 export const TextBox = styled.div`
   display: flex;
   justify-content: flex-start;
   min-width: 50%;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    justify-content: space-between;
+    width: 100%;
+    margin: 10px 5px;
+  }
 `;
 
 const PhotoAndDesc = styled.div`

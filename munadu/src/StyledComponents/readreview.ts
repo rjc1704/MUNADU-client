@@ -51,12 +51,21 @@ export const RatingsAndDesc = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    flex-direction: column;
+  }
 `;
 
 export const Ratings = styled.div`
   display: flex;
   flex-direction: column;
   width: 12%;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+    height: auto;
+  }
 `;
 
 export const Desc = styled.div`
@@ -64,6 +73,11 @@ export const Desc = styled.div`
   flex-direction: column;
   width: 88%;
   padding: 0 5%;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    padding: 0;
+    width: 100%;
+    margin-top: 25px;
+  }
 `;
 
 export const Photo2 = styled.img`
@@ -105,6 +119,10 @@ export const StarPhoto = styled.img<IStar>`
 `;
 export const StarWrapper = styled.div`
   display: flex;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    width: 80%;
+    height: auto;
+  }
 `;
 export const NameAndBar = styled.div`
   display: flex;
@@ -112,12 +130,22 @@ export const NameAndBar = styled.div`
   align-items: flex-start;
   width: 100%;
   margin-top: 15%;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    width: 100%;
+    margin-top: 0;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
 `;
 
 export const BarWrapper = styled.div`
   display: flex;
   min-width: 100%;
   justify-content: space-between;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    min-width: 30%;
+    /* margin-top: 10px; */
+  }
 `;
 interface Ibar {
   idx: number;
@@ -131,6 +159,10 @@ export const BarPhoto = styled.img<Ibar>`
   filter: ${(props) => {
     if (props.idx > props.practicality) return "opacity(25%)";
   }};
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    z-index: 0;
+    position: relative;
+  }
 `;
 interface Ibar2 {
   idx: number;

@@ -13,6 +13,7 @@ declare module "styled-components" {
       surveyGauge: string;
       contentBox: string;
       modalBox: string;
+      media: string;
     };
     height: {
       loginBox: string;
