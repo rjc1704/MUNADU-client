@@ -285,18 +285,24 @@ export default function DetailPage() {
     case 3:
       break;
   }
-
   useEffect(() => {
+    console.log(`이거라도 실행 되려무나??`);
     dispatch(getAverage(martialId));
   }, []);
 
   const scrollToTop = () => {
     console.log("들어는왔는데 안돼");
-    global.scrollTo({ top: 0, behavior: "smooth" });
+    console.log(``, window.scrollY); // global.scrollTo({ top: 0, behavior: "smooth" });
     window.scrollTo({ top: 0, behavior: "smooth" });
-    window.scrollTo(0, 0);
-    document.getElementById("root")?.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
+    // document.getElementById("root")?.scrollTo(0, 0);
   };
+  const [event, setEvent] = useState(true);
+  useEffect(() => {
+    console.log(`이거 실행됨`);
+    window.addEventListener("scroll", scrollToTop);
+    return () => window.removeEventListener("scroll", scrollToTop);
+  }, []);
   // useEffect(() => {
   //   // Button is displayed after scrolling for 500 pixels
   //   const toggleVisibility = () => {
@@ -313,10 +319,17 @@ export default function DetailPage() {
   // }, []);
   return (
     <>
-      <PageContainer>
+      <PageContainer onScroll={scrollToTop}>
         <Div>
           <HeaderBar />
         </Div>
+        <button
+          onClick={() => {
+            setEvent(false);
+          }}
+        >
+          무다무다
+        </button>
         <Board>
           <DetailInfo svg={theMartial.img}>
             <DescBox>

@@ -1,14 +1,23 @@
 import styled, { keyframes } from "styled-components";
 
-const highlight = keyframes`
-100% {
-  background-position: 0 0, 0 0;
+let highlight = keyframes`
+from {
+  border : 5px solid black;
+} 
+to {
+  border: 5px solid white;
   }
+`;
+
+export const CardBack = styled.div<{ isSelect: boolean }>`
+  background: ${(props) =>
+    props.isSelect
+      ? "linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(102, 32, 32))"
+      : "linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(54, 53, 53, 0.95))"};
 `;
 
 export const Card = styled.div<{ background: string; isClick: boolean }>`
   background-image: url(${(props) => props.background});
-  background-color: #282c34;
   background-size: 100% 100%;
   height: 100px;
   width: 70px;
@@ -16,13 +25,11 @@ export const Card = styled.div<{ background: string; isClick: boolean }>`
 `;
 
 export const SelectCard = styled.div`
-  border: 5px solid transparent;
-  background-image: linear-gradient(white, white),
-    linear-gradient(180deg, black, red 100%, cornflowerblue);
+  border: 5px solid rgba(255, 0, 0, 0.541);
+  border-radius: 5px;
   width: 80px;
-  background-repeat: no-repeat;
-  background-size: 100% 100%, 100% 200%;
-  background-position: 0 0, 0 100%;
-  background-origin: padding-box, border-box;
-  animation: ${highlight} 1s infinite alternate;
+`;
+export const NoSelectCard = styled.div`
+  width: 80px;
+  filter: grayscale(90%);
 `;

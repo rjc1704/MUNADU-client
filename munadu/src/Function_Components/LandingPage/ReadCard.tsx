@@ -1,6 +1,11 @@
 import { memo } from "react";
 import { Icard } from "../../Page_Components/LandingPage";
-import { Card, SelectCard } from "../../StyledComponents/Card";
+import {
+  Card,
+  SelectCard,
+  CardBack,
+  NoSelectCard,
+} from "../../StyledComponents/Card";
 
 interface Iprops {
   card: Icard;
@@ -13,6 +18,22 @@ function ReadCard({ card, callback, isClick }: Iprops) {
   if (isClick) {
     return (
       <SelectCard>
+        <CardBack isSelect={isClick}>
+          <Card
+            background={card.img}
+            onClick={(e) => {
+              e.preventDefault();
+              callback(card.id);
+            }}
+            isClick={isClick}
+          />
+        </CardBack>
+      </SelectCard>
+    );
+  }
+  return (
+    <NoSelectCard>
+      <CardBack isSelect={isClick}>
         <Card
           background={card.img}
           onClick={(e) => {
@@ -21,18 +42,8 @@ function ReadCard({ card, callback, isClick }: Iprops) {
           }}
           isClick={isClick}
         />
-      </SelectCard>
-    );
-  }
-  return (
-    <Card
-      background={card.img}
-      onClick={(e) => {
-        e.preventDefault();
-        callback(card.id);
-      }}
-      isClick={isClick}
-    />
+      </CardBack>
+    </NoSelectCard>
   );
 }
 
