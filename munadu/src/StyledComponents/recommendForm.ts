@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const MainPageWrapper = styled.div`
   display: flex;
   justify-content: center;
-  width: 100vw;
+  width: 100%;
   height: auto;
   background-color: #eeeeee;
   /* overflow-x: hidden; */
@@ -13,14 +13,19 @@ export const MainPageBox = styled.div`
   width: 64%;
   height: auto;
   flex-direction: column;
-
-  /* padding-bottom: 300px; */
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    width: 90%;
+  }
 `;
 export const Box = styled.div`
   display: flex;
   width: 32%;
   flex-direction: column;
   cursor: pointer;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    margin-bottom: 10px;
+    width: 100%;
+  }
 `;
 export const ContentsWrapper = styled.div`
   display: flex;
@@ -29,6 +34,12 @@ export const ContentsWrapper = styled.div`
   /* height: 250px; */
   justify-content: space-between;
   margin-bottom: 20px;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    flex-direction: column;
+    margin-bottom: 0;
+    align-items: center;
+    width: 100%;
+  }
 `;
 
 export const ContentCard = styled.div`
@@ -54,6 +65,9 @@ export const ContentsTitle = styled.div`
   font-size: 20px;
   line-height: 28px;
   color: #1c1c1c;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    margin-top: 20px;
+  }
 `;
 
 export const DetailTitle = styled.div`
@@ -64,6 +78,9 @@ export const DetailTitle = styled.div`
   font-size: 16px;
   line-height: 29px;
   color: #000000;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    margin-top: 5px;
+  }
 `;
 
 export const DetailCaption = styled.div`
@@ -76,6 +93,9 @@ export const DetailCaption = styled.div`
   align-items: center;
   letter-spacing: -0.015em;
   color: #000000;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    margin-bottom: 20px;
+  }
 `;
 
 export const ContentHeader = styled.div`
@@ -194,8 +214,11 @@ export const ChannelCaption = styled.div`
 export const ChannelBox = styled.div`
   display: flex;
   width: 32%;
-
   flex-direction: row;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 `;
 export const ChannelCard = styled.div`
   padding-left: 10%;

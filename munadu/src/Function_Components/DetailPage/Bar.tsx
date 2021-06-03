@@ -7,6 +7,9 @@ const Container = styled.div`
   width: 100%;
   position: relative;
   margin-bottom: 5%;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    width: 70%;
+  }
 `;
 
 const BaseBox = styled.div`

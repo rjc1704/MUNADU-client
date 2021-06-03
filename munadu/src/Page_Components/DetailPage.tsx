@@ -183,6 +183,10 @@ const TopBtn = styled.a`
 
   filter: drop-shadow(0px 0px 8px rgba(0, 0, 0, 0.2));
   cursor: pointer;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    bottom: 7%;
+    right: 3%;
+  }
 `;
 
 export default function DetailPage() {
@@ -300,16 +304,16 @@ export default function DetailPage() {
   // useEffect(() => {
   //   // Button is displayed after scrolling for 500 pixels
   //   const toggleVisibility = () => {
-  //     if (global.pageYOffset > 50) {
+  //     if (window.pageYOffset > 50) {
   //       console.log("스크롤이벤트200이상!");
   //       setIsVisible(true);
   //     } else {
   //       setIsVisible(false);
   //     }
   //   };
-  //   global.addEventListener("scroll", toggleVisibility);
+  //   window.addEventListener("scroll", toggleVisibility);
 
-  //   return () => global.removeEventListener("scroll", toggleVisibility);
+  //   return () => window.removeEventListener("scroll", toggleVisibility);
   // }, []);
   return (
     <>

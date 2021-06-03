@@ -24,6 +24,9 @@ const SummaryWrapper = styled.div`
   justify-content: space-around;
   padding-top: 2%;
   height: 40%;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    flex-direction: column;
+  }
 `;
 const BasicSummary = styled.div`
   display: flex;
@@ -34,9 +37,19 @@ const ChartSummary = styled.div`
   display: flex;
   flex-direction: column;
   width: 40%;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    /* margin: 5px; */
+    width: 100%;
+  }
 `;
 
-const ChartWrapper = styled.div``;
+const ChartWrapper = styled.div`
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    width: 80%;
+    height: auto;
+    align-self: center;
+  }
+`;
 const SummaryKey = styled.div`
   justify-content: space-around;
   flex-direction: column;
@@ -56,8 +69,11 @@ const KeyList = styled.div`
   font-size: 20px;
   line-height: 29px;
   color: #1c1c1c;
-
   margin: 10%;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    margin: 10px;
+    line-height: 0;
+  }
 `;
 const ValueList = styled.div`
   width: 200px;
@@ -68,6 +84,9 @@ const ValueList = styled.div`
   line-height: 30px;
   color: #1c1c1c;
   margin: 10%;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    margin: 10px;
+  }
 `;
 
 const IconImg = styled.img`
@@ -114,6 +133,9 @@ const RecommendBoxWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    flex-direction: column;
+  }
 `;
 
 const RecommendBox = styled.div`
@@ -126,6 +148,9 @@ const RecommendBox = styled.div`
   border-radius: 5px;
   padding-right: 1%;
   margin-bottom: 3%;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    width: 100%;
+  }
 `;
 
 const MartialImg = styled.img`
@@ -287,7 +312,7 @@ const Summary = ({ martialId }: IProps) => {
             </SummaryValue>
           </BasicSummary>
           <ChartSummary>
-            <ChartTitle>사형의 조언</ChartTitle>
+            <ChartTitle>사형의 판단</ChartTitle>
             <ChartWrapper>
               <RadarChart
                 label={[
