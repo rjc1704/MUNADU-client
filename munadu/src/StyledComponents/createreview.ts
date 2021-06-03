@@ -102,7 +102,10 @@ export const ErrorMsg = styled.div`
   font-family: ${(props) => props.theme.fontFamily.subFont};
   margin-top: 10px;
 `;
-export const NewBtn2 = styled(Button)`
+interface NewBtn2Prop {
+  tabValue: number;
+}
+export const NewBtn2 = styled(Button)<NewBtn2Prop>`
   font-size: 1rem;
   @media only screen and (max-width: ${(props) => props.theme.width.media}) {
     position: fixed;
@@ -110,5 +113,8 @@ export const NewBtn2 = styled(Button)`
     left: 2%;
     z-index: 9999;
     width: 88%;
+    display: ${(props) => {
+      if (props.tabValue !== 0) return "none";
+    }};
   }
 `;
