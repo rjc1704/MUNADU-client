@@ -47,8 +47,8 @@
 }
 .landing_martial {
   position: absolute;
-  width: 22vw;
-  height: 35vw;
+  width: 40vh;
+  height: 50vh;
   z-index: 1;
   top: -200px;
   left: 15vw;

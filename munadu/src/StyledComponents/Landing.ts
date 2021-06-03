@@ -25,7 +25,7 @@ const Name = styled.p`
   position: relative;
   color: white;
   z-index: 1;
-  margin-top: 36vw;
+  margin-top: 65vh;
   margin-left: 25vw;
   font-size: 50px;
   z-index: 4;
@@ -52,6 +52,7 @@ const Bgm = styled.div<{ isAudio: boolean }>`
   padding: 4px;
   margin: 0px 0px 50px 0px;
   float: right;
+  cursor: pointer;
 `;
 
 export const Landing = {

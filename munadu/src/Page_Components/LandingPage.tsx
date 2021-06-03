@@ -117,7 +117,7 @@ function LandingPage() {
           </Button>
         </Landing.Guide>
         {cards.map((el: any) => {
-          if (el.id === select) {
+          if (el.id === select + 1) {
             return <img className="landing_martial select" src={img}></img>;
           }
           return <img className="landing_martial" src="dummy.svg"></img>;

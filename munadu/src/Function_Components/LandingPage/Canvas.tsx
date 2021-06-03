@@ -119,10 +119,10 @@ function Canvas(props: any) {
   `;
 
   const Back = styled.div`
-    background: black;
+    background: radial-gradient(white 5%, rgb(0, 0, 0) 15%);
     position: absolute;
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
     top: 0;
     left: 0;
     z-index: 1;
