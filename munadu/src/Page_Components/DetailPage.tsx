@@ -290,7 +290,6 @@ export default function DetailPage() {
       break;
   }
   useEffect(() => {
-    console.log(`이거라도 실행 되려무나??`);
     dispatch(getAverage(martialId));
   }, []);
 
@@ -301,12 +300,11 @@ export default function DetailPage() {
     // window.scrollTo(0, 0);
     // document.getElementById("root")?.scrollTo(0, 0);
   };
-  const [event, setEvent] = useState(true);
-  useEffect(() => {
-    console.log(`이거 실행됨`);
-    window.addEventListener("scroll", scrollToTop);
-    return () => window.removeEventListener("scroll", scrollToTop);
-  }, []);
+  // useEffect(() => {
+  //   console.log(`이거 실행됨`);
+  //   window.addEventListener("scroll", scrollToTop);
+  //   return () => window.removeEventListener("scroll", scrollToTop);
+  // }, []);
   // useEffect(() => {
   //   // Button is displayed after scrolling for 500 pixels
   //   const toggleVisibility = () => {
@@ -327,13 +325,6 @@ export default function DetailPage() {
         <Div>
           <HeaderBar />
         </Div>
-        <button
-          onClick={() => {
-            setEvent(false);
-          }}
-        >
-          무다무다
-        </button>
         <Board>
           <DetailInfo svg={theMartial.img}>
             <DescBox>
