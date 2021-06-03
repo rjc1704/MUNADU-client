@@ -357,7 +357,11 @@ export default function DetailPage() {
             </TextBox>
             <div>
               {isLogin ? (
-                <CreateReview Martials_id={martialId} Users_id={userId} />
+                <CreateReview
+                  Martials_id={martialId}
+                  Users_id={userId}
+                  tabValue={tabMenu}
+                />
               ) : null}
             </div>
           </TextWrapper>

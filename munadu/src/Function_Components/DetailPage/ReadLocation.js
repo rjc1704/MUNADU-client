@@ -1,8 +1,6 @@
-import { RenderAfterNavermapsLoaded, NaverMap, Marker } from "react-naver-maps";
-// import { RenderAfterNavermapsLoaded } from "navermaps";
-import React from "react";
-import NaverMapAPI from "./NaverMapAPI";
 import styled from "styled-components";
+import KakaoMapAPI from "./KakaoMapAPI";
+import { useSelector, useDispatch } from "react-redux";
 
 const MapWrapper = styled.div`
   width: 100%;
@@ -23,17 +21,16 @@ const Text = styled.div`
 `;
 
 export default function ReadLocation({ martialId }) {
+  const isLogin = useSelector((state) => state.authReducer.isLogin);
   return (
     <MapWrapper>
       <SubWrapper>
-        <RenderAfterNavermapsLoaded
-          ncpClientId={"kvau6jzt32"} // 자신의 네이버 계정에서 발급받은 Client ID
-          error={<p>Maps Load Error</p>}
-          loading={<p>Maps Loading...</p>}
-        >
+        {isLogin ? (
           <Text>내 위치와 체육관들의 위치를 표시합니다.</Text>
-          <NaverMapAPI martialId={martialId} />
-        </RenderAfterNavermapsLoaded>
+        ) : (
+          <Text>체육관들의 위치를 표시합니다.</Text>
+        )}
+        <KakaoMapAPI martialId={martialId} />
       </SubWrapper>
     </MapWrapper>
   );

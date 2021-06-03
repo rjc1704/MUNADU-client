@@ -31,8 +31,9 @@ axios.defaults.withCredentials = true;
 interface IProps {
   Martials_id: number;
   Users_id: number;
+  tabValue?: number;
 }
-function CreateReview({ Martials_id, Users_id }: IProps) {
+function CreateReview({ Martials_id, Users_id, tabValue = 1 }: IProps) {
   const [isModal, setIsModal] = useState(false);
   const [period, setPeriod] = useState(0);
   const [comment, setComment] = useState("");
@@ -161,7 +162,9 @@ function CreateReview({ Martials_id, Users_id }: IProps) {
 
   return (
     <Div>
-      <NewBtn2 onClick={openModal}>조언 작성하기</NewBtn2>
+      <NewBtn2 onClick={openModal} tabValue={tabValue}>
+        조언 작성하기
+      </NewBtn2>
       {isModal ? (
         <Modal
           close={closeModal}
