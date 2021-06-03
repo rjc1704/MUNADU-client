@@ -26,6 +26,15 @@ import {
 import RadarChart from "../Common/RadarChart";
 import { useHistory } from "react-router";
 import star from "./img/star.svg";
+import styled from "styled-components";
+export const Ratings2 = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 12%;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    width: 30%;
+  }
+`;
 
 const RecommendReview = () => {
   const reviewRank = useSelector(
@@ -43,6 +52,13 @@ const RecommendReview = () => {
       state: { martialId: id },
     });
   };
+  const StarWrapper2 = styled.div`
+    display: flex;
+    @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+      width: 100%;
+      height: auto;
+    }
+  `;
 
   return (
     <>
@@ -54,8 +70,8 @@ const RecommendReview = () => {
               <ContentCard>
                 <ContentHeader>
                   <ContentHeaderName>{review.martials.name}</ContentHeaderName>
-                  <Ratings>
-                    <StarWrapper>
+                  <Ratings2>
+                    <StarWrapper2>
                       <StarPhoto
                         src={star}
                         idx={1}
@@ -81,8 +97,8 @@ const RecommendReview = () => {
                         idx={5}
                         score={review.score}
                       ></StarPhoto>
-                    </StarWrapper>
-                  </Ratings>
+                    </StarWrapper2>
+                  </Ratings2>
                 </ContentHeader>
                 <ContentDetail>
                   <ChartBox>

@@ -107,7 +107,8 @@ export const NewBtn2 = styled(Button)`
   @media only screen and (max-width: ${(props) => props.theme.width.media}) {
     position: fixed;
     bottom: 1%;
-    left: 32%;
+    left: 2%;
     z-index: 9999;
+    width: 88%;
   }
 `;

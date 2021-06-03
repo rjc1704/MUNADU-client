@@ -50,6 +50,10 @@ export default function MainPage() {
     &:hover {
       background-color: rgba(12, 12, 12, 0.61);
     }
+    @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+      right: 5%;
+      bottom: 2%;
+    }
   `;
   const history = useHistory();
   const moveToSurveyPage = () => {

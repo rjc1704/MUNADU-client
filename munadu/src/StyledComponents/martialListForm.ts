@@ -18,7 +18,6 @@ export const ContentWrapper = styled.div`
   margin: 0;
   @media only screen and (max-width: ${(props) => props.theme.width.media}) {
     width: 90%;
-    /* align-items: center; */
   }
 `;
 
@@ -109,4 +108,7 @@ export const MartialWrapper = styled.div`
 export const Box2 = styled(Box)`
   width: 97%;
   margin-bottom: 20px;
+  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
+    width: 100%;
+  }
 `;
