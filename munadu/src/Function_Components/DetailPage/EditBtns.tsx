@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import UpdateReview from "./UpdateReview";
 import DeleteReview from "./DeleteReview";
@@ -38,12 +38,6 @@ const Text = styled.div`
     width: 100%;
   }
 `;
-const Hr = styled.hr`
-  width: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  margin: 0;
-  padding: 0;
-`;
 
 interface IProps {
   reviewId: number;
@@ -55,15 +49,12 @@ export default function EditBtns({
   martialId,
   closeEditBtns,
 }: IProps) {
-  console.log(`reviewId in EditBtns!!`, reviewId);
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
   const editReview = () => {
-    console.log(`reviewId in updateReview!`, reviewId);
     setIsOpen(true);
   };
   const deleteReview = () => {
-    console.log(`reviewId in deleteReview!`, reviewId);
     setIsDeleted(true);
   };
   return (

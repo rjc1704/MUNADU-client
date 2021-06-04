@@ -18,15 +18,12 @@ import {
   CommentTitle,
   CommentDetail,
 } from "../../StyledComponents/recommendForm";
-import {
-  StarPhoto,
-  StarWrapper,
-  Ratings,
-} from "../../StyledComponents/readreview";
+import { StarPhoto } from "../../StyledComponents/readreview";
 import RadarChart from "../Common/RadarChart";
 import { useHistory } from "react-router";
 import star from "./img/star.svg";
 import styled from "styled-components";
+
 export const Ratings2 = styled.div`
   display: flex;
   flex-direction: column;

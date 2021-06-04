@@ -30,7 +30,7 @@ export default function HeaderBar({ isCheck = true }: { isCheck?: boolean }) {
           </Header.HeaderLogo>
           {!isUser.isLogin ? (
             <>
-              <Header.btnBoard>
+              <Header.BtnBoard>
                 <Button
                   color={isCheck ? "white" : ""}
                   onClick={() => {
@@ -47,16 +47,16 @@ export default function HeaderBar({ isCheck = true }: { isCheck?: boolean }) {
                 >
                   회원가입
                 </Button>
-              </Header.btnBoard>
-              <Header.hbgBtn
+              </Header.BtnBoard>
+              <Header.HbgBtn
                 onClick={() => {
                   setIsOpen(!isOpen);
                 }}
               >
                 <img src={isOpen ? "/exit.svg" : "/hamburger.svg"}></img>
-              </Header.hbgBtn>
-              <Header.hbgMenu isOpen={isOpen}>
-                <Header.hbgMenuBtnBoard>
+              </Header.HbgBtn>
+              <Header.HbgMenu isOpen={isOpen}>
+                <Header.HbgMenuBtnBoard>
                   <Button
                     color={isCheck ? "white" : ""}
                     onClick={() => {
@@ -73,8 +73,8 @@ export default function HeaderBar({ isCheck = true }: { isCheck?: boolean }) {
                   >
                     회원가입
                   </Button>
-                </Header.hbgMenuBtnBoard>
-                <Header.hbgMenuBtn
+                </Header.HbgMenuBtnBoard>
+                <Header.HbgMenuBtn
                   onClick={() => {
                     history.push({
                       pathname: "/mainpage",
@@ -83,8 +83,8 @@ export default function HeaderBar({ isCheck = true }: { isCheck?: boolean }) {
                   }}
                 >
                   추천 무술
-                </Header.hbgMenuBtn>
-                <Header.hbgMenuBtn
+                </Header.HbgMenuBtn>
+                <Header.HbgMenuBtn
                   onClick={() => {
                     history.push({
                       pathname: "/mainpage",
@@ -93,12 +93,12 @@ export default function HeaderBar({ isCheck = true }: { isCheck?: boolean }) {
                   }}
                 >
                   무술 전체 보기
-                </Header.hbgMenuBtn>
-              </Header.hbgMenu>
+                </Header.HbgMenuBtn>
+              </Header.HbgMenu>
             </>
           ) : (
             <>
-              <Header.btnBoard>
+              <Header.BtnBoard>
                 <Button
                   color=""
                   onClick={() => {
@@ -117,16 +117,16 @@ export default function HeaderBar({ isCheck = true }: { isCheck?: boolean }) {
                 >
                   내 정보
                 </Button>
-              </Header.btnBoard>
-              <Header.hbgBtn
+              </Header.BtnBoard>
+              <Header.HbgBtn
                 onClick={() => {
                   setIsOpen(!isOpen);
                 }}
               >
                 <img src={isOpen ? "/exit.svg" : "/hamburger.svg"}></img>
-              </Header.hbgBtn>
-              <Header.hbgMenu isOpen={isOpen}>
-                <Header.hbgMenuBtnBoard>
+              </Header.HbgBtn>
+              <Header.HbgMenu isOpen={isOpen}>
+                <Header.HbgMenuBtnBoard>
                   <Button
                     color=""
                     onClick={() => {
@@ -145,8 +145,8 @@ export default function HeaderBar({ isCheck = true }: { isCheck?: boolean }) {
                   >
                     내 정보
                   </Button>
-                </Header.hbgMenuBtnBoard>
-                <Header.hbgMenuBtn
+                </Header.HbgMenuBtnBoard>
+                <Header.HbgMenuBtn
                   onClick={() => {
                     history.push({
                       pathname: "/mainpage",
@@ -155,8 +155,8 @@ export default function HeaderBar({ isCheck = true }: { isCheck?: boolean }) {
                   }}
                 >
                   추천 무술
-                </Header.hbgMenuBtn>
-                <Header.hbgMenuBtn
+                </Header.HbgMenuBtn>
+                <Header.HbgMenuBtn
                   onClick={() => {
                     history.push({
                       pathname: "/mainpage",
@@ -165,8 +165,8 @@ export default function HeaderBar({ isCheck = true }: { isCheck?: boolean }) {
                   }}
                 >
                   무술 전체 보기
-                </Header.hbgMenuBtn>
-              </Header.hbgMenu>
+                </Header.HbgMenuBtn>
+              </Header.HbgMenu>
             </>
           )}
         </Header.HeaderBox>

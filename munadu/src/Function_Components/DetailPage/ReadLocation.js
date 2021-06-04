@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import KakaoMapAPI from "./KakaoMapAPI";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const MapWrapper = styled.div`
   width: 100%;

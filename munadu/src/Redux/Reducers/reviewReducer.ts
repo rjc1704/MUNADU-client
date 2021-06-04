@@ -1,10 +1,5 @@
 import dummy from "../reviewDummy.json";
-import {
-  createSlice,
-  PayloadAction,
-  createAsyncThunk,
-  current,
-} from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const getReviewList = createAsyncThunk(

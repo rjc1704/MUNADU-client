@@ -1,10 +1,5 @@
 import dummy from "../replyDummy.json";
-import {
-  createSlice,
-  PayloadAction,
-  createAsyncThunk,
-  current,
-} from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const getReplyList = createAsyncThunk(

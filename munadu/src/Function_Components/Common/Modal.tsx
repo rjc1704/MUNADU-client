@@ -1,7 +1,6 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 import Button from "../../StyledComponents/button";
-import PropTypes from "prop-types";
 
 interface ModalProps {
   close: () => void;
@@ -108,9 +107,6 @@ export default function Modal({
     }
   };
 
-  interface WrapperProps {
-    width: number;
-  }
   return (
     <DarkBackground>
       <DialogWrapper

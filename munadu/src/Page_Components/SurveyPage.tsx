@@ -1,10 +1,5 @@
-import React, { useRef, useEffect, useLayoutEffect, useState, FC } from "react";
-import styled, { StyledComponent } from "styled-components";
-// import Header from "../StyledComponents/header";
-import Button from "../StyledComponents/button";
-import ServeyList from "../Function_Components/SurveyPage/SurveyList";
+import styled from "styled-components";
 import SurveyList from "../Function_Components/SurveyPage/SurveyList";
-import { createLogger } from "redux-logger";
 import HeaderBar from "../Function_Components/Common/HeaderBar";
 import HalfBackground from "../StyledComponents/HalfBackground";
 

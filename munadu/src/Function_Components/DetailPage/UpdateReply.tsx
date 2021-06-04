@@ -1,7 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { updateReply } from "../../Redux/Reducers/replyReducer";
-import { CommentTextArea, CommentBtn } from "../../StyledComponents/readreview";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../Redux/Store/store";
 interface IProps {

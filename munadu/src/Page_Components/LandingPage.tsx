@@ -13,21 +13,21 @@ export interface Icard {
   name: string;
   img: string;
 }
-interface Imartial {
-  name: string;
-  weapon: number;
-  uniform: number;
-  origin: number;
-  sports: number;
-  manner: number;
-  attack: number;
-  nation: string;
-  caption: string;
-  video: string;
-  kcal: number;
-  img: string;
-  wiki: string;
-}
+// interface Imartial {
+//   name: string;
+//   weapon: number;
+//   uniform: number;
+//   origin: number;
+//   sports: number;
+//   manner: number;
+//   attack: number;
+//   nation: string;
+//   caption: string;
+//   video: string;
+//   kcal: number;
+//   img: string;
+//   wiki: string;
+// }
 
 function LandingPage() {
   const cards: any = useSelector((state: RootState) => {
@@ -43,7 +43,6 @@ function LandingPage() {
   });
   const [audio, setAudio] = useState<boolean>(false);
   const [select, setSelect] = useState(0);
-  const [isLoad, setIsLoad] = useState<boolean>(false);
   const [img, setImg] = useState<string>(cards[select].img);
   const history = useHistory();
 
@@ -63,7 +62,6 @@ function LandingPage() {
   }, [audio]);
 
   const setCard = (key: number): void => {
-    setIsLoad(false);
     setSelect(key - 1);
     const effect = new Audio("/button-45.mp3");
     effect.play();

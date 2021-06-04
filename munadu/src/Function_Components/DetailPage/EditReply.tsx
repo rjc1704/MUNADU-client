@@ -1,11 +1,10 @@
 import { useState, useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../../Redux/Store/store";
 import styled from "styled-components";
 import editBtn from "./editBtn.svg";
 import EditReplyBtns from "./EditReplyBtns";
 import { Photo3, LayerBtn } from "../../StyledComponents/readreview";
-import { deleteReply } from "../../Redux/Reducers/replyReducer";
 
 interface IProps {
   replyId: number;

@@ -1,8 +1,6 @@
 import { useState } from "react";
-import Modal from "../Common/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../Redux/Store/store";
-import { CommentTextArea } from "../../StyledComponents/CreateComment";
 import { updateComment } from "../../Redux/Reducers/commentReducer";
 import styled from "styled-components";
 

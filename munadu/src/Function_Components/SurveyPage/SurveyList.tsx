@@ -1,10 +1,7 @@
-import styled from "styled-components";
-import Button from "../../StyledComponents/button";
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import SurveyJson from "./surveyContents.json";
 import martialJson from "../Common/martialData.json";
 import suggestedJson from "../Common/suggestedData.json";
-import martialImage from "../../Images/taekwondo.svg";
 import { useHistory } from "react-router";
 import {
   Div,
@@ -17,7 +14,6 @@ import {
   OptionBox,
   Hr,
   ProgressBarBox,
-  ProgressBarType,
   ProgressBar,
   AnswerText,
   Input,
@@ -56,7 +52,6 @@ export default function SurveyList() {
   const handleReset = () => {
     dispatch(refreshAnswer());
     setIsInactive(true);
-    console.log(`result`, result);
   };
   const moveToDetailPage = (id: number) => {
     history.push({
@@ -89,7 +84,6 @@ export default function SurveyList() {
           filterResult = martialJson.martialData.filter(
             (martial) => martial.weapon === 0
           );
-          console.log(`martialJson.martialData`, martialJson.martialData);
           break;
         case "1":
           filterResult = martialJson.martialData.filter(
@@ -223,7 +217,6 @@ export default function SurveyList() {
   const check = (e: any) => {
     if (e.target.checked) {
       setIsInactive(false);
-      console.log(`${index}번 문제에서 ${e.target.value}를 선택했습니다.`);
 
       if (index === 0)
         dispatch(saveAnswer({ ...surveyState, weapon0: e.target.value }));
