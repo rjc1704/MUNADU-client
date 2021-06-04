@@ -294,7 +294,6 @@ export default function DetailPage() {
   }, []);
 
   const scrollToTop = () => {
-    console.log("들어는왔는데 안돼");
     console.log(``, window.scrollY); // global.scrollTo({ top: 0, behavior: "smooth" });
     window.scrollTo({ top: 0, behavior: "smooth" });
     // window.scrollTo(0, 0);

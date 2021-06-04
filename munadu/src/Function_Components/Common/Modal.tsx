@@ -27,8 +27,9 @@ const DarkBackground = styled.div`
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.5);
+  z-index: 2;
   @media only screen and (max-width: ${(props) => props.theme.width.media}) {
-    z-index: 1;
+    z-index: 2;
   }
 `;
 const DialogBlock = styled.div`
@@ -84,7 +85,7 @@ const DialogWrapper = styled.div<sizeType>`
   min-height: ${(props) => props.modalHeightPercent}%;
   animation: ${Scale} 0.3s ease-out;
   position: relative;
-  z-index: 3;
+  z-index: 6;
   @media only screen and (max-width: ${(props) => props.theme.width.media}) {
     width: 90%;
     z-index: 10;
