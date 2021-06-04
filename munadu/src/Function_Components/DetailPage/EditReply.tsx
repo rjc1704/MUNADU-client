@@ -14,11 +14,6 @@ interface IProps {
   reviseReply: any;
 }
 
-const EditWrapper = styled.div`
-  position: absolute;
-  width: 7em;
-`;
-
 export const EditBtnWrapper = styled.div`
   position: absolute;
   top: 2em;

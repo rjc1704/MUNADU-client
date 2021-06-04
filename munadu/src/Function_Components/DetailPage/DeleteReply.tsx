@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../../Redux/Store/store";
 import Modal from "../Common/Modal";
 
@@ -22,7 +22,6 @@ export default function DeleteReply({
     setIsOpen(false);
     closeEditBtns();
   };
-  const dispatch = useDispatch();
   return (
     <>
       {isOpen ? (

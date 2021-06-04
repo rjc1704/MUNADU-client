@@ -1,20 +1,20 @@
 import styled from "styled-components";
 
-const page = styled.div`
+const Page = styled.div`
   overflow: auto;
   height: 100vh;
   background-color: #e5e5e5;
   display: block;
 `;
 
-const board = styled.div`
+const Board = styled.div`
   background: ${(props) => props.theme.color.black};
   display: flex;
   padding-bottom: 11px;
   height: auto;
 `;
 
-const textBoard = styled.div`
+const TextBoard = styled.div`
   display: flex;
   margin: 33px 0px 0px 36px;
   font-weight: 800;
@@ -22,12 +22,12 @@ const textBoard = styled.div`
   color: ${(props) => props.theme.color.white};
 `;
 
-const textContent = styled.div`
+const TextContent = styled.div`
   margin: 80px 0px 0px 0px;
   font-size: 24px;
 `;
 
-const userProfile = styled.div`
+const UserProfile = styled.div`
   width: 100%;
   margin: 11px 0px;
   padding: 17px 48px;
@@ -46,12 +46,12 @@ const userProfile = styled.div`
   }
 `;
 
-const userInfo = styled.p`
+const UserInfo = styled.p`
   font-weight: bold;
   width: 90px;
 `;
 
-const contentBoard = styled.div`
+const ContentBoard = styled.div`
   display: flex;
   width: 100%;
   flex-wrap: wrap;
@@ -59,14 +59,14 @@ const contentBoard = styled.div`
   padding: 10px 0px;
 `;
 
-const baseInfo = styled.div`
+const BaseInfo = styled.div`
   button {
     float: right;
     margin-top: -55px;
   }
 `;
 
-const setBoard = styled.div`
+const SetBoard = styled.div`
   width: 64%;
   margin: 0px auto;
   @media (max-width: 1024px) {
@@ -74,14 +74,14 @@ const setBoard = styled.div`
   }
 `;
 
-const imgInput = styled.input`
+const ImgInput = styled.input`
   display: none;
 `;
-const imgLabel = styled.label`
+const ImgLabel = styled.label`
   cursor: pointer;
 `;
 
-const content = styled.div`
+const Content = styled.div`
   width: 48%;
   min-width: 400px;
   border: 2px solid #c4c4c4;
@@ -95,12 +95,12 @@ const content = styled.div`
     margin: 0px auto 10px 0px;
   }
 `;
-const errMessage = styled.p`
+const ErrMessage = styled.p`
   color: red;
   text-align: center;
 `;
 
-const title = styled.p`
+const Title = styled.p`
   font-family: ${(props) => props.theme.fontFamily.mainFont};
   margin-left: 5px;
   font-size: 24px;
@@ -108,54 +108,54 @@ const title = styled.p`
   font-weight: bold;
 `;
 
-const subTitle = styled.p`
+const SubTitle = styled.p`
   font-family: ${(props) => props.theme.fontFamily.mainFont};
   border-bottom: 1px solid #eeeeee;
   margin: 10px 0px 15px 0px;
   padding-bottom: 5px;
 `;
 
-const buttonPosition = styled.div`
+const ButtonPosition = styled.div`
   display: flex;
   justify-content: center;
 `;
 
-const addressBox = styled.div`
+const AddressBox = styled.div`
   display: flex;
   justify-content: center;
   padding-top: 5px;
   margin: 7px 0px;
 `;
 
-const imgBox = styled.div`
+const ImgBox = styled.div`
   margin-left: 20px;
   @media (max-width: 1024px) {
     margin-left: 0px;
   }
 `;
 
-const guideText = styled.p`
+const GuideText = styled.p`
   text-align: center;
 `;
 
 export const MyPageStyle = {
-  board,
-  textBoard,
-  textContent,
-  page,
-  contentBoard,
-  setBoard,
-  imgInput,
-  imgLabel,
-  content,
-  errMessage,
-  title,
-  buttonPosition,
-  subTitle,
-  userProfile,
-  userInfo,
-  baseInfo,
-  guideText,
-  imgBox,
-  addressBox,
+  Board,
+  TextBoard,
+  TextContent,
+  Page,
+  ContentBoard,
+  SetBoard,
+  ImgInput,
+  ImgLabel,
+  Content,
+  ErrMessage,
+  Title,
+  ButtonPosition,
+  SubTitle,
+  UserProfile,
+  UserInfo,
+  BaseInfo,
+  GuideText,
+  ImgBox,
+  AddressBox,
 };

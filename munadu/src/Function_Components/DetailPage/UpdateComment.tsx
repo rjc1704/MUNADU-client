@@ -58,7 +58,6 @@ interface IProps {
   completeEdit: () => void;
 }
 const UpdateComment = ({ comment, commentId, completeEdit }: IProps) => {
-  const [isOpen, setIsOpen] = useState(true);
   const [curComment, setCurComment] = useState("");
 
   const handleComment = (e: any) => {

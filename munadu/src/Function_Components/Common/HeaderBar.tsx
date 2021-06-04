@@ -26,7 +26,7 @@ export default function HeaderBar({ isCheck = true }: { isCheck?: boolean }) {
       <Header.HeaderWrapper>
         <Header.HeaderBox>
           <Header.HeaderLogo onClick={() => history.push("/")}>
-            <img src={"/munadoLogo.svg"} />
+            <img alt="logo" src={"/munadoLogo.svg"} />
           </Header.HeaderLogo>
           {!isUser.isLogin ? (
             <>
@@ -53,7 +53,10 @@ export default function HeaderBar({ isCheck = true }: { isCheck?: boolean }) {
                   setIsOpen(!isOpen);
                 }}
               >
-                <img src={isOpen ? "/exit.svg" : "/hamburger.svg"}></img>
+                <img
+                  alt="button"
+                  src={isOpen ? "/exit.svg" : "/hamburger.svg"}
+                ></img>
               </Header.HbgBtn>
               <Header.HbgMenu isOpen={isOpen}>
                 <Header.HbgMenuBtnBoard>
@@ -123,7 +126,10 @@ export default function HeaderBar({ isCheck = true }: { isCheck?: boolean }) {
                   setIsOpen(!isOpen);
                 }}
               >
-                <img src={isOpen ? "/exit.svg" : "/hamburger.svg"}></img>
+                <img
+                  alt="button"
+                  src={isOpen ? "/exit.svg" : "/hamburger.svg"}
+                ></img>
               </Header.HbgBtn>
               <Header.HbgMenu isOpen={isOpen}>
                 <Header.HbgMenuBtnBoard>

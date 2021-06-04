@@ -7,7 +7,6 @@ import { RootState } from "../../Redux/Store/store";
 import youtube from "./img/youtube.svg";
 import wiki from "./img/wiki.svg";
 import { useHistory } from "react-router";
-import { withRouter } from "react-router-dom";
 
 const MartialSummary = styled.div`
   display: flex;

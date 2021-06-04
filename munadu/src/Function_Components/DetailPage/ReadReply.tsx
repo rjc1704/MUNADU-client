@@ -1,15 +1,9 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import profileImg from "./temp.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../Redux/Store/store";
 import EditReply from "./EditReply";
-import {
-  createReply,
-  getReplyList,
-  updateReply,
-  deleteReply,
-} from "../../Redux/Reducers/replyReducer";
+import { getReplyList } from "../../Redux/Reducers/replyReducer";
 import UpdateReply from "./UpdateReply";
 export const ReplyWrapper = styled.div`
   display: flex;

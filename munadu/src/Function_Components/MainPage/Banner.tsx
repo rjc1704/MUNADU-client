@@ -75,7 +75,6 @@ interface IProps {
 }
 
 const Banner = ({ checkSelected, isSelected }: IProps) => {
-  const [tabMenu, setTabMenu] = useState(0);
   return (
     <StyledBanner>
       <TextWrapper>
@@ -96,7 +95,6 @@ const Banner = ({ checkSelected, isSelected }: IProps) => {
           idx={true}
           onClick={() => {
             checkSelected(true);
-            setTabMenu(0);
           }}
           tabValue={isSelected}
         >
@@ -106,7 +104,6 @@ const Banner = ({ checkSelected, isSelected }: IProps) => {
           idx={false}
           onClick={() => {
             checkSelected(false);
-            setTabMenu(1);
           }}
           tabValue={isSelected}
         >

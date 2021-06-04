@@ -33,7 +33,6 @@ const Div = styled.div`
 // 기본 margin 0으로 두고, margin-top = (전체높이 - box높이) /2 - headerHeight
 export default function SurveyPage() {
   // const [boxHeight, setBoxHeight] = useState()
-  const getBoxHeight = (height: number) => {};
   return (
     <PageContainer>
       <Div>
