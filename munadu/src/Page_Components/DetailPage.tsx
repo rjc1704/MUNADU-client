@@ -14,7 +14,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAverage } from "../Redux/Reducers/avgReducer";
 import HeaderBar from "../Function_Components/Common/HeaderBar";
 import Summary from "../Function_Components/DetailPage/Summary";
-import backToTop from "../Images/backToTop.svg";
 
 const ContentContainer = styled.div`
   display: flex;
@@ -166,21 +165,8 @@ interface IProps {
 const Div = styled.div`
   width: 100%;
 `;
-const TopBtn = styled.a`
-  position: fixed;
-  right: 5%;
-  bottom: 2%;
-
-  filter: drop-shadow(0px 0px 8px rgba(0, 0, 0, 0.2));
-  cursor: pointer;
-  @media only screen and (max-width: ${(props) => props.theme.width.media}) {
-    bottom: 7%;
-    right: 3%;
-  }
-`;
 
 export default function DetailPage() {
-  const [isVisible, setIsVisible] = useState(false);
   const [tabMenu, setTabMenu] = useState(0);
 
   const showReviewMenu = () => {
@@ -282,93 +268,63 @@ export default function DetailPage() {
     dispatch(getAverage(martialId));
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    // window.scrollTo(0, 0);
-    // document.getElementById("root")?.scrollTo(0, 0);
-  };
-  // useEffect(() => {
-  //   console.log(`이거 실행됨`);
-  //   window.addEventListener("scroll", scrollToTop);
-  //   return () => window.removeEventListener("scroll", scrollToTop);
-  // }, []);
-  // useEffect(() => {
-  //   // Button is displayed after scrolling for 500 pixels
-  //   const toggleVisibility = () => {
-  //     if (window.pageYOffset > 50) {
-  //       console.log("스크롤이벤트200이상!");
-  //       setIsVisible(true);
-  //     } else {
-  //       setIsVisible(false);
-  //     }
-  //   };
-  //   window.addEventListener("scroll", toggleVisibility);
-
-  //   return () => window.removeEventListener("scroll", toggleVisibility);
-  // }, []);
   return (
-    <>
-      <PageContainer onScroll={scrollToTop}>
-        <Div>
-          <HeaderBar />
-        </Div>
-        <Board>
-          <DetailInfo svg={theMartial.img}>
-            <DescBox>
-              <StarAndRating>
-                <StarPhoto src={star} />
-                <Rating>{Math.round(scoreAvg * 10) / 10}</Rating>
-              </StarAndRating>
-              <TextsBox>
-                <Texts>{theMartial.name}</Texts>
-                <SmallTexts>{theMartial.nation}</SmallTexts>
-              </TextsBox>
-              <TagBox>
-                {tags.map((tag) => {
-                  return <Tag>{tag}</Tag>;
-                })}
-              </TagBox>
-            </DescBox>
-          </DetailInfo>
-        </Board>
-        <ContentContainer>
-          <TextWrapper>무술 개요</TextWrapper>
-          <Summary martialId={martialId} />
-          <TextWrapper>
-            <TextBox>
-              <Text onClick={showReviewMenu} idx={0} tabValue={tabMenu}>
-                사형의 조언
-              </Text>
-              <Text onClick={showCommentMenu} idx={1} tabValue={tabMenu}>
-                무술 한줄평
-              </Text>
-              <Text onClick={showLocationMenu} idx={2} tabValue={tabMenu}>
-                도장 위치
-              </Text>
-            </TextBox>
-            <div>
-              {isLogin ? (
-                <CreateReview
-                  Martials_id={martialId}
-                  Users_id={userId}
-                  tabValue={tabMenu}
-                />
-              ) : null}
-            </div>
-          </TextWrapper>
-          {tabMenu === 0 ? (
-            <ReadReview martialId={martialId} />
-          ) : tabMenu === 1 ? (
-            <ReadComment martialId={martialId} />
-          ) : (
-            <ReadLocation martialId={martialId} />
-          )}
-        </ContentContainer>
-
-        <TopBtn onClick={scrollToTop}>
-          <img src={backToTop} />
-        </TopBtn>
-      </PageContainer>
-    </>
+    <PageContainer>
+      <Div>
+        <HeaderBar />
+      </Div>
+      <Board>
+        <DetailInfo svg={theMartial.img}>
+          <DescBox>
+            <StarAndRating>
+              <StarPhoto src={star} />
+              <Rating>{Math.round(scoreAvg * 10) / 10}</Rating>
+            </StarAndRating>
+            <TextsBox>
+              <Texts>{theMartial.name}</Texts>
+              <SmallTexts>{theMartial.nation}</SmallTexts>
+            </TextsBox>
+            <TagBox>
+              {tags.map((tag) => {
+                return <Tag>{tag}</Tag>;
+              })}
+            </TagBox>
+          </DescBox>
+        </DetailInfo>
+      </Board>
+      <ContentContainer>
+        <TextWrapper>무술 개요</TextWrapper>
+        <Summary martialId={martialId} />
+        <TextWrapper>
+          <TextBox>
+            <Text onClick={showReviewMenu} idx={0} tabValue={tabMenu}>
+              사형의 조언
+            </Text>
+            <Text onClick={showCommentMenu} idx={1} tabValue={tabMenu}>
+              무술 한줄평
+            </Text>
+            <Text onClick={showLocationMenu} idx={2} tabValue={tabMenu}>
+              도장 위치
+            </Text>
+          </TextBox>
+          <div>
+            {isLogin ? (
+              <CreateReview
+                Martials_id={martialId}
+                Users_id={userId}
+                tabValue={tabMenu}
+              />
+            ) : null}
+          </div>
+        </TextWrapper>
+        {tabMenu === 0 ? (
+          <ReadReview martialId={martialId} />
+        ) : tabMenu === 1 ? (
+          <ReadComment martialId={martialId} />
+        ) : (
+          <ReadLocation martialId={martialId} />
+        )}
+      </ContentContainer>
+    </PageContainer>
   );
 }
