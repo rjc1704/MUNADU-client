@@ -7,7 +7,7 @@ import {
 } from "../StyledComponents/sign";
 import InputForm from "../Function_Components/SignInPage/InputForm";
 import Button from "../StyledComponents/button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Inspect from "../Function_Components/SignInPage/Inspect";
 import { useHistory } from "react-router";
 import { setAuth } from "../Redux/Reducers/authReducer";
@@ -16,6 +16,7 @@ import axios from "axios";
 import HeaderBar from "../Function_Components/Common/HeaderBar";
 import HalfBackground from "../StyledComponents/HalfBackground";
 import GoogleLogin from "../Function_Components/SignInPage/GoogleLogin";
+import { RootState } from "../Redux/Store/store";
 interface Ialert {
   email: boolean;
   password: boolean;
@@ -43,6 +44,16 @@ export default function SignUpPage() {
   const dispatch = useDispatch();
   const history = useHistory();
   const emailRef = useRef<HTMLInputElement>(null);
+
+  const isLogin = useSelector((state: RootState) => {
+    return state.authReducer.isLogin;
+  });
+
+  useEffect(() => {
+    if (isLogin) {
+      history.push("/");
+    }
+  }, [isLogin]);
 
   const currentEmail = (e: any) => {
     if (!Inspect(email, "email")) {
@@ -125,7 +136,6 @@ export default function SignUpPage() {
           }
         );
         if (singupData) {
-          dispatch(setAuth({ email, password }));
           setIsModal(true);
         }
       } else {
@@ -135,6 +145,7 @@ export default function SignUpPage() {
   };
 
   const closeModal = () => {
+    dispatch(setAuth({ email, password }));
     history.push("/");
   };
 
@@ -197,22 +208,22 @@ export default function SignUpPage() {
           </Button>
           <GoogleLogin></GoogleLogin>
         </SignBoard>
-        {isModal ? (
-          <Modal
-            close={closeModal}
-            headerText="회원 가입 완료"
-            okBtnText="확인"
-            callback={closeModal}
-          >
-            <div>
-              회원 가입이 완료되었습니다
-              <br />
-              메인 페이지로 이동합니다
-            </div>
-          </Modal>
-        ) : null}
       </SingBackground>
       <HalfBackground />
+      {isModal ? (
+        <Modal
+          close={closeModal}
+          headerText="회원 가입 완료"
+          okBtnText="확인"
+          callback={closeModal}
+        >
+          <div>
+            회원 가입이 완료되었습니다
+            <br />
+            메인 페이지로 이동합니다
+          </div>
+        </Modal>
+      ) : null}
     </>
   );
 }
