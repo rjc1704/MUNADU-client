@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-const img = styled.img`
+const Img = styled.img`
   width: 100%;
   height: 100%;
   /* border: 1px solid black; */
 `;
-const board = styled.div`
+const Board = styled.div`
   display: flex;
   margin: 0px auto 10px auto;
   width: 64%;
@@ -14,12 +14,12 @@ const board = styled.div`
     width: 95%;
   }
 `;
-const childrenBoard = styled.div``;
-const imgBox = styled.div`
+const ChildrenBoard = styled.div``;
+const ImgBox = styled.div`
   width: 138px;
   height: 138px;
   border: 6px solid white;
   background-color: ${(props) => props.theme.color.white};
 `;
 
-export const Detail = { img, board, childrenBoard, imgBox };
+export const Detail = { Img, Board, ChildrenBoard, ImgBox };

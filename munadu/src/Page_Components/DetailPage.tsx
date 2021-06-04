@@ -1,28 +1,18 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
-import Button from "../StyledComponents/button";
-import axios from "axios";
-import martialImg from "../Images/taekwondo.svg";
-import Star from "../Images/star.svg";
 import CreateReview from "../Function_Components/DetailPage/CreateReview";
 import { PageContainer } from "../Page_Components/SurveyPage";
-import profileImg from "../Function_Components/DetailPage/temp.svg";
-import editBtn from "../Function_Components/DetailPage/editBtn.svg";
 import star from "../Function_Components/DetailPage/star.svg";
-import bar from "../Function_Components/DetailPage/bar.svg";
 import ReadReview from "../Function_Components/DetailPage/ReadReview";
 import ReadComment from "../Function_Components/DetailPage/ReadComment";
 import ReadLocation from "../Function_Components/DetailPage/ReadLocation";
 import { useLocation } from "react-router";
 import { RootState } from "../Redux/Store/store";
 import DetailInfo from "../Function_Components/Common/DetailInfo";
-import { Detail } from "../StyledComponents/detail";
 import martialJson from "../Function_Components/Common/martialData.json";
 import { useDispatch, useSelector } from "react-redux";
 import { getAverage } from "../Redux/Reducers/avgReducer";
 import HeaderBar from "../Function_Components/Common/HeaderBar";
-import Header from "../StyledComponents/header";
-import RadarChart from "../Function_Components/Common/RadarChart";
 import Summary from "../Function_Components/DetailPage/Summary";
 import backToTop from "../Images/backToTop.svg";
 
@@ -218,7 +208,6 @@ export default function DetailPage() {
     (state: RootState) => state.reviewReducer.reviewList
   );
 
-  // console.log(`survey in SurveyList`, survey);
   const tags: string[] = [];
   switch (theMartial.weapon) {
     case 0:
@@ -294,7 +283,6 @@ export default function DetailPage() {
   }, []);
 
   const scrollToTop = () => {
-    console.log(``, window.scrollY); // global.scrollTo({ top: 0, behavior: "smooth" });
     window.scrollTo({ top: 0, behavior: "smooth" });
     // window.scrollTo(0, 0);
     // document.getElementById("root")?.scrollTo(0, 0);
@@ -368,7 +356,6 @@ export default function DetailPage() {
               ) : null}
             </div>
           </TextWrapper>
-          {console.log(`martialId above Tab: `, martialId)}
           {tabMenu === 0 ? (
             <ReadReview martialId={martialId} />
           ) : tabMenu === 1 ? (

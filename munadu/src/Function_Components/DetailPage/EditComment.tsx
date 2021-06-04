@@ -3,9 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { RootState } from "../../Redux/Store/store";
 import editBtn from "./editBtn.svg";
-import { deleteComment } from "../../Redux/Reducers/commentReducer";
 import DeleteComment from "./DeleteComment";
-import UpdateComment from "./UpdateComment";
 
 interface IProps {
   commentUserId: number;
@@ -97,6 +95,7 @@ const EditComment = ({
     setIsUpdateOpen(toggle);
   };
   const [isOpenEdit, setIsOpenEdit] = useState(false);
+
   const closeEditBtns = () => {
     setIsOpenEdit(false);
   };

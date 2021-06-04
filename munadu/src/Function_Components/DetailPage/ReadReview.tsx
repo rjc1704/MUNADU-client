@@ -1,8 +1,5 @@
-import React, { useEffect, useState, useRef, useLayoutEffect } from "react";
-import styled from "styled-components";
+import { useEffect, useState, useRef } from "react";
 import ReadReply from "./ReadReply";
-import profileImg from "./temp.svg";
-import editBtn from "./editBtn.svg";
 import star from "./star.svg";
 import bar from "./bar.svg";
 import date from "date-and-time";
@@ -16,9 +13,7 @@ import {
   createReply,
   getReplyList,
   deleteReply,
-  updateReply,
 } from "../../Redux/Reducers/replyReducer";
-import EditBtns from "./EditBtns";
 import EditReview from "./EditReview";
 import {
   ReviewWrapper,
@@ -44,16 +39,8 @@ import {
   BarPhoto5,
   Name2,
   Name3,
-  Photo3,
-  LayerBtn,
   ReplyBox,
-  ReplyWrapper,
-  ReplyDescBox,
-  NickName,
   ReplyTitle,
-  ReplyText,
-  ReplyDateAndAgain,
-  Photo4,
   CommentTextArea,
   CommentBtn,
 } from "../../StyledComponents/readreview";
@@ -143,7 +130,6 @@ export default function ReadReview({ martialId = 1, userID }: IProps) {
         개의 조언
       </TotalCount>
       {sortedReviewList.map((review, idx) => {
-        console.log(`review.users.img`, review);
         return (
           <ReviewBox key={idx}>
             <NameAndDateAndBtn>

@@ -14,10 +14,7 @@ import MainPage from "./Page_Components/MainPage";
 import DetailPage from "./Page_Components/DetailPage";
 import OtherUserPage from "./Page_Components/OtherUserPage";
 import SignUpPage from "./Page_Components/SignUpPage";
-import { useHistory } from "react-router";
-import { useSelector, useDispatch } from "react-redux";
-import styled from "styled-components";
-import HeaderBar from "./Function_Components/Common/HeaderBar";
+import { useSelector } from "react-redux";
 
 function App() {
   const authState = useSelector((state) => state.authReducer);

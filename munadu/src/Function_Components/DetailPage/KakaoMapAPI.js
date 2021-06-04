@@ -65,7 +65,6 @@ export default function KakaoMapAPI({ martialId }) {
 
         // 체육관들의 위치를 맵에 마커로 표시
         martialJson.result[martialId - 1].coord.forEach((coord, idx) => {
-          console.log(`coord.place_name: `, coord.place_name);
           const marker = new kakao.maps.Marker({
             map: map,
             position: new kakao.maps.LatLng(coord.y, coord.x),

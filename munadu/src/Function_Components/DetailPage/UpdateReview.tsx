@@ -1,11 +1,10 @@
 // import Modal from "../Common/Modal";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "../Common/Modal";
 import StarRatings from "react-star-rating-component";
 import {
   PhotoAndText,
-  Photo,
   TextAndInput,
   MartialTitle,
   Nation,
@@ -16,10 +15,8 @@ import {
   Div,
   Form,
   ErrorMsg,
-  NewBtn2,
 } from "../../StyledComponents/createreview";
 import { RootState } from "../../Redux/Store/store";
-import axios from "axios";
 import martialJson from "../Common/martialData.json";
 import { updateReviews } from "../../Redux/Reducers/reviewReducer";
 interface IProps {
@@ -77,11 +74,9 @@ function UpdateReview({ reviewId, martialId, closeEditBtns }: IProps) {
     (state: RootState) => state.authReducer.accessToken
   );
   const handlePeriod = (e: any) => {
-    console.log(`period inputt`, e.target.value);
     setPeriod(e.target.value);
   };
   const handleComment = (e: any) => {
-    console.log(`e.target.value`, e.target.value);
     setComment(e.target.value);
   };
   const handlePracticality = (newPracticality: number) => {

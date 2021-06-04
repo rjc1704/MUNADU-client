@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from "react";
-import styled, { css } from "styled-components";
+import { useEffect } from "react";
 import {
   ContentCard,
-  ContentsTitle,
   DetailTitle,
   DetailCaption,
-  Box,
 } from "../../StyledComponents/recommendForm";
 import martialJson from "../Common/martialData.json";
 import { useDispatch, useSelector } from "react-redux";
@@ -357,13 +354,10 @@ const MartialListForm = () => {
         return martial.attack !== 3;
       });
 
-      console.log(`filterResult in else!:`, filterResult);
       dispatch(
         filterMartial({ ...martialData, weapon: 3, result: filterResult })
       );
     }
-    console.log(`filterResult`, filterResult);
-    console.log(`martialData`, martialData);
   }, [isHand]);
   useEffect(() => {
     let filterResult: any = [];
@@ -409,8 +403,6 @@ const MartialListForm = () => {
         filterMartial({ ...martialData, weapon: 3, result: filterResult })
       );
     }
-    console.log(`filterResult`, filterResult);
-    console.log(`martialData`, martialData);
   }, [isWeapon]);
   useEffect(() => {
     let filterResult: any = [];
@@ -456,8 +448,6 @@ const MartialListForm = () => {
         filterMartial({ ...martialData, weapon: 3, result: filterResult })
       );
     }
-    console.log(`filterResult`, filterResult);
-    console.log(`martialData`, martialData);
   }, [isHandAndWeapon]);
   useEffect(() => {
     let filterResult: any = [];
@@ -503,8 +493,6 @@ const MartialListForm = () => {
         filterMartial({ ...martialData, uniform: 3, result: filterResult })
       );
     }
-    console.log(`filterResult`, filterResult);
-    console.log(`martialData`, martialData);
   }, [isDobok]);
   useEffect(() => {
     let filterResult: any = [];
@@ -550,8 +538,6 @@ const MartialListForm = () => {
         filterMartial({ ...martialData, uniform: 3, result: filterResult })
       );
     }
-    console.log(`filterResult`, filterResult);
-    console.log(`martialData`, martialData);
   }, [isFreebok]);
   useEffect(() => {
     let filterResult: any = [];
@@ -597,8 +583,6 @@ const MartialListForm = () => {
         filterMartial({ ...martialData, uniform: 3, result: filterResult })
       );
     }
-    console.log(`filterResult`, filterResult);
-    console.log(`martialData`, martialData);
   }, [isUniform]);
   useEffect(() => {
     let filterResult: any = [];
@@ -644,8 +628,6 @@ const MartialListForm = () => {
         filterMartial({ ...martialData, attack: 3, result: filterResult })
       );
     }
-    console.log(`filterResult`, filterResult);
-    console.log(`martialData`, martialData);
   }, [isAttack]);
   useEffect(() => {
     let filterResult: any = [];
@@ -691,8 +673,6 @@ const MartialListForm = () => {
         filterMartial({ ...martialData, attack: 3, result: filterResult })
       );
     }
-    console.log(`filterResult`, filterResult);
-    console.log(`martialData`, martialData);
   }, [isGround]);
   useEffect(() => {
     let filterResult: any = [];
@@ -738,8 +718,6 @@ const MartialListForm = () => {
         filterMartial({ ...martialData, attack: 3, result: filterResult })
       );
     }
-    console.log(`filterResult`, filterResult);
-    console.log(`martialData`, martialData);
   }, [isMMA]);
   useEffect(() => {
     let filterResult: any = [];
@@ -785,8 +763,6 @@ const MartialListForm = () => {
         filterMartial({ ...martialData, origin: 2, result: filterResult })
       );
     }
-    console.log(`filterResult`, filterResult);
-    console.log(`martialData`, martialData);
   }, [isEastern]);
   useEffect(() => {
     let filterResult: any = [];
@@ -832,8 +808,6 @@ const MartialListForm = () => {
         filterMartial({ ...martialData, origin: 2, result: filterResult })
       );
     }
-    console.log(`filterResult`, filterResult);
-    console.log(`martialData`, martialData);
   }, [isWestern]);
   useEffect(() => {
     let filterResult: any = [];
@@ -879,8 +853,6 @@ const MartialListForm = () => {
         filterMartial({ ...martialData, sports: 2, result: filterResult })
       );
     }
-    console.log(`filterResult`, filterResult);
-    console.log(`martialData`, martialData);
   }, [isSports]);
   useEffect(() => {
     let filterResult: any = [];
@@ -926,8 +898,6 @@ const MartialListForm = () => {
         filterMartial({ ...martialData, sports: 2, result: filterResult })
       );
     }
-    console.log(`filterResult`, filterResult);
-    console.log(`martialData`, martialData);
   }, [isNoSports]);
   useEffect(() => {
     let filterResult: any = [];
@@ -973,8 +943,6 @@ const MartialListForm = () => {
         filterMartial({ ...martialData, manner: 2, result: filterResult })
       );
     }
-    console.log(`filterResult`, filterResult);
-    console.log(`martialData`, martialData);
   }, [isCourtesy]);
   useEffect(() => {
     let filterResult: any = [];
@@ -1020,8 +988,6 @@ const MartialListForm = () => {
         filterMartial({ ...martialData, manner: 2, result: filterResult })
       );
     }
-    console.log(`filterResult`, filterResult);
-    console.log(`martialData`, martialData);
   }, [isFreedom]);
   const history = useHistory();
   const moveToDetailPage = (id: number) => {

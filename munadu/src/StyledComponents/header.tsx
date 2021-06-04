@@ -28,19 +28,19 @@ const HeaderLogo = styled.div`
   font-weight: 900;
   cursor: pointer;
 `;
-const btnBoard = styled.div`
+const BtnBoard = styled.div`
   @media (max-width: 1024px) {
     display: none;
   }
 `;
-const hbgBtn = styled.div`
+const HbgBtn = styled.div`
   display: none;
   cursor: pointer;
   @media (max-width: 1024px) {
     display: block;
   }
 `;
-const hbgMenu = styled.div<{ isOpen: boolean }>`
+const HbgMenu = styled.div<{ isOpen: boolean }>`
   display: none;
   transition: 0.5s;
   position: absolute;
@@ -54,7 +54,7 @@ const hbgMenu = styled.div<{ isOpen: boolean }>`
     background-color: white;
   }
 `;
-const hbgMenuBtnBoard = styled.div`
+const HbgMenuBtnBoard = styled.div`
   background-color: ${(props) => props.theme.color.black};
   width: 100%;
   height: 55px;
@@ -64,7 +64,7 @@ const hbgMenuBtnBoard = styled.div`
   }
 `;
 
-const hbgMenuBtn = styled.div`
+const HbgMenuBtn = styled.div`
   background-color: ${(props) => props.theme.color.white};
   width: 100%;
   text-align: center;
@@ -76,11 +76,11 @@ const Header = {
   HeaderWrapper,
   HeaderBox,
   HeaderLogo,
-  btnBoard,
-  hbgBtn,
-  hbgMenu,
-  hbgMenuBtnBoard,
-  hbgMenuBtn,
+  BtnBoard,
+  HbgBtn,
+  HbgMenu,
+  HbgMenuBtnBoard,
+  HbgMenuBtn,
 };
 
 export default Header;

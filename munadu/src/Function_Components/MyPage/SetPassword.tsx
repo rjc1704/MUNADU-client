@@ -59,7 +59,6 @@ export default function SetPassword({ callback }: Idata) {
 
   const changeAfterPsd = (e: any) => {
     setAfterPassword(e.target.value);
-    console.log(`이거다`, Inspect(afterPassword, "password"));
   };
   useEffect(() => {
     if (Inspect(afterPassword, "password") === false) {

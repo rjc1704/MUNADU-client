@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteReply } from "../../Redux/Reducers/replyReducer";
 import { RootState } from "../../Redux/Store/store";
 import Modal from "../Common/Modal";
 

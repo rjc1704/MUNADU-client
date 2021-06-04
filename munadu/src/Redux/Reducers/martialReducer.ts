@@ -1,6 +1,5 @@
 import dummy from "../martialDummy.json";
 import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 
 interface Imartial {
   id: number;

@@ -5,7 +5,6 @@ import axios from "axios";
 export const setUser = createAsyncThunk(
   "userReducer/setUser",
   async (id: number) => {
-    console.log(`id 들어오고 있다`, id);
     try {
       return await axios.get(
         `${process.env.REACT_APP_API_URL}/user/info/${id}`,

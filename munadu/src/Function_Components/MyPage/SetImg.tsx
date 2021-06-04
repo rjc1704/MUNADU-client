@@ -69,9 +69,9 @@ export default function SetImage({ callback }: any) {
       <MyPageStyle.content>
         <MyPageStyle.subTitle>프로필 이미지 변경</MyPageStyle.subTitle>
         <MyPageStyle.contentBoard>
-          <Detail.imgBox>
+          <Detail.ImgBox>
             <MyPageStyle.imgLabel htmlFor="file">
-              <Detail.img src={imgBase64}></Detail.img>
+              <Detail.Img src={imgBase64}></Detail.Img>
               <MyPageStyle.imgInput
                 type="file"
                 accept="image/jpeg, image/png, image/jpg"
@@ -79,7 +79,7 @@ export default function SetImage({ callback }: any) {
                 id="file"
               ></MyPageStyle.imgInput>
             </MyPageStyle.imgLabel>
-          </Detail.imgBox>
+          </Detail.ImgBox>
           <MyPageStyle.imgBox>
             <MyPageStyle.guideText>
               이미지를 눌러 원하는

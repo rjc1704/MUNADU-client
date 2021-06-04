@@ -257,7 +257,6 @@ const Summary = ({ martialId }: IProps) => {
     intensityAvg,
     injuryAvg,
   ];
-  console.log(`avgLabel`, avgLabel);
 
   const randomData = makeRandomMartial(martialJson.martialData);
 

@@ -1,18 +1,13 @@
-import React, { useState, useEffect, ChangeEvent, FC, memo } from "react";
+import { useState, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import StarRatings from "react-star-rating-component";
-import styled from "styled-components";
-import Button from "../../StyledComponents/button";
 import Modal from "../Common/Modal";
 import axios from "axios";
 import { RootState } from "../../Redux/Store/store";
-import martialImage from "../../Images/taekwondo.svg";
-import { NewBtn } from "../../StyledComponents/survey";
 import { createReview } from "../../Redux/Reducers/reviewReducer";
 import martialJson from "../Common/martialData.json";
 import {
   PhotoAndText,
-  Photo,
   TextAndInput,
   MartialTitle,
   Nation,
@@ -104,25 +99,23 @@ function CreateReview({ Martials_id, Users_id, tabValue = 1 }: IProps) {
     (state: RootState) => state.authReducer.accessToken
   );
   const handlePeriod = (e: any) => {
-    console.log(`period inputt`, e.target.value);
     setPeriod(e.target.value);
   };
   const handleComment = (e: any) => {
-    console.log(`e.target.value`, e.target.value);
     setComment(e.target.value);
   };
-  interface reviewProps {
-    period: number;
-    comment: string;
-    score: number;
-    practicality: number;
-    muscle: number;
-    difficulty: number;
-    intensity: number;
-    injury: number;
-    Martials_id?: number;
-    Users_id?: number;
-  }
+  // interface reviewProps {
+  //   period: number;
+  //   comment: string;
+  //   score: number;
+  //   practicality: number;
+  //   muscle: number;
+  //   difficulty: number;
+  //   intensity: number;
+  //   injury: number;
+  //   Martials_id?: number;
+  //   Users_id?: number;
+  // }
   const addReview = async () => {
     // 유효성 검사
     // 서버 통신
@@ -156,9 +149,6 @@ function CreateReview({ Martials_id, Users_id, tabValue = 1 }: IProps) {
       setInitialState();
     }
   };
-  useEffect(() => {
-    console.log(`isModal`, isModal);
-  }, [isModal]);
 
   return (
     <Div>

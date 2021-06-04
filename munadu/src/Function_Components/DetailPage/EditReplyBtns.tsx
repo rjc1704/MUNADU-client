@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
-import UpdateReply from "./UpdateReply";
 import DeleteReply from "./DeleteReply";
 
 const BtnsWrapper = styled.div`
@@ -37,12 +36,6 @@ const Text = styled.div`
     height: 30px;
     width: 100%;
   }
-`;
-const Hr = styled.hr`
-  width: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  margin: 0;
-  padding: 0;
 `;
 
 interface IProps {

@@ -1,7 +1,6 @@
 import dummy from "../authDummy.json";
-import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { stat } from "fs";
 
 export interface Istate {
   isLogin: boolean;

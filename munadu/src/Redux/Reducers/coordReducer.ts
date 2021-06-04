@@ -1,16 +1,10 @@
 import dummy from "../coordDummy.json";
-import {
-  createSlice,
-  PayloadAction,
-  createAsyncThunk,
-  current,
-} from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const getCoordinate = createAsyncThunk(
   "coordReducer/getCoordinate",
   async (query: string) => {
-    console.log(`query: `, query);
     const coord = await axios.post(
       `${process.env.REACT_APP_API_URL}/martial/coordinate`,
       {
@@ -23,7 +17,6 @@ export const getCoordinate = createAsyncThunk(
         withCredentials: true,
       }
     );
-    console.log(`coord in Reducer:`, coord);
     return { lat: coord.data.data.lat, lgt: coord.data.data.lgt };
   }
 );

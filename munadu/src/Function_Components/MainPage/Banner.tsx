@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import styled, { StyledComponent } from "styled-components";
-import { idText } from "typescript";
+import { useState } from "react";
+import styled from "styled-components";
 
 export const StyledBanner = styled.div`
   display: flex;
@@ -77,7 +76,6 @@ interface IProps {
 
 const Banner = ({ checkSelected, isSelected }: IProps) => {
   const [tabMenu, setTabMenu] = useState(0);
-  console.log(`tabMenu`, tabMenu);
   return (
     <StyledBanner>
       <TextWrapper>

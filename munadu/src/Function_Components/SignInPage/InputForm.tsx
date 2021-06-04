@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import { Input } from "../../StyledComponents/input";
 import { SetBoard } from "../../StyledComponents/sign";
 

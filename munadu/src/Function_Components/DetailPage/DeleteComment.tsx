@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Modal from "../Common/Modal";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../Redux/Store/store";
+import { useDispatch } from "react-redux";
 import { deleteComment } from "../../Redux/Reducers/commentReducer";
 
 interface IProps {
