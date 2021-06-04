@@ -19,9 +19,11 @@ const Div = styled.div`
 export default function KakaoMapAPI({ martialId }) {
   const dispatch = useDispatch();
   const userAddress = useSelector((state) => state.userReducer.address);
+
   const isLogin = useSelector((state) => state.authReducer.isLogin);
   const userId = useSelector((state) => state.authReducer.id);
   const { lat, lgt } = useSelector((state) => state.coordReducer);
+
   useEffect(() => {
     dispatch(setUser(userId));
     dispatch(getCoordinate(userAddress));
@@ -58,10 +60,13 @@ export default function KakaoMapAPI({ martialId }) {
           imageOption
         );
         let marker = new kakao.maps.Marker({
-          position: isLogin && userAddress && new kakao.maps.LatLng(lat, lgt),
+          position:
+            isLogin &&
+            userAddress !== "null" &&
+            new kakao.maps.LatLng(lat, lgt),
           image: markerImage,
         });
-        isLogin && userAddress && marker.setMap(map);
+        isLogin && userAddress !== "null" && marker.setMap(map);
 
         // 체육관들의 위치를 맵에 마커로 표시
         martialJson.result[martialId - 1].coord.forEach((coord, idx) => {
