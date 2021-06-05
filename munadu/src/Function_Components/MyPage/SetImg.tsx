@@ -66,28 +66,28 @@ export default function SetImage({ callback }: any) {
   };
   return (
     <>
-      <MyPageStyle.content>
-        <MyPageStyle.subTitle>프로필 이미지 변경</MyPageStyle.subTitle>
-        <MyPageStyle.contentBoard>
+      <MyPageStyle.Content>
+        <MyPageStyle.SubTitle>프로필 이미지 변경</MyPageStyle.SubTitle>
+        <MyPageStyle.ContentBoard>
           <Detail.ImgBox>
-            <MyPageStyle.imgLabel htmlFor="file">
+            <MyPageStyle.ImgLabel htmlFor="file">
               <Detail.Img src={imgBase64}></Detail.Img>
-              <MyPageStyle.imgInput
+              <MyPageStyle.ImgInput
                 type="file"
                 accept="image/jpeg, image/png, image/jpg"
                 onChange={changeImage}
                 id="file"
-              ></MyPageStyle.imgInput>
-            </MyPageStyle.imgLabel>
+              ></MyPageStyle.ImgInput>
+            </MyPageStyle.ImgLabel>
           </Detail.ImgBox>
-          <MyPageStyle.imgBox>
-            <MyPageStyle.guideText>
+          <MyPageStyle.ImgBox>
+            <MyPageStyle.GuideText>
               이미지를 눌러 원하는
               <br />
               이미지 파일을 업로드 해주세요
-            </MyPageStyle.guideText>
-            <MyPageStyle.errMessage>{errMessage}</MyPageStyle.errMessage>
-            <MyPageStyle.buttonPosition>
+            </MyPageStyle.GuideText>
+            <MyPageStyle.ErrMessage>{errMessage}</MyPageStyle.ErrMessage>
+            <MyPageStyle.ButtonPosition>
               <Button
                 onClick={uploadImg}
                 color={onBtn ? "white" : ""}
@@ -102,10 +102,10 @@ export default function SetImage({ callback }: any) {
               >
                 취소
               </Button>
-            </MyPageStyle.buttonPosition>
-          </MyPageStyle.imgBox>
-        </MyPageStyle.contentBoard>
-      </MyPageStyle.content>
+            </MyPageStyle.ButtonPosition>
+          </MyPageStyle.ImgBox>
+        </MyPageStyle.ContentBoard>
+      </MyPageStyle.Content>
 
       {isModal ? (
         <Modal

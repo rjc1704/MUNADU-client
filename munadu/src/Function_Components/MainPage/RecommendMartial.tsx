@@ -37,7 +37,12 @@ const RecommendMartial = () => {
           return (
             <Box key={idx} onClick={() => moveToDetailPage(martial.id)}>
               <ContentCard>
-                <img src={martial.img} width="100%" height="100%" />
+                <img
+                  alt="martialimg"
+                  src={martial.img}
+                  width="100%"
+                  height="100%"
+                />
               </ContentCard>
               <DetailTitle>{martial.name}</DetailTitle>
               <DetailCaption>{martial.caption}</DetailCaption>

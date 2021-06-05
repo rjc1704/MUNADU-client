@@ -1,13 +1,4 @@
-import styled, { keyframes } from "styled-components";
-
-let highlight = keyframes`
-from {
-  border : 5px solid black;
-} 
-to {
-  border: 5px solid white;
-  }
-`;
+import styled from "styled-components";
 
 export const CardBack = styled.div<{ isSelect: boolean }>`
   background: ${(props) =>

@@ -10,15 +10,8 @@ import {
 } from "../../Redux/Reducers/commentReducer";
 import styled from "styled-components";
 
+import { Name } from "../../StyledComponents/readreview";
 import {
-  NameAndDateAndBtn,
-  NameAndDate,
-  Photo2,
-  Name,
-} from "../../StyledComponents/readreview";
-import {
-  Comment,
-  CommentBox,
   CommentDate,
   CommentHeader,
   CommentWrapper,

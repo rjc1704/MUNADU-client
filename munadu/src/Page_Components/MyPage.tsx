@@ -21,20 +21,20 @@ export default function MyPage() {
   const [isChange, setIsChange] = useState<boolean>(true);
   const userId = useSelector((state: RootState) => state.authReducer.id);
   return (
-    <MyPageStyle.page>
+    <MyPageStyle.Page>
       <HeaderBar></HeaderBar>
-      <MyPageStyle.board>
+      <MyPageStyle.Board>
         <DetailInfo img={userData.img ? userData.img : ""}>
-          <MyPageStyle.textBoard>
-            <MyPageStyle.textContent>{userData.name}</MyPageStyle.textContent>
-          </MyPageStyle.textBoard>
+          <MyPageStyle.TextBoard>
+            <MyPageStyle.TextContent>{userData.name}</MyPageStyle.TextContent>
+          </MyPageStyle.TextBoard>
         </DetailInfo>
-      </MyPageStyle.board>
+      </MyPageStyle.Board>
       {isChange ? (
-        <MyPageStyle.contentBoard>
-          <MyPageStyle.setBoard>
-            <MyPageStyle.baseInfo>
-              <MyPageStyle.title>기본 정보</MyPageStyle.title>
+        <MyPageStyle.ContentBoard>
+          <MyPageStyle.SetBoard>
+            <MyPageStyle.BaseInfo>
+              <MyPageStyle.Title>기본 정보</MyPageStyle.Title>
               <Button
                 color="black"
                 onClick={() => {
@@ -43,27 +43,27 @@ export default function MyPage() {
               >
                 내 정보 수정
               </Button>
-            </MyPageStyle.baseInfo>
-            <MyPageStyle.userProfile>
+            </MyPageStyle.BaseInfo>
+            <MyPageStyle.UserProfile>
               <div>
-                <MyPageStyle.userInfo>이메일</MyPageStyle.userInfo>
+                <MyPageStyle.UserInfo>이메일</MyPageStyle.UserInfo>
                 <p>{userData.email}</p>
               </div>
               <div>
-                <MyPageStyle.userInfo>주소</MyPageStyle.userInfo>
+                <MyPageStyle.UserInfo>주소</MyPageStyle.UserInfo>
                 <p>
                   {userData.address === "null"
                     ? "정보 수정을 통해 주소를 입력해주세요"
                     : userData.address}
                 </p>
               </div>
-            </MyPageStyle.userProfile>
+            </MyPageStyle.UserProfile>
             <UserLecord userId={userId}></UserLecord>
-          </MyPageStyle.setBoard>
-        </MyPageStyle.contentBoard>
+          </MyPageStyle.SetBoard>
+        </MyPageStyle.ContentBoard>
       ) : (
-        <MyPageStyle.setBoard>
-          <MyPageStyle.contentBoard>
+        <MyPageStyle.SetBoard>
+          <MyPageStyle.ContentBoard>
             {isSocial ? (
               <>
                 <SetImage callback={setIsChange}></SetImage>
@@ -82,9 +82,9 @@ export default function MyPage() {
                 <SetPassword callback={setIsChange}></SetPassword>
               </>
             )}
-          </MyPageStyle.contentBoard>
-        </MyPageStyle.setBoard>
+          </MyPageStyle.ContentBoard>
+        </MyPageStyle.SetBoard>
       )}
-    </MyPageStyle.page>
+    </MyPageStyle.Page>
   );
 }

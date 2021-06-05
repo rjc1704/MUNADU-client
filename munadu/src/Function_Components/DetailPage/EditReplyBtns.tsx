@@ -50,7 +50,6 @@ export default function EditReplyBtns({
   reviseReply,
   closeEditBtns,
 }: IProps) {
-  const [isOpen, setIsOpen] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
 
   const deleteReply = () => {

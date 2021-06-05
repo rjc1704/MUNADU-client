@@ -38,7 +38,7 @@ const RecommendChannel = () => {
           return (
             <ChannelBox key={idx}>
               <ChannelCard>
-                <img src={imgArr[idx]} />
+                <img alt="logo" src={imgArr[idx]} />
                 <ChannelDetail>
                   <ChannelTitle>{channel.name}</ChannelTitle>
                   <ChannelCaption>{channel.caption}</ChannelCaption>

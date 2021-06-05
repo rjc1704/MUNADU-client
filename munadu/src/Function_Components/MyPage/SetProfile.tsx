@@ -44,10 +44,10 @@ export default function SetProfile({ userData, callback }: Idata) {
   };
   return (
     <>
-      <MyPageStyle.content>
-        <MyPageStyle.subTitle>닉네임 및 주소 변경</MyPageStyle.subTitle>
+      <MyPageStyle.Content>
+        <MyPageStyle.SubTitle>닉네임 및 주소 변경</MyPageStyle.SubTitle>
         <Input value={name} onChange={changeName}></Input>
-        <MyPageStyle.addressBox>
+        <MyPageStyle.AddressBox>
           <Input
             value={
               typeof address === "string" && address !== "null"
@@ -56,8 +56,8 @@ export default function SetProfile({ userData, callback }: Idata) {
             }
           ></Input>
           <SetAddress changeAddress={changeAddress}></SetAddress>
-        </MyPageStyle.addressBox>
-        <MyPageStyle.buttonPosition>
+        </MyPageStyle.AddressBox>
+        <MyPageStyle.ButtonPosition>
           <Button
             onClick={uploadProfile}
             color={isChange ? "white" : "black"}
@@ -72,8 +72,8 @@ export default function SetProfile({ userData, callback }: Idata) {
           >
             취소
           </Button>
-        </MyPageStyle.buttonPosition>
-      </MyPageStyle.content>
+        </MyPageStyle.ButtonPosition>
+      </MyPageStyle.Content>
 
       {isModal ? (
         <Modal

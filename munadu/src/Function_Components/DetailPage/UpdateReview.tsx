@@ -97,18 +97,7 @@ function UpdateReview({ reviewId, martialId, closeEditBtns }: IProps) {
   const handleDifficulty = (newDifficulty: number) => {
     setDifficulty(newDifficulty);
   };
-  interface UpdateProps {
-    period: number;
-    comment: string;
-    score: number;
-    practicality: number;
-    muscle: number;
-    difficulty: number;
-    intensity: number;
-    injury: number;
-    reviewId: number;
-    accessToken: string;
-  }
+
   const updateReview = async () => {
     // 유효성 검사
     // 서버 통신

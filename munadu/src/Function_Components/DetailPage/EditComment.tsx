@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { RootState } from "../../Redux/Store/store";
 import editBtn from "./editBtn.svg";
@@ -61,18 +61,10 @@ const EditBtn = styled.div`
   }
 `;
 
-const EditComment = ({
-  commentUserId,
-  commentId,
-  commentMartialId,
-  comment,
-  reviseComment,
-}: IProps) => {
+const EditComment = ({ commentUserId, commentId, reviseComment }: IProps) => {
   const editEl = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [isUpdateOpen, setIsUpdateOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-  const dispatch = useDispatch();
   const getAuthInfo = useSelector((state: RootState) => state.authReducer);
   const { isLogin, accessToken, id } = getAuthInfo;
 
@@ -91,14 +83,7 @@ const EditComment = ({
   const deleteSwitch = (toggle: boolean) => {
     setIsDeleteOpen(toggle);
   };
-  const updateSwitch = (toggle: boolean) => {
-    setIsUpdateOpen(toggle);
-  };
-  const [isOpenEdit, setIsOpenEdit] = useState(false);
 
-  const closeEditBtns = () => {
-    setIsOpenEdit(false);
-  };
   return (
     <>
       {isLogin && commentUserId === id ? (

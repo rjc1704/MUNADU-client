@@ -79,16 +79,6 @@ export const TextBox = styled.div`
   }
 `;
 
-const PhotoAndDesc = styled.div`
-  display: flex;
-  align-items: flex-end;
-`;
-
-const Photo = styled.img`
-  width: 10%;
-  height: auto;
-`;
-
 const DescBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -188,11 +178,7 @@ export default function DetailPage() {
     (martial) => martial.id === martialId
   )[0];
   const scoreAvg = useSelector((state: RootState) => state.avgReducer.scoreAvg);
-  const survey = useSelector((state: RootState) => state.surveyReducer);
   const isLogin = useSelector((state: RootState) => state.authReducer.isLogin);
-  const reviewList = useSelector(
-    (state: RootState) => state.reviewReducer.reviewList
-  );
 
   const tags: string[] = [];
   switch (theMartial.weapon) {

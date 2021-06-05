@@ -116,8 +116,8 @@ export default function SetPassword({ callback }: Idata) {
   };
   return (
     <>
-      <MyPageStyle.content>
-        <MyPageStyle.subTitle>비밀번호 변경</MyPageStyle.subTitle>
+      <MyPageStyle.Content>
+        <MyPageStyle.SubTitle>비밀번호 변경</MyPageStyle.SubTitle>
         <Input
           placeholder="현재 비밀번호"
           type="password"
@@ -137,7 +137,7 @@ export default function SetPassword({ callback }: Idata) {
         ></Input>
         <Alert color={isErr.checkpsd}>{errMessage.checkpsd}</Alert>
         <Alert color={false}>{errMessage.errMsg}</Alert>
-        <MyPageStyle.buttonPosition>
+        <MyPageStyle.ButtonPosition>
           <Button
             onClick={uploadPassword}
             color={isChange ? "white" : "black"}
@@ -152,8 +152,8 @@ export default function SetPassword({ callback }: Idata) {
           >
             취소
           </Button>
-        </MyPageStyle.buttonPosition>
-      </MyPageStyle.content>
+        </MyPageStyle.ButtonPosition>
+      </MyPageStyle.Content>
 
       {isModal ? (
         <Modal

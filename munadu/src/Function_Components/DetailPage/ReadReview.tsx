@@ -109,15 +109,15 @@ export default function ReadReview({ martialId = 1, userID }: IProps) {
     dispatch(getReplyList());
   }, [replyList.length]);
 
-  const [selReviewId, setSelReviewId] = useState(0);
-  const [selMartialId, setSelMartialId] = useState(0);
-  const [isOpen, setIsOpen] = useState(false);
-  const openEditMenu = (reviewId: number, martialId: number) => {
-    setSelReviewId(reviewId);
-    setSelMartialId(martialId);
-    setIsOpen(true);
-  };
-  const kebabRef = useRef<HTMLDivElement>(null);
+  // const [selReviewId, setSelReviewId] = useState(0);
+  // const [selMartialId, setSelMartialId] = useState(0);
+  // const [isOpen, setIsOpen] = useState(false);
+  // const openEditMenu = (reviewId: number, martialId: number) => {
+  //   setSelReviewId(reviewId);
+  //   setSelMartialId(martialId);
+  //   setIsOpen(true);
+  // };
+  // const kebabRef = useRef<HTMLDivElement>(null);
 
   const resetComment = () => {
     setComment("");
