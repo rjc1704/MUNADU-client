@@ -25,8 +25,10 @@ export default function KakaoMapAPI({ martialId }) {
   const { lat, lgt } = useSelector((state) => state.coordReducer);
 
   useEffect(() => {
-    dispatch(setUser(userId));
-    dispatch(getCoordinate(userAddress));
+    if (userId) {
+      dispatch(setUser(userId));
+      dispatch(getCoordinate(userAddress));
+    }
     const script = document.createElement("script");
     script.async = true;
     script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_KAKAO_CLIENT_ID}&autoload=false`;
