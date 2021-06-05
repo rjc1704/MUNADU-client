@@ -15,6 +15,7 @@ const middlewares = [
         "recommendReducer/getChannel/fulfilled",
         "recommendReducer/getCommentRank/fulfilled",
         "recommendReducer/getReviewRank/fulfilled",
+        "reviewReducer/getUserReviewList/fulfilled",
       ],
     },
   }),
