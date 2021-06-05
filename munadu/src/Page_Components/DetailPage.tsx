@@ -271,8 +271,8 @@ export default function DetailPage() {
               <SmallTexts>{theMartial.nation}</SmallTexts>
             </TextsBox>
             <TagBox>
-              {tags.map((tag) => {
-                return <Tag>{tag}</Tag>;
+              {tags.map((tag, idx) => {
+                return <Tag key={idx}>{tag}</Tag>;
               })}
             </TagBox>
           </DescBox>

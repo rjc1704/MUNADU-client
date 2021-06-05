@@ -67,7 +67,6 @@ function LandingPage() {
     effect.play();
   };
   useEffect(() => {
-    console.log(`inUseEffect`, select);
     setImg(cards[select].img);
   }, [select]);
 
@@ -135,10 +134,11 @@ function LandingPage() {
               setSelect(select - 1);
             }}
           ></Landing.Left>
-          {cards.map((el: any) => {
+          {cards.map((el: any, idx: number) => {
             if (el.id === select + 1) {
               return (
                 <Landing.MartialImg
+                  key={idx}
                   className="landing_martial select"
                   src={img}
                 ></Landing.MartialImg>
@@ -146,6 +146,7 @@ function LandingPage() {
             }
             return (
               <Landing.MartialImg
+                key={idx}
                 className="landing_martial"
                 src="dummy.svg"
               ></Landing.MartialImg>

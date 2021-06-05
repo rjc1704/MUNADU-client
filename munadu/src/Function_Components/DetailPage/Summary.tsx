@@ -331,9 +331,12 @@ const Summary = ({ martialId }: IProps) => {
         <RecommendWrapper>
           <Recommend>이런 무술은 어떠세요?</Recommend>
           <RecommendBoxWrapper>
-            {randomData.map((martial) => {
+            {randomData.map((martial, idx) => {
               return (
-                <RecommendBox onClick={() => moveToDetailPage(martial.id)}>
+                <RecommendBox
+                  key={idx}
+                  onClick={() => moveToDetailPage(martial.id)}
+                >
                   <MartialImg src={martial.img} width="100px" height="100px" />
                   <TitleAndCaption>
                     <RecommendTitle>{martial.name}</RecommendTitle>
