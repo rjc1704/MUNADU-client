@@ -70,6 +70,7 @@ export default function ReadReview({ martialId = 1, userID }: IProps) {
   const deleteReplies = (replyId: number, accessToken: string) => {
     dispatch(deleteReply({ replyId, accessToken }));
   };
+
   const isLogin = useSelector((state: RootState) => state.authReducer.isLogin);
   const userId = useSelector((state: RootState) => state.authReducer.id);
   const accessToken = useSelector(
@@ -108,16 +109,6 @@ export default function ReadReview({ martialId = 1, userID }: IProps) {
   useEffect(() => {
     dispatch(getReplyList());
   }, [replyList.length]);
-
-  // const [selReviewId, setSelReviewId] = useState(0);
-  // const [selMartialId, setSelMartialId] = useState(0);
-  // const [isOpen, setIsOpen] = useState(false);
-  // const openEditMenu = (reviewId: number, martialId: number) => {
-  //   setSelReviewId(reviewId);
-  //   setSelMartialId(martialId);
-  //   setIsOpen(true);
-  // };
-  // const kebabRef = useRef<HTMLDivElement>(null);
 
   const resetComment = () => {
     setComment("");

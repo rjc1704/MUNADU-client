@@ -7,39 +7,21 @@ import { useHistory } from "react-router";
 import Button from "../StyledComponents/button";
 import HeaderBar from "../Function_Components/Common/HeaderBar";
 import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
+import { martialData } from "../Function_Components/Common/martialData.json";
 
 export interface Icard {
   id: number;
   name: string;
   img: string;
 }
-// interface Imartial {
-//   name: string;
-//   weapon: number;
-//   uniform: number;
-//   origin: number;
-//   sports: number;
-//   manner: number;
-//   attack: number;
-//   nation: string;
-//   caption: string;
-//   video: string;
-//   kcal: number;
-//   img: string;
-//   wiki: string;
-// }
 
 function LandingPage() {
-  const cards: any = useSelector((state: RootState) => {
-    return state.martialReducer.result
-      ? state.martialReducer.result.map((el: any) => {
-          return {
-            id: el.id,
-            name: el.name,
-            img: el.img,
-          };
-        })
-      : null;
+  const cards: any = martialData.map((martial) => {
+    return {
+      id: martial.id,
+      name: martial.name,
+      img: martial.img,
+    };
   });
   const [audio, setAudio] = useState<boolean>(false);
   const [select, setSelect] = useState(0);
@@ -69,19 +51,6 @@ function LandingPage() {
   useEffect(() => {
     setImg(cards[select].img);
   }, [select]);
-
-  // const cards: any = useSelector((state: RootState) => {
-  //   console.log(`state`, state);
-  //   return state.martialReducer.result
-  //     ? state.martialReducer.result.map((el: any) => {
-  //         return {
-  //           id: el.id,
-  //           name: el.name,
-  //           img: el.img,
-  //         };
-  //       })
-  //     : null;
-  // });
 
   return (
     <div>

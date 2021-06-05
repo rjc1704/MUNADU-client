@@ -16,19 +16,11 @@ const Div = styled.div`
   height: 25em;
 `;
 
-export default function KakaoMapAPI({ martialId }) {
-  const dispatch = useDispatch();
-  const userAddress = useSelector((state) => state.userReducer.address);
-
+export default function KakaoMapAPI({ martialId, userAddress }) {
   const isLogin = useSelector((state) => state.authReducer.isLogin);
-  const userId = useSelector((state) => state.authReducer.id);
   const { lat, lgt } = useSelector((state) => state.coordReducer);
 
   useEffect(() => {
-    if (userId) {
-      dispatch(setUser(userId));
-      dispatch(getCoordinate(userAddress));
-    }
     const script = document.createElement("script");
     script.async = true;
     script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_KAKAO_CLIENT_ID}&autoload=false`;
@@ -41,7 +33,7 @@ export default function KakaoMapAPI({ martialId }) {
           // 로그인 상태이면서 프로필수정에서 주소를 등록한 경우, 그 주소를 초기 위치로 설정.
           // 아니면 첫 번째 무술 체육관 위치로 지정
           center:
-            isLogin && userAddress
+            isLogin && userAddress && lat && lgt
               ? new kakao.maps.LatLng(lat, lgt)
               : new kakao.maps.LatLng(
                   martialJson.result[martialId - 1].coord[0].y,
@@ -105,6 +97,7 @@ export default function KakaoMapAPI({ martialId }) {
       });
     };
   }, []);
+
   return (
     <Div>
       <MapContents id="Mymap"></MapContents>
