@@ -4,9 +4,9 @@ import { RootState } from "../Redux/Store/store";
 import { Landing } from "../StyledComponents/Landing";
 import { memo, useState, useEffect } from "react";
 import { useHistory } from "react-router";
-import Canvas from "../Function_Components/LandingPage/Canvas";
 import Button from "../StyledComponents/button";
 import HeaderBar from "../Function_Components/Common/HeaderBar";
+import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
 
 export interface Icard {
   id: number;
@@ -67,6 +67,7 @@ function LandingPage() {
     effect.play();
   };
   useEffect(() => {
+    console.log(`inUseEffect`, select);
     setImg(cards[select].img);
   }, [select]);
 
@@ -85,41 +86,82 @@ function LandingPage() {
 
   return (
     <div>
+      <Landing.Back></Landing.Back>
       <HeaderBar></HeaderBar>
       <Landing.Board>
         <Landing.Guide>
           <Landing.Bgm isAudio={audio} onClick={setBgm}>
             {audio ? "OFF" : "BGM"}
           </Landing.Bgm>
+
           <Landing.Title>
-            무나두
-            <br />
+            <Landing.LogoImg src={"/munadoLogo.svg"} />
             무술? 너도 할 수 있어!
           </Landing.Title>
-          <Button
-            onClick={() => {
-              history.push("/surveypage");
-            }}
-          >
-            설문 조사
-          </Button>
-          <Button
-            onClick={() => {
-              history.push({
-                pathname: "/mainpage",
-                state: { select: true },
-              });
-            }}
-          >
-            시작 하기
-          </Button>
+          <Landing.Divide></Landing.Divide>
+          <Landing.Caption>
+            무나두는 무술 큐레이션 서비스입니다.
+            <br />
+            본인에게 알맞은 다양한 무술을 찾아보세요.
+          </Landing.Caption>
+          <Landing.BtnWrapper>
+            <Button
+              color="white"
+              onClick={() => {
+                history.push("/surveypage");
+              }}
+            >
+              설문 조사
+            </Button>
+            <Button
+              onClick={() => {
+                history.push({
+                  pathname: "/mainpage",
+                  state: { select: true },
+                });
+              }}
+            >
+              시작 하기
+            </Button>
+          </Landing.BtnWrapper>
         </Landing.Guide>
-        {cards.map((el: any) => {
-          if (el.id === select + 1) {
-            return <img className="landing_martial select" src={img}></img>;
-          }
-          return <img className="landing_martial" src="dummy.svg"></img>;
-        })}
+        <Landing.CardWrapper>
+          <Landing.Left
+            src={"/LeftArrow.svg"}
+            onClick={() => {
+              if (select === 0) {
+                return setSelect(29);
+              }
+              setSelect(select - 1);
+            }}
+          ></Landing.Left>
+          {cards.map((el: any) => {
+            if (el.id === select + 1) {
+              return (
+                <Landing.MartialImg
+                  className="landing_martial select"
+                  src={img}
+                ></Landing.MartialImg>
+              );
+            }
+            return (
+              <Landing.MartialImg
+                className="landing_martial"
+                src="dummy.svg"
+              ></Landing.MartialImg>
+            );
+          })}
+          <Landing.Right
+            src={"/RightArrow.svg"}
+            onClick={() => {
+              if (select === 29) {
+                return setSelect(0);
+              }
+
+              setSelect(select + 1);
+            }}
+          ></Landing.Right>
+        </Landing.CardWrapper>
         <Landing.Name>{cards[select].name}</Landing.Name>
         <Landing.Base>
           <Landing.CardBoard>
@@ -146,7 +188,6 @@ function LandingPage() {
           </Landing.CardBoard>
         </Landing.Base>
       </Landing.Board>
-      <Canvas></Canvas>
     </div>
   );
 }
