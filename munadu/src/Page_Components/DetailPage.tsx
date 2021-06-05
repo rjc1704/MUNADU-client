@@ -12,8 +12,10 @@ import DetailInfo from "../Function_Components/Common/DetailInfo";
 import martialJson from "../Function_Components/Common/martialData.json";
 import { useDispatch, useSelector } from "react-redux";
 import { getAverage } from "../Redux/Reducers/avgReducer";
+import { setUser } from "../Redux/Reducers/userReducer";
 import HeaderBar from "../Function_Components/Common/HeaderBar";
 import Summary from "../Function_Components/DetailPage/Summary";
+import { getCoordinate } from "../Redux/Reducers/coordReducer";
 
 const ContentContainer = styled.div`
   display: flex;
@@ -173,6 +175,9 @@ export default function DetailPage() {
   const martialId = location.state.martialId;
 
   const userId = useSelector((state: RootState) => state.authReducer.id);
+  const userAddress = useSelector(
+    (state: RootState) => state.userReducer.address
+  );
 
   const theMartial = martialJson.martialData.filter(
     (martial) => martial.id === martialId
@@ -252,6 +257,7 @@ export default function DetailPage() {
   }
   useEffect(() => {
     dispatch(getAverage(martialId));
+    if (userAddress) dispatch(getCoordinate(userAddress));
   }, []);
 
   return (

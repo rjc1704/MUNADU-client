@@ -36,7 +36,7 @@ export default function ReadLocation({ martialId }) {
             위치를 표시할 수 있습니다.
           </Text>
         )}
-        <KakaoMapAPI martialId={martialId} />
+        <KakaoMapAPI martialId={martialId} userAddress={userAddress} />
       </SubWrapper>
     </MapWrapper>
   );
