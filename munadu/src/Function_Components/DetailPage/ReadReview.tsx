@@ -55,18 +55,10 @@ export default function ReadReview({ martialId = 1, userID }: IProps) {
   const [reviewID, setReviewID] = useState(0);
   const dispatch = useDispatch();
   const replyInput = useRef<HTMLInputElement>(null);
-  const reviewList = useSelector(
+  let reviewList = useSelector(
     (state: RootState) => state.reviewReducer.reviewList
   );
-  let sortedReviewList = reviewList.slice().sort((a: any, b: any) => {
-    const theADate = a.createdAt.slice(0, 10);
-    const theATime = a.createdAt.slice(11, 19);
-    const aDate = date.parse(`${theADate} ${theATime}`, "YYYY-MM-DD HH:mm:ss");
-    const theBDate = b.createdAt.slice(0, 10);
-    const theBTime = b.createdAt.slice(11, 19);
-    const bDate = date.parse(`${theBDate} ${theBTime}`, "YYYY-MM-DD HH:mm:ss");
-    return bDate.getTime() - aDate.getTime();
-  });
+
   const deleteReplies = (replyId: number, accessToken: string) => {
     dispatch(deleteReply({ replyId, accessToken }));
   };
@@ -82,17 +74,8 @@ export default function ReadReview({ martialId = 1, userID }: IProps) {
   const userReviewList = useSelector(
     (state: RootState) => state.reviewReducer.userReviewList
   );
-  const sortedUserReviewList = userReviewList.slice().sort((a: any, b: any) => {
-    const theADate = a.createdAt.slice(0, 10);
-    const theATime = a.createdAt.slice(11, 19);
-    const aDate = date.parse(`${theADate} ${theATime}`, "YYYY-MM-DD HH:mm:ss");
-    const theBDate = b.createdAt.slice(0, 10);
-    const theBTime = b.createdAt.slice(11, 19);
-    const bDate = date.parse(`${theBDate} ${theBTime}`, "YYYY-MM-DD HH:mm:ss");
-    return bDate.getTime() - aDate.getTime();
-  });
 
-  if (userId === userID) sortedReviewList = sortedUserReviewList;
+  if (userId === userID) reviewList = userReviewList;
 
   const handleComment = async (e: any) => {
     await setComment(e.target.value);
@@ -117,10 +100,10 @@ export default function ReadReview({ martialId = 1, userID }: IProps) {
   return (
     <ReviewWrapper>
       <TotalCount>
-        총 {sortedReviewList.length}
+        총 {reviewList.length}
         개의 조언
       </TotalCount>
-      {sortedReviewList.map((review, idx) => {
+      {reviewList.map((review, idx) => {
         return (
           <ReviewBox key={idx}>
             <NameAndDateAndBtn>

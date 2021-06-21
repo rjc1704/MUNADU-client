@@ -253,7 +253,7 @@ const reviewReducer = createSlice({
     },
     [createReview.fulfilled.type]: (state, action: IcreatePayload) => {
       console.log(`action in createReview`, action);
-      state.reviewList.push({
+      state.reviewList.unshift({
         id: action.payload.Reviews_id,
         period: action.payload.period,
         comment: action.payload.comment,
